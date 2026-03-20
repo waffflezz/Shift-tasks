@@ -1,9 +1,10 @@
 package ru.shift;
 
+/**
+ * Точка входа программы
+ */
 public class Main {
     public static void main(String[] args) {
-        MultiplicationTable table = new MultiplicationTable(30);
-
-        System.out.println(table.getMultiplicationTable());
+        TUI.handle();
     }
 }
