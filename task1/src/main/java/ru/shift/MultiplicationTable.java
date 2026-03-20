@@ -1,19 +1,19 @@
 package ru.shift;
 
-public class MultiplicationTableGenerator {
+public class MultiplicationTable {
     private final String EOL = System.lineSeparator();
 
     private final int tableSize;
     private final int whiteSpaceLength;
     private final int cellLength;
 
-    private final StringBuilder mainBuilder;
+    private final StringBuilder builder;
     private final String dividerRow;
     private final String firstCellFormat;
     private final String cellFormat;
 
 
-    public MultiplicationTableGenerator(int tableSize) {
+    public MultiplicationTable(int tableSize) {
         if (tableSize < 1 || tableSize > 32) {
             throw new IllegalArgumentException("Аргумент tableSize должен быть 1 <= tableSize <= 32");
         }
@@ -24,27 +24,30 @@ public class MultiplicationTableGenerator {
 
         this.dividerRow = generateDividerRow();
 
-        int allRowsLength = (whiteSpaceLength
-                + cellLength * tableSize
-                + tableSize // Кол-во вертикальных разделителей "|"
-                + dividerRow.length()
-                + EOL.length() * 2) // EOL, конец файла для одной линии + разделительная линия
-                * tableSize;
-
-
         this.firstCellFormat = "%" + (whiteSpaceLength > 1 ? whiteSpaceLength + "d" : "d");
         this.cellFormat = "%" + cellLength + "d";
 
-        this.mainBuilder = new StringBuilder(allRowsLength);
+        this.builder = initBuilder();
         fillTable();
     }
 
     public String getMultiplicationTable() {
-        return mainBuilder.toString();
+        return builder.toString();
+    }
+
+    private StringBuilder initBuilder() {
+        int allRowsLength = (whiteSpaceLength
+                + cellLength * tableSize
+                + tableSize // Кол-во вертикальных разделителей "|"
+                + dividerRow.length()
+                + EOL.length() * 2) // EOL, конец строки, для строки с строчками + раздилительной строки
+                * tableSize;
+
+        return new StringBuilder(allRowsLength);
     }
 
     private void fillTable() {
-        mainBuilder.append(" ".repeat(whiteSpaceLength));
+        builder.append(" ".repeat(whiteSpaceLength));
         fillRowWithoutFirstCol(1);
 
         for (int i = 1; i < tableSize + 1; i++) {
@@ -53,24 +56,25 @@ public class MultiplicationTableGenerator {
     }
 
     private void fillRow(int startNumber) {
-        mainBuilder.append(String.format(firstCellFormat, startNumber));
+        builder.append(firstCellFormat.formatted(startNumber));
         fillRowWithoutFirstCol(startNumber);
     }
 
     private void fillRowWithoutFirstCol(int startNumber) {
         for (int i = 1; i < tableSize + 1; i++) {
-            mainBuilder.append(DelimiterConstants.VERTICAL);
-            mainBuilder.append(String.format(cellFormat, startNumber * i));
+            builder.append(DelimiterConstants.VERTICAL);
+            builder.append(cellFormat.formatted(startNumber * i));
         }
 
-        mainBuilder.append(EOL).append(dividerRow).append(EOL);
+        builder.append(dividerRow);
     }
 
     private String generateDividerRow() {
         String cellUnderscore = DelimiterConstants.UNDERSCORE.repeat(cellLength);
-        return DelimiterConstants.UNDERSCORE.repeat(whiteSpaceLength)
+        return EOL + DelimiterConstants.UNDERSCORE.repeat(whiteSpaceLength)
                 + DelimiterConstants.CROSS
                 + (cellUnderscore + DelimiterConstants.CROSS).repeat(tableSize - 1)
-                + cellUnderscore;
+                + cellUnderscore
+                + EOL;
     }
 }
