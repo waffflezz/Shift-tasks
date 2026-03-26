@@ -24,7 +24,14 @@ package ru.shift;
  * </p>
  */
 public class MultiplicationTable {
-    private final String EOL = System.lineSeparator();
+    /**
+     * Разделитель строки, в зависимости от системы
+     */
+    private static final String EOL = System.lineSeparator();
+    /**
+     * Множитель для первой строки таблицы
+     */
+    private static final int HEADER_MULTIPLIER = 1;
 
     private final int tableSize;
     private final int whiteSpaceLength;
@@ -42,9 +49,7 @@ public class MultiplicationTable {
      * @throws IllegalArgumentException если {@code tableSize} выходит за допустимые пределы
      */
     public MultiplicationTable(int tableSize) {
-        if (tableSize < 1 || tableSize > 32) {
-            throw new IllegalArgumentException("Аргумент tableSize должен быть 1 <= tableSize <= 32");
-        }
+        Validator.validateTableSize(tableSize, "Аргумент tableSize должен быть 1 <= tableSize <= 32");
 
         this.tableSize = tableSize;
         this.whiteSpaceLength = String.valueOf(tableSize).length();
@@ -76,9 +81,9 @@ public class MultiplicationTable {
     private StringBuilder initBuilder() {
         int allRowsLength = (whiteSpaceLength
                 + cellLength * tableSize
-                + tableSize // Кол-во вертикальных разделителей "|"
+                + tableSize
                 + dividerRow.length()
-                + EOL.length() * 2) // EOL, конец строки, для строки с строчками + раздилительной строки
+                + EOL.length() * 2)
                 * tableSize;
 
         return new StringBuilder(allRowsLength);
@@ -88,8 +93,8 @@ public class MultiplicationTable {
      * Заполняет {@link StringBuilder} содержимым таблицы умножения.
      */
     private void fillTable() {
-        builder.append(" ".repeat(whiteSpaceLength));
-        fillRowWithoutFirstCol(1);
+        builder.repeat(' ', whiteSpaceLength);
+        fillRowWithoutFirstCol(HEADER_MULTIPLIER);
 
         for (int i = 1; i < tableSize + 1; i++) {
             fillRow(i);
