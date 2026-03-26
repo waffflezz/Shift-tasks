@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Учтены замечания code review. Вынес различные сообщения в отдельный класс, с возможностью их форматирования. Теперь берется сообщение из ошибки валидатора, а также добавлен кейс на возможную неизвестную ошибку. Добавлена отдельная ошибка. Константы вынесены в свои классы для переиспользования. Плюсом добавлены javadoc и в TUI вынесена в константу число для выхода из программы">
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc.">
       <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/StringCalculator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/StringCalculatorException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/StringCalculatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task1/src/main/java/ru/shift/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/task1/src/main/java/ru/shift/constants/Messages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task1/src/main/java/ru/shift/MultiplicationTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/task1/src/main/java/ru/shift/MultiplicationTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task1/src/main/java/ru/shift/TUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/task1/src/main/java/ru/shift/TUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task1/src/main/java/ru/shift/exceptions/InvalidTableSizeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task1/src/main/java/ru/shift/exceptions/InvalidTableSizeException.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774514787459</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc.">
+      <option name="closed" value="true" />
+      <created>1774520193571</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1774520193571</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -320,7 +319,8 @@
     <MESSAGE value="Добавлена небольшая ридмишка" />
     <MESSAGE value="Учтены замечания code review. String.repeat в билдере заменен на метод .repeat из самого билдера. Убраны комментарии, магические числа вынесены в константы, комментарии к константам добавлены. Написан класс Validator, чтобы вынести логику валидирования из класса таблицы" />
     <MESSAGE value="Учтены замечания code review. Вынес различные сообщения в отдельный класс, с возможностью их форматирования. Теперь берется сообщение из ошибки валидатора, а также добавлен кейс на возможную неизвестную ошибку. Добавлена отдельная ошибка. Константы вынесены в свои классы для переиспользования. Плюсом добавлены javadoc и в TUI вынесена в константу число для выхода из программы" />
-    <option name="LAST_COMMIT_MESSAGE" value="Учтены замечания code review. Вынес различные сообщения в отдельный класс, с возможностью их форматирования. Теперь берется сообщение из ошибки валидатора, а также добавлен кейс на возможную неизвестную ошибку. Добавлена отдельная ошибка. Константы вынесены в свои классы для переиспользования. Плюсом добавлены javadoc и в TUI вынесена в константу число для выхода из программы" />
+    <MESSAGE value="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc." />
+    <option name="LAST_COMMIT_MESSAGE" value="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

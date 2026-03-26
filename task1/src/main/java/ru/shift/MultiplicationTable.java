@@ -48,7 +48,7 @@ public class MultiplicationTable {
     /**
      * Конструктор, создающий таблицу умножения заданного размера.
      *
-     * @param tableSize размер таблицы (от 1 до 32 включительно)
+     * @param tableSize размер таблицы (от {@link TableConstants#LEFT_BOUND} до {@link TableConstants#RIGHT_BOUND} включительно)
      * @throws IllegalArgumentException если {@code tableSize} выходит за допустимые пределы
      */
     public MultiplicationTable(int tableSize) {
