@@ -1,6 +1,6 @@
 package ru.shift.exceptions;
 
-import ru.shift.Messages;
+import ru.shift.constants.Messages;
 import ru.shift.constants.TableConstants;
 
 /**

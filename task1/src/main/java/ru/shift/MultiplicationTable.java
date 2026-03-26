@@ -1,6 +1,7 @@
 package ru.shift;
 
 import ru.shift.constants.DelimiterConstants;
+import ru.shift.constants.TableConstants;
 
 /**
  * Класс {@code MultiplicationTable} предназначен для генерации строкового
@@ -13,7 +14,7 @@ import ru.shift.constants.DelimiterConstants;
  * <p>
  * Ограничения:
  * <ul>
- *     <li>Размер таблицы должен быть в диапазоне от 1 до 32 включительно.</li>
+ *     <li>Размер таблицы должен быть в диапазоне от {@link TableConstants#LEFT_BOUND} до {@link TableConstants#RIGHT_BOUND} включительно.</li>
  * </ul>
  * </p>
  *

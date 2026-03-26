@@ -1,4 +1,4 @@
-package ru.shift;
+package ru.shift.constants;
 
 /**
  * Класс {@code Messages}, содержащий текстовые константы,
