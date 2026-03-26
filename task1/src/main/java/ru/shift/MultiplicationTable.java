@@ -1,5 +1,7 @@
 package ru.shift;
 
+import ru.shift.constants.DelimiterConstants;
+
 /**
  * Класс {@code MultiplicationTable} предназначен для генерации строкового
  * представления таблицы умножения заданного размера.
@@ -49,7 +51,7 @@ public class MultiplicationTable {
      * @throws IllegalArgumentException если {@code tableSize} выходит за допустимые пределы
      */
     public MultiplicationTable(int tableSize) {
-        Validator.validateTableSize(tableSize, "Аргумент tableSize должен быть 1 <= tableSize <= 32");
+        Validator.validateTableSize(tableSize);
 
         this.tableSize = tableSize;
         this.whiteSpaceLength = String.valueOf(tableSize).length();

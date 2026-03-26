@@ -1,5 +1,8 @@
 package ru.shift;
 
+import ru.shift.constants.TableConstants;
+import ru.shift.exceptions.InvalidTableSizeException;
+
 import java.util.Scanner;
 
 /**
@@ -19,30 +22,35 @@ public class TUI {
      * </p>
      */
     public static void handle() {
+        final int exitInput = 0;
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Введите число от 1 до 32, " +
-                    "чтобы посчитать таблицу умножения, введённой размерности\n" +
-                    "Чтобы остановить выполнение программы, введите 0");
+            System.out.println(Messages.INPUT_TABLE_SIZE.formatted(
+                    TableConstants.LEFT_BOUND,
+                    TableConstants.RIGHT_BOUND,
+                    exitInput));
 
             if (!scanner.hasNextInt()) {
-                System.out.println("Вы ввели не число, попробуйте ещё раз!");
+                System.out.println(Messages.NOT_A_NUMBER);
                 scanner.next();
                 continue;
             }
 
             int tableSize = scanner.nextInt();
 
-            if (tableSize == 0) {
+            if (tableSize == exitInput) {
                 break;
             }
 
             try {
                 MultiplicationTable table = new MultiplicationTable(tableSize);
                 System.out.println(table.getMultiplicationTable());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Число должно быть больше 1 и меньше 32 включительно!");
+            } catch (InvalidTableSizeException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(Messages.UNEXPECTED_ERROR);
             }
         }
     }
