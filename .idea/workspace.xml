@@ -5,9 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc.">
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/StringCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/StringCalculatorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/StringCalculatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/IOConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/ShapeConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/UnknownShapeTypeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/circle/CircleRadiusBelowZeroException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/rectangle/RectangleSidesBelowZeroException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleCantExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleSideBelowZeroException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Validator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/ShapeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,28 +90,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.StringCalculatorTest.empty_string_return0.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StringCalculatorTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task1 [:ru.shift.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task2 [:ru.shift.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task2 [dependencies].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task2 [test].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;task1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.StringCalculatorTest.empty_string_return0.executor": "Run",
+    "Gradle.StringCalculatorTest.executor": "Run",
+    "Gradle.task1 [:ru.shift.Main.main()].executor": "Run",
+    "Gradle.task2 [:ru.shift.Main.main()].executor": "Run",
+    "Gradle.task2 [dependencies].executor": "Run",
+    "Gradle.task2 [test].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "task2",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "editor.preferences.import"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -102,7 +120,7 @@
       <recent name="ru.shift" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
       <module name="task2.main" />
@@ -210,7 +228,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.StringCalculatorTest" />
         <item itemvalue="Gradle.StringCalculatorTest.empty_string_return0" />
