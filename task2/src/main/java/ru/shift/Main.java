@@ -1,13 +1,11 @@
 package ru.shift;
 
-import ru.shift.shapes.Circle;
-import ru.shift.shapes.Rectangle;
-import ru.shift.shapes.Shape;
-import ru.shift.shapes.Triangle;
+import picocli.CommandLine;
+import ru.shift.cli.ShapeCommand;
 
 public class Main {
     public static void main(String[] args) {
-        Shape circle = new Rectangle(3, 5);
-        System.out.println(circle.getShapeStringData());
+        int exitCode = new CommandLine(new ShapeCommand()).execute(args);
+        System.exit(exitCode);
     }
 }

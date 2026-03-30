@@ -1,10 +1,6 @@
 package ru.shift.shapes;
 
-import ru.shift.constants.Messages;
-import ru.shift.constants.ShapeConstants;
 import ru.shift.shapes.types.ShapeType;
-
-import static ru.shift.constants.IOConstants.EOL;
 
 public class Triangle extends Shape {
     private final double sideA;
@@ -12,7 +8,7 @@ public class Triangle extends Shape {
     private final double sideC;
 
     public Triangle(double sideA, double sideB, double sideC) {
-        Validator.validateTriangleCreation(sideA, sideB, sideC);
+        ShapesValidator.validateTriangleCreation(sideA, sideB, sideC);
 
         this.sideA = sideA;
         this.sideB = sideB;
@@ -63,27 +59,5 @@ public class Triangle extends Shape {
     @Override
     public double computePerimeter() {
         return sideA + sideB + sideC;
-    }
-
-    @Override
-    public StringBuilder getSpecifiedData() {
-        StringBuilder builder = new StringBuilder();
-
-        builder.append(Messages.TRIANGLE_SIDE_A).append(sideA).append(ShapeConstants.UNITS)
-                .append(Messages.TRIANGLE_OPPOSITE_ANGLE).append(computeAngleOppositeA())
-                .append(ShapeConstants.DEGREES)
-                .append(EOL);
-
-        builder.append(Messages.TRIANGLE_SIDE_B).append(sideB).append(ShapeConstants.UNITS)
-                .append(Messages.TRIANGLE_OPPOSITE_ANGLE).append(computeAngleOppositeB())
-                .append(ShapeConstants.DEGREES)
-                .append(EOL);
-
-        builder.append(Messages.TRIANGLE_SIDE_C).append(sideC).append(ShapeConstants.UNITS)
-                .append(Messages.TRIANGLE_OPPOSITE_ANGLE).append(computeAngleOppositeC())
-                .append(ShapeConstants.DEGREES)
-                .append(EOL);
-
-        return builder;
     }
 }

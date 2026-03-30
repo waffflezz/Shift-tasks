@@ -4,28 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc.">
-      <change afterPath="$PROJECT_DIR$/task2/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/IOConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/ShapeConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/UnknownShapeTypeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/circle/CircleRadiusBelowZeroException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/rectangle/RectangleSidesBelowZeroException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleCantExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleSideBelowZeroException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Validator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/Mapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/ShapeType.java" afterDir="false" />
+    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Начальный коммит. Добавлены фигуры, получения различных характеристик этих фигур. Константы вынесены по своим классам, на будущее сделан маппер, чтобы определять тип фигуры. Сделаны свои исключения">
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/cli/ShapeCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/WrongParamCountException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoriesValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/FormatterFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/ShapeFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/CircleStringFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/RectangleStringFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatterRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/TriangleStringFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/ConsoleOutputWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/FileInputReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/FileOutputWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/InputReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/OutputWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task1/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task2/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/IOConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/IOConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/ShapesValidator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +78,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -92,6 +101,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
     "Gradle.StringCalculatorTest.empty_string_return0.executor": "Run",
     "Gradle.StringCalculatorTest.executor": "Run",
     "Gradle.task1 [:ru.shift.Main.main()].executor": "Run",
@@ -99,7 +109,11 @@
     "Gradle.task2 [dependencies].executor": "Run",
     "Gradle.task2 [test].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
@@ -124,6 +138,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
       <module name="task2.main" />
+      <option name="PROGRAM_PARAMETERS" value="-f=test.txt -co" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ru.shift.constants.*" />
@@ -226,6 +241,12 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.StringCalculatorTest" />
+      <item itemvalue="Gradle.StringCalculatorTest.empty_string_return0" />
+      <item itemvalue="Gradle.task2 [dependencies]" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -314,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774520193571</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Начальный коммит. Добавлены фигуры, получения различных характеристик этих фигур. Константы вынесены по своим классам, на будущее сделан маппер, чтобы определять тип фигуры. Сделаны свои исключения">
+      <option name="closed" value="true" />
+      <created>1774605214998</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1774605214998</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,7 +366,8 @@
     <MESSAGE value="Учтены замечания code review. String.repeat в билдере заменен на метод .repeat из самого билдера. Убраны комментарии, магические числа вынесены в константы, комментарии к константам добавлены. Написан класс Validator, чтобы вынести логику валидирования из класса таблицы" />
     <MESSAGE value="Учтены замечания code review. Вынес различные сообщения в отдельный класс, с возможностью их форматирования. Теперь берется сообщение из ошибки валидатора, а также добавлен кейс на возможную неизвестную ошибку. Добавлена отдельная ошибка. Константы вынесены в свои классы для переиспользования. Плюсом добавлены javadoc и в TUI вынесена в константу число для выхода из программы" />
     <MESSAGE value="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc." />
-    <option name="LAST_COMMIT_MESSAGE" value="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc." />
+    <MESSAGE value="Начальный коммит. Добавлены фигуры, получения различных характеристик этих фигур. Константы вынесены по своим классам, на будущее сделан маппер, чтобы определять тип фигуры. Сделаны свои исключения" />
+    <option name="LAST_COMMIT_MESSAGE" value="Начальный коммит. Добавлены фигуры, получения различных характеристик этих фигур. Константы вынесены по своим классам, на будущее сделан маппер, чтобы определять тип фигуры. Сделаны свои исключения" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

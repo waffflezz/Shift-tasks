@@ -5,7 +5,7 @@ import ru.shift.exceptions.triangle.TriangleCantExistsException;
 import ru.shift.exceptions.triangle.TriangleSideBelowZeroException;
 import ru.shift.exceptions.rectangle.RectangleSidesBelowZeroException;
 
-public class Validator {
+public class ShapesValidator {
     public static void validateTriangleCreation(double sideA, double sideB, double sideC) {
         if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
             throw new TriangleSideBelowZeroException();

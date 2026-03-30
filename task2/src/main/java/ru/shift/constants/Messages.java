@@ -26,4 +26,14 @@ public class Messages {
     public static final String CIRCLE_RADIUS_BELOW_ZERO_EXCEPTION = "Радиус меньше 0";
 
     public static final String RECTANGLE_SIDES_BELOW_ZERO_EXCEPTION = "Радиус меньше 0";
+
+    public static final String CANT_OPEN_INPUT_FILE_EXCEPTION = "Не удалось открыть входной файл: %s";
+    public static final String CANT_READ_OPEN_INPUT_FILE_EXCEPTION = "Ошибка чтения входного файла";
+    public static final String CANT_CLOSE_OPEN_INPUT_FILE_EXCEPTION = "Ошибка закрытия входного файла";
+
+    public static final String CANT_OPEN_OUTPUT_FILE_EXCEPTION = "Не удалось открыть входной файл: %s";
+    public static final String CANT_WRITE_OPEN_OUTPUT_FILE_EXCEPTION = "Ошибка чтения входного файла";
+    public static final String CANT_CLOSE_OPEN_OUTPUT_FILE_EXCEPTION = "Ошибка закрытия входного файла";
+
+    public static final String WRONG_COUNT_OF_PARAM_EXCEPTION = "Для фигуры: %s, требуется %d параметр(а)";
 }
