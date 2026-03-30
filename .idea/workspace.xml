@@ -4,29 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Добавлен форматер. Из фигур вынесена логика отображения характеристик в текст, теперь этим занимается форматер. Добавлены абстрактные ввод и вывод. Начата работа над точкой входа и сбора всей логики вместе">
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/ParseDoubleException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/CircleFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoryRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/RectangleFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/TriangleFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/FileUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/ParserUtil.java" afterDir="false" />
+    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task1/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task2/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/cli/ShapeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/cli/ShapeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/IOConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/IOConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/ShapeConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/ShapeConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/ParseDoubleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/ParseDoubleException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/UnknownShapeTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/UnknownShapeTypeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/WrongParamCountException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/WrongParamCountException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/circle/CircleRadiusBelowZeroException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/circle/CircleRadiusBelowZeroException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/rectangle/RectangleSidesBelowZeroException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/rectangle/RectangleSidesBelowZeroException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleCantExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleCantExistsException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleSideBelowZeroException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/triangle/TriangleSideBelowZeroException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/CircleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/CircleFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoriesValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoriesValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoryRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoryRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/RectangleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/RectangleFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/TriangleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/TriangleFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/FormatterFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/FormatterFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/ShapeFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/ShapeFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/CircleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/CircleStringFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/RectangleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/RectangleStringFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatterRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatterRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/TriangleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/TriangleStringFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/ConsoleOutputWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/ConsoleOutputWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/FileInputReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/FileInputReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/FileOutputWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/FileOutputWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/InputReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/InputReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/OutputWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/io/OutputWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/ShapesValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/ShapesValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/Mapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/ShapeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/ShapeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/Parser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/FileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/ParserUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/ParserUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +103,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -117,6 +138,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "editor.preferences.import"
   }
 }]]></component>
@@ -348,7 +370,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774857019231</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом">
+      <option name="closed" value="true" />
+      <created>1774886328979</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1774886328979</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -373,7 +403,8 @@
     <MESSAGE value="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc." />
     <MESSAGE value="Начальный коммит. Добавлены фигуры, получения различных характеристик этих фигур. Константы вынесены по своим классам, на будущее сделан маппер, чтобы определять тип фигуры. Сделаны свои исключения" />
     <MESSAGE value="Добавлен форматер. Из фигур вынесена логика отображения характеристик в текст, теперь этим занимается форматер. Добавлены абстрактные ввод и вывод. Начата работа над точкой входа и сбора всей логики вместе" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен форматер. Из фигур вынесена логика отображения характеристик в текст, теперь этим занимается форматер. Добавлены абстрактные ввод и вывод. Начата работа над точкой входа и сбора всей логики вместе" />
+    <MESSAGE value="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

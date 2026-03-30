@@ -1,12 +1,31 @@
 package ru.shift.shapes;
 
+import lombok.Getter;
+import ru.shift.exceptions.triangle.TriangleCantExistsException;
+import ru.shift.exceptions.triangle.TriangleSideBelowZeroException;
 import ru.shift.shapes.types.ShapeType;
 
+/**
+ * Класс, представляющий треугольник, заданный длинами трёх сторон.
+ *
+ * <p>При создании выполняется валидация сторон (см. {@link ShapesValidator}),
+ * включая проверку положительности значений и неравенства треугольника.</p>
+ */
+@Getter
 public class Triangle extends Shape {
     private final double sideA;
     private final double sideB;
     private final double sideC;
 
+    /**
+     * Создаёт треугольник по трём сторонам.
+     *
+     * @param sideA длина стороны A
+     * @param sideB длина стороны B
+     * @param sideC длина стороны C
+     * @throws TriangleSideBelowZeroException если хотя бы одна и сторон меньше или равна 0
+     * @throws TriangleCantExistsException если треугольник с такими сторонами не может существовать
+     */
     public Triangle(double sideA, double sideB, double sideC) {
         ShapesValidator.validateTriangleCreation(sideA, sideB, sideC);
 
@@ -15,30 +34,39 @@ public class Triangle extends Shape {
         this.sideC = sideC;
     }
 
-    public double getSideA() {
-        return sideA;
-    }
-
-    public double getSideB() {
-        return sideB;
-    }
-
-    public double getSideC() {
-        return sideC;
-    }
-
+    /**
+     * Вычисляет угол, противоположный стороне {@link #sideA}, в градусах.
+     *
+     * <p>Расчёт выполняется по теореме косинусов.</p>
+     *
+     * @return угол напротив стороны {@link #sideA} в градусах
+     */
     public double computeAngleOppositeA() {
         return Math.toDegrees(
                 Math.acos((sideB * sideB + sideC * sideC - sideA * sideA) / (2 * sideB * sideC))
         );
     }
 
+    /**
+     * Вычисляет угол, противоположный стороне {@link #sideB}, в градусах.
+     *
+     * <p>Расчёт выполняется по теореме косинусов.</p>
+     *
+     * @return угол напротив стороны {@link #sideB} в градусах
+     */
     public double computeAngleOppositeB() {
         return Math.toDegrees(
                 Math.acos((sideA * sideA + sideC * sideC - sideB * sideB) / (2 * sideA * sideC))
         );
     }
 
+    /**
+     * Вычисляет угол, противоположный стороне {@link #sideC}, в градусах.
+     *
+     * <p>Расчёт выполняется по теореме косинусов.</p>
+     *
+     * @return угол напротив стороны {@link #sideC} в градусах
+     */
     public double computeAngleOppositeC() {
         return Math.toDegrees(
                 Math.acos((sideA * sideA + sideB * sideB - sideC * sideC) / (2 * sideA * sideB))

@@ -7,6 +7,15 @@ import ru.shift.utils.ParserUtil;
 
 import java.util.Arrays;
 
+/**
+ * Фабрика для создания объектов {@link Triangle}.
+ *
+ * <p>Преобразует входные строковые параметры в числовые значения
+ * и создаёт треугольник после валидации.</p>
+ *
+ * <p>Ожидается, что входной массив содержит ровно {@link #PARAMS_NEED} параметра:
+ * длины сторон треугольника.</p>
+ */
 @Slf4j
 public class TriangleFactory implements ShapeFactory<Triangle> {
     private final static int PARAMS_NEED = 3;

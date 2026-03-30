@@ -22,6 +22,28 @@ import ru.shift.utils.FileUtil;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Класс команды командной строки для чтения описания геометрической фигуры из файла,
+ * создания соответствующего объекта и вывода его характеристик.
+ *
+ * <p>Команда:
+ * <ul>
+ *     <li>читает тип фигуры из входного файла</li>
+ *     <li>определяет подходящую фабрику через {@link FactoryRegistry}</li>
+ *     <li>создаёт объект фигуры</li>
+ *     <li>Достаёт нужный форматер через {@link StringFormatterRegistry}</li>
+ *     <li>форматирует результат через детей {@link ru.shift.format.string.StringFormatter}</li>
+ *     <li>выводит результат в файл или консоль</li>
+ * </ul>
+ *
+ * <p>Поддерживаемые способы вывода:
+ * <ul>
+ *     <li>в файл через {@code -o}/{@code --output}</li>
+ *     <li>в консоль через {@code -co}/{@code --console-output}</li>
+ * </ul>
+ *
+ * <p>Используется как точка входа для CLI-утилиты на базе Picocli.</p>
+ */
 @Slf4j
 @Command(
         name = "Фигуры",
@@ -44,7 +66,7 @@ public class ShapeCommand implements Runnable {
     static class OutputOptions {
         @Option(
                 names = {"-o", "--output"},
-                description = "Путь до входного файла"
+                description = "Путь до выходного файла"
         )
         private String outputFile;
 
@@ -72,7 +94,8 @@ public class ShapeCommand implements Runnable {
                 String shapeText = reader.readLine(ShapeType.computeMaxLengthFigureType());
                 ShapeType shapeType = Mapper.fromStringToShapeType(shapeText);
 
-                ShapeFactory<?> factory = FactoryRegistry.getFactory(shapeType);
+                ShapeFactory<?> factory = FactoryRegistry.getFactory(shapeType)
+                        .orElseThrow();
 
                 int maxStringLength = factory.getParamsNeedCount() * String.valueOf(Double.MAX_VALUE).length();
                 String[] params = reader.readLine(maxStringLength).split(" ");

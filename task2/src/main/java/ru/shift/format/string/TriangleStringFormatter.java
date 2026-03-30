@@ -5,6 +5,21 @@ import ru.shift.constants.Messages;
 import ru.shift.constants.ShapeConstants;
 import ru.shift.shapes.Triangle;
 
+/**
+ * Реализация {@link StringFormatter} для форматирования треугольника.
+ *
+ * <p>Дополняет общее строковое представление фигуры специфичными данными:
+ * <ul>
+ *     <li>длины сторон ({@link Triangle#getSideA()}, {@link Triangle#getSideB()}, {@link Triangle#getSideC()})</li>
+ *     <li>углы, противоположные соответствующим сторонам:
+ *     ({@link Triangle#computeAngleOppositeA()},
+ *     {@link Triangle#computeAngleOppositeB()},
+ *     {@link Triangle#computeAngleOppositeC()})</li>
+ * </ul>
+ *
+ * <p>Все числовые значения форматируются с использованием
+ * {@link ShapeConstants#DECIMAL_FORMAT}.</p>
+ */
 public class TriangleStringFormatter extends StringFormatter<Triangle> {
     @Override
     protected void appendSpecificData(StringBuilder builder, Triangle shape) {

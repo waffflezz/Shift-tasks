@@ -2,10 +2,23 @@ package ru.shift.shapes;
 
 import ru.shift.shapes.types.ShapeType;
 
+/**
+ * Класс, представляющий прямоугольник.
+ *
+ * <p>Прямоугольник задаётся шириной и высотой.
+ * При создании выполняется валидация сторон (см. {@link ShapesValidator}).</p>
+ */
 public class Rectangle extends Shape {
     private final double width;
     private final double height;
 
+    /**
+     * Создаёт прямоугольник с заданными сторонами.
+     *
+     * @param width ширина
+     * @param height высота
+     * @throws ru.shift.exceptions.rectangle.RectangleSidesBelowZeroException если одна из сторон <= 0
+     */
     public Rectangle(double width, double height) {
         ShapesValidator.validateRectangleSides(width, height);
 
@@ -13,14 +26,31 @@ public class Rectangle extends Shape {
         this.height = height;
     }
 
-    public double getWidth() {
+    /**
+     * Возвращает меньшую сторону прямоугольника.
+     *
+     * @return минимальная из сторон ({@link #width} или {@link #height})
+     */
+    public double getMinSide() {
         return Math.min(width, height);
     }
 
-    public double getLength() {
+    /**
+     * Возвращает большую сторону прямоугольника.
+     *
+     * @return максимальная из сторон ({@link #width} или {@link #height})
+     */
+    public double getMaxSide() {
         return Math.max(width, height);
     }
 
+    /**
+     * Вычисляет длину диагонали прямоугольника.
+     *
+     * <p>Расчёт выполняется по теореме Пифагора.</p>
+     *
+     * @return длина диагонали
+     */
     public double computeDiagonal() {
         return Math.sqrt(width * width + height * height);
     }

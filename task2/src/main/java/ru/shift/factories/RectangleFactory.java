@@ -7,6 +7,15 @@ import ru.shift.utils.ParserUtil;
 
 import java.util.Arrays;
 
+/**
+ * Фабрика для создания объектов {@link Rectangle}.
+ *
+ * <p>Преобразует входные строковые параметры в числовые значения
+ * и создаёт прямоугольник после валидации.</p>
+ *
+ * <p>Ожидается, что входной массив содержит ровно {@link #PARAMS_NEED} параметра:
+ * ширину и высоту прямоугольника.</p>
+ */
 @Slf4j
 public class RectangleFactory implements ShapeFactory<Rectangle> {
     private static final int PARAMS_NEED = 2;

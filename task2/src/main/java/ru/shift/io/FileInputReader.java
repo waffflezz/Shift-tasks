@@ -6,10 +6,25 @@ import ru.shift.constants.IOConstants;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Реализация {@link InputReader}, выполняющая чтение данных из файла.
+ *
+ * <p>Чтение осуществляется посимвольно с использованием {@link BufferedReader}
+ * и кодировки UTF-8.</p>
+ *
+ * <p>Метод {@link #readLine(int)} читает строку до символа перевода строки
+ * или до достижения максимальной длины.</p>
+ */
 @Slf4j
 public class FileInputReader implements InputReader {
     private final BufferedReader reader;
 
+    /**
+     * Создаёт объект для чтения из файла.
+     *
+     * @param filePath путь к входному файлу
+     * @throws FileNotFoundException если файл не найден или недоступен
+     */
     public FileInputReader(String filePath) throws FileNotFoundException {
         this.reader = new BufferedReader(
                 new InputStreamReader(

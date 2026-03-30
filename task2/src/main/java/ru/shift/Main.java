@@ -14,7 +14,21 @@ import ru.shift.shapes.Circle;
 import ru.shift.shapes.Rectangle;
 import ru.shift.shapes.Triangle;
 
+/**
+ * Точка входа в приложение.
+ *
+ * <p>Перед запуском CLI-команды выполняет глобальную регистрацию:
+ * форматтеров строкового представления фигур и фабрик для их создания.</p>
+ *
+ * <p>После регистрации управление передаётся {@link ShapeCommand},
+ * которая обрабатывает аргументы командной строки и выполняет основную логику приложения.</p>
+ */
 public class Main {
+    /**
+     * Точка входа в приложение.
+     *
+     * @param args аргументы командной строки
+     */
     public static void main(String[] args) {
         globalRegistry();
 
@@ -22,6 +36,17 @@ public class Main {
         System.exit(exitCode);
     }
 
+    /**
+     * Выполняет глобальную регистрацию форматтеров и фабрик фигур.
+     *
+     * <p>Регистрируются:
+     * <ul>
+     *     <li>форматтеры</li>
+     *     <li>фабрики</li>
+     * </ul>
+     *
+     * <p>Регистрация выполняется один раз перед запуском приложения.</p>
+     */
     private static void globalRegistry() {
         StringFormatterRegistry.registerFormatter(Circle.class, new CircleStringFormatter());
         StringFormatterRegistry.registerFormatter(Rectangle.class, new RectangleStringFormatter());

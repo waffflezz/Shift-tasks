@@ -1,5 +1,9 @@
 package ru.shift.constants;
 
+/**
+ * Класс, содержащий текстовые сообщения,
+ * используемые в приложении.
+ */
 public class Messages {
     public static final String SHAPE_TYPE = "Фигура: ";
     public static final String SHAPE_AREA = "Площадь: ";

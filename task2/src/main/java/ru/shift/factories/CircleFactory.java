@@ -5,6 +5,15 @@ import ru.shift.shapes.Circle;
 import ru.shift.shapes.types.ShapeType;
 import ru.shift.utils.ParserUtil;
 
+/**
+ * Фабрика для создания объектов {@link Circle}.
+ *
+ * <p>Преобразует входной строковый параметр в числовое значение
+ * и создаёт окружность после валидации.</p>
+ *
+ * <p>Ожидается, что входной массив содержит ровно 1 параметр:
+ * радиус окружности.</p>
+ */
 @Slf4j
 public class CircleFactory implements ShapeFactory<Circle> {
     private final static int PARAMS_NEED = 1;
