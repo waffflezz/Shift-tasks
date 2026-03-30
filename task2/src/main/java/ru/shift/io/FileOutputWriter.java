@@ -1,10 +1,12 @@
 package ru.shift.io;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.shift.constants.Messages;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 public class FileOutputWriter implements OutputWriter {
     private final BufferedWriter writer;
 
@@ -28,7 +30,7 @@ public class FileOutputWriter implements OutputWriter {
         try {
             writer.close();
         } catch (IOException e) {
-            //TODO: logger
+            log.warn("При попытке закрыть BufferedWriter произошла ошибка: {}", e.getMessage());
         }
     }
 }

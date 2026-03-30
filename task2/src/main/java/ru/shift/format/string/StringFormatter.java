@@ -1,11 +1,10 @@
 package ru.shift.format.string;
 
+import ru.shift.constants.IOConstants;
 import ru.shift.constants.Messages;
 import ru.shift.constants.ShapeConstants;
 import ru.shift.format.ShapeFormatter;
 import ru.shift.shapes.Shape;
-
-import static ru.shift.constants.IOConstants.EOL;
 
 public abstract class StringFormatter<S extends Shape> implements ShapeFormatter<S, String> {
     @Override
@@ -21,17 +20,17 @@ public abstract class StringFormatter<S extends Shape> implements ShapeFormatter
     protected void appendCommonData(StringBuilder builder, S shape) {
         builder.append(Messages.SHAPE_TYPE)
                 .append(shape.getShapeType())
-                .append(EOL);
+                .append(IOConstants.EOL);
 
         builder.append(Messages.SHAPE_AREA)
-                .append(shape.computeArea())
+                .append(ShapeConstants.DECIMAL_FORMAT.format(shape.computeArea()))
                 .append(ShapeConstants.SQUARE)
-                .append(EOL);
+                .append(IOConstants.EOL);
 
         builder.append(Messages.SHAPE_PERIMETER)
-                .append(shape.computePerimeter())
+                .append(ShapeConstants.DECIMAL_FORMAT.format(shape.computePerimeter()))
                 .append(ShapeConstants.UNITS)
-                .append(EOL);
+                .append(IOConstants.EOL);
     }
 
     protected abstract void appendSpecificData(StringBuilder builder, S shape);

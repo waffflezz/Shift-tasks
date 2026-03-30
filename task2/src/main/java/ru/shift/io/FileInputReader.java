@@ -1,12 +1,12 @@
 package ru.shift.io;
 
-import ru.shift.constants.Messages;
+import lombok.extern.slf4j.Slf4j;
+import ru.shift.constants.IOConstants;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-import static ru.shift.constants.IOConstants.EOF;
-
+@Slf4j
 public class FileInputReader implements InputReader {
     private final BufferedReader reader;
 
@@ -23,12 +23,12 @@ public class FileInputReader implements InputReader {
     public String readLine(int maxLength) throws IOException {
         StringBuilder builder = new StringBuilder(maxLength);
         int currChar;
-        while (builder.length() < maxLength && (currChar = reader.read()) != EOF) {
+        while (builder.length() < maxLength && (currChar = reader.read()) != IOConstants.EOF) {
             if (currChar == '\n') {
                 break;
             }
             if (currChar != '\r') {
-                builder.append(currChar);
+                builder.append((char) currChar);
             }
         }
 
@@ -36,11 +36,11 @@ public class FileInputReader implements InputReader {
     }
 
     @Override
-    public void close() {
+    public void close() throws Exception {
         try {
             reader.close();
         } catch (IOException e) {
-            //TODO: Логгер!
+            log.warn("При попытке закрыть BufferedReader произошла ошибка: {}", e.getMessage());
         }
     }
 }
