@@ -9,7 +9,7 @@ import ru.shift.exceptions.ParseDoubleException;
  */
 @Slf4j
 public class ParserUtil {
-    private static final int MIN_VALUE_EXCLUSIVE = 0;
+    public static final int MIN_VALUE_EXCLUSIVE = 0;
 
     /**
      * Преобразует строковое значение в положительное число типа {@code double}.
@@ -40,6 +40,11 @@ public class ParserUtil {
             if (value <= MIN_VALUE_EXCLUSIVE) {
                 throw new ParseDoubleException(Messages.VALUE_MUST_BE_GREATER.formatted(MIN_VALUE_EXCLUSIVE));
             }
+
+            if (Double.isNaN(value) || Double.isInfinite(value)) {
+                throw new ParseDoubleException(Messages.VALUE_MUST_BE_NUMBER);
+            }
+
             return value;
         } catch (NumberFormatException e) {
             throw new ParseDoubleException(Messages.VALUE_MUST_BE_NUMBER);

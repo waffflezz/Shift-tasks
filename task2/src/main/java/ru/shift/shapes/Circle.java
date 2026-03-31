@@ -1,6 +1,7 @@
 package ru.shift.shapes;
 
 import lombok.Getter;
+import ru.shift.exceptions.circle.CircleRadiusBelowZeroOrZeroException;
 import ru.shift.shapes.types.ShapeType;
 
 /**
@@ -17,7 +18,7 @@ public class Circle extends Shape {
      * Создаёт окружность с заданным радиусом.
      *
      * @param radius радиус окружности
-     * @throws ru.shift.exceptions.circle.CircleRadiusBelowZeroException если радиус <= 0
+     * @throws CircleRadiusBelowZeroOrZeroException если радиус <= 0
      */
     public Circle(double radius) {
         ShapesValidator.validateCircleRadius(radius);

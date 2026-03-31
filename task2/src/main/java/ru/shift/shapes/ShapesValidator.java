@@ -1,6 +1,6 @@
 package ru.shift.shapes;
 
-import ru.shift.exceptions.circle.CircleRadiusBelowZeroException;
+import ru.shift.exceptions.circle.CircleRadiusBelowZeroOrZeroException;
 import ru.shift.exceptions.triangle.TriangleCantExistsException;
 import ru.shift.exceptions.triangle.TriangleSideBelowZeroException;
 import ru.shift.exceptions.rectangle.RectangleSidesBelowZeroException;
@@ -41,11 +41,11 @@ public class ShapesValidator {
      * Проверяет корректность радиуса окружности.
      *
      * @param radius радиус окружности
-     * @throws CircleRadiusBelowZeroException если радиус ≤ 0
+     * @throws CircleRadiusBelowZeroOrZeroException если радиус ≤ 0
      */
     public static void validateCircleRadius(double radius) {
         if (radius <= 0) {
-            throw new CircleRadiusBelowZeroException();
+            throw new CircleRadiusBelowZeroOrZeroException();
         }
     }
 

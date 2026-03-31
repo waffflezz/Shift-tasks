@@ -1,5 +1,6 @@
 package ru.shift.shapes;
 
+import lombok.Getter;
 import ru.shift.shapes.types.ShapeType;
 
 /**
@@ -8,6 +9,7 @@ import ru.shift.shapes.types.ShapeType;
  * <p>Прямоугольник задаётся шириной и высотой.
  * При создании выполняется валидация сторон (см. {@link ShapesValidator}).</p>
  */
+@Getter
 public class Rectangle extends Shape {
     private final double width;
     private final double height;

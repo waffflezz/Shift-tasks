@@ -29,7 +29,7 @@ public class Messages {
 
     public static final String CIRCLE_RADIUS_BELOW_ZERO_EXCEPTION = "Радиус меньше 0";
 
-    public static final String RECTANGLE_SIDES_BELOW_ZERO_EXCEPTION = "Радиус меньше 0";
+    public static final String RECTANGLE_SIDES_BELOW_ZERO_EXCEPTION = "Одна из сторон меньше или равна 0";
 
     public static final String STRING_IS_BLANK = "Строка не может быть пустой";
     public static final String VALUE_MUST_BE_GREATER = "Значение должно быть больше %d";
