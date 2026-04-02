@@ -47,4 +47,9 @@ public class TriangleStringFormatter extends StringFormatter<Triangle> {
                 .append(ShapeConstants.DEGREES)
                 .append(IOConstants.EOL);
     }
+
+    @Override
+    protected Class<Triangle> getShapeClass() {
+        return Triangle.class;
+    }
 }

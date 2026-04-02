@@ -1,7 +1,8 @@
 package ru.shift.factories;
 
 import ru.shift.shapes.Shape;
-import ru.shift.shapes.types.ShapeType;
+
+import java.io.IOException;
 
 /**
  * Интерфейс фабрики для создания геометрических фигур.
@@ -11,13 +12,13 @@ import ru.shift.shapes.types.ShapeType;
  *
  * @param <S> тип создаваемой фигуры
  */
-public interface ShapeFactory<S extends Shape> {
+public interface ShapeFactory<S extends Shape, R> {
     /**
      * Возвращает тип фигуры, создаваемой данной фабрикой.
      *
-     * @return тип фигуры ({@link ShapeType})
+     * @return тип фигуры
      */
-    ShapeType getShapeType();
+    String getShapeType();
 
     /**
      * Создаёт экземпляр фигуры на основе переданных параметров.
@@ -25,11 +26,11 @@ public interface ShapeFactory<S extends Shape> {
      * <p>Параметры передаются в виде массива строк и должны быть
      * предварительно валидированы.</p>
      *
-     * @param params параметры для создания фигуры
+     * @param reader ридер для парсинга и создания фигуры
      * @return созданная фигура
      * @throws IllegalArgumentException если параметры некорректны
      */
-    S create(String[] params);
+    S create(R reader) throws IOException;
 
     /**
      * Возвращает количество параметров, необходимых для создания фигуры.

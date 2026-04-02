@@ -4,36 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Добавлен javadoc для всех файлов. Исправлены небольшие несостыковочки по ходу просмотра всех файлов">
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/AllTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/factories/CircleFactoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/factories/FactoriesValidatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/factories/FactoryRegistryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/factories/FactoryTestSuite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/factories/RectangleFactoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/factories/TriangleFactoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/format/string/CircleStringFormatterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/format/string/FormatTestSuite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/format/string/RectangleStringFormatterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/format/string/StringFormatterRegistryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/format/string/TriangleStringFormatterTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/shapes/CircleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/shapes/RectangleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/shapes/ShapeTestSuite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/shapes/TriangleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/shapes/types/MapperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/utils/FileUtilTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/utils/ParserUtilTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/utils/UtilsTestSuite.java" afterDir="false" />
+    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования">
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactoryProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/ReadingShapeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/ReadingShapeFactoryProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/RectangleReadingShapeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/TriangleReadingShapeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2/src/main/resources/META-INF/services/ru.shift.factories.reading.ReadingShapeFactory" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task1/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task2/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/constants/Messages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/circle/CircleRadiusBelowZeroException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/circle/CircleRadiusBelowZeroOrZeroException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/cli/ShapeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/cli/ShapeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/WrongParamCountException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/WrongParamCountException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/CircleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/CircleReadingShapeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoriesValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoriesValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoryRegistry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/RectangleFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/TriangleFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/ShapeFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/ShapeFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/CircleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/CircleStringFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/RectangleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/RectangleStringFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatterRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatterRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/TriangleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/TriangleStringFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/ShapesValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/ShapesValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/ParserUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/utils/ParserUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/Mapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/ShapeType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +81,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -106,56 +106,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.AllTests.executor": "Run",
-    "Gradle.CircleFactoryTest.shouldThrowExceptionWhenParamIsNotNumber.executor": "Run",
-    "Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative.executor": "Run",
-    "Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero.executor": "Run",
-    "Gradle.CircleStringFormatterTest.executor": "Run",
-    "Gradle.FactoriesValidatorTest.executor": "Run",
-    "Gradle.FactoryRegistryTest.executor": "Run",
-    "Gradle.FileUtilTest.executor": "Run",
-    "Gradle.MapperTest.executor": "Run",
-    "Gradle.ParserUtilTest.executor": "Run",
-    "Gradle.ParserUtilTest.shouldThrowExceptionWhenNotANumber.executor": "Run",
-    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero.executor": "Run",
-    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative.executor": "Run",
-    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNotNumbers.executor": "Run",
-    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid.executor": "Run",
-    "Gradle.RectangleStringFormatterTest.executor": "Run",
-    "Gradle.ShapeTestsSuite.executor": "Run",
-    "Gradle.ShapeTypeTest.executor": "Run",
-    "Gradle.StringCalculatorTest.empty_string_return0.executor": "Run",
-    "Gradle.StringCalculatorTest.executor": "Run",
-    "Gradle.StringFormatterRegistryTest.executor": "Run",
-    "Gradle.TriangleFactoryTest.shouldThrowExceptionWhenParamsCountInvalid.executor": "Run",
-    "Gradle.TriangleFactoryTest.shouldThrowExceptionWhenParamsNotNumbers.executor": "Run",
-    "Gradle.TriangleFactoryTest.shouldThrowExceptionWhenTriangleInvalid.executor": "Run",
-    "Gradle.task1 [:ru.shift.Main.main()].executor": "Run",
-    "Gradle.task2 [:ru.shift.Main.main()].executor": "Run",
-    "Gradle.task2 [dependencies].executor": "Run",
-    "Gradle.task2 [test].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "task2",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.import"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.AllTests.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CircleFactoryTest.shouldThrowExceptionWhenParamIsNotNumber.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CircleStringFormatterTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FactoriesValidatorTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FactoryRegistryTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FileUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.MapperTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ParserUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ParserUtilTest.shouldThrowExceptionWhenNotANumber.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNotNumbers.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RectangleStringFormatterTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ShapeTestsSuite.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ShapeTypeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StringCalculatorTest.empty_string_return0.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StringCalculatorTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StringFormatterRegistryTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TriangleFactoryTest.shouldThrowExceptionWhenParamsCountInvalid.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TriangleFactoryTest.shouldThrowExceptionWhenParamsNotNumbers.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TriangleFactoryTest.shouldThrowExceptionWhenTriangleInvalid.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.task1 [:ru.shift.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.task2 [:ru.shift.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.task2 [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.task2 [test].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;task2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -167,13 +167,14 @@
       <recent name="ru.shift" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AllTests">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
-      <module name="task1.main" />
+      <module name="task2.main" />
+      <option name="PROGRAM_PARAMETERS" value="-f=test.txt -co" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.shift.constants.*" />
+          <option name="PATTERN" value="ru.shift.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -195,33 +196,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;ru.shift.AllTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;ru.shift.factories.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -317,19 +291,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="Gradle.AllTests" />
-      <item itemvalue="Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative" />
       <item itemvalue="Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero" />
       <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero" />
       <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.AllTests" />
         <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative" />
         <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero" />
         <item itemvalue="Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero" />
-        <item itemvalue="Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative" />
       </list>
     </recent_temporary>
   </component>
@@ -444,7 +418,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774899216345</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования">
+      <option name="closed" value="true" />
+      <created>1774945767243</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1774945767243</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования">
+      <option name="closed" value="true" />
+      <created>1774945805872</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1774945805872</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,7 +461,8 @@
     <MESSAGE value="Добавлен форматер. Из фигур вынесена логика отображения характеристик в текст, теперь этим занимается форматер. Добавлены абстрактные ввод и вывод. Начата работа над точкой входа и сбора всей логики вместе" />
     <MESSAGE value="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом" />
     <MESSAGE value="Добавлен javadoc для всех файлов. Исправлены небольшие несостыковочки по ходу просмотра всех файлов" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен javadoc для всех файлов. Исправлены небольшие несостыковочки по ходу просмотра всех файлов" />
+    <MESSAGE value="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

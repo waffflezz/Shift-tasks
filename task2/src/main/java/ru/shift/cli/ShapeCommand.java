@@ -6,17 +6,13 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
 import ru.shift.exceptions.UnknownShapeTypeException;
 import ru.shift.exceptions.WrongParamCountException;
-import ru.shift.factories.FactoryRegistry;
-import ru.shift.factories.ShapeFactory;
-import ru.shift.format.FormatterFactory;
+import ru.shift.factories.ShapeFactoryProvider;
+import ru.shift.factories.reading.ReadingShapeFactoryProvider;
 import ru.shift.format.string.StringFormatterRegistry;
 import ru.shift.io.ConsoleOutputWriter;
 import ru.shift.io.FileInputReader;
 import ru.shift.io.FileOutputWriter;
-import ru.shift.io.OutputWriter;
 import ru.shift.shapes.Shape;
-import ru.shift.shapes.types.Mapper;
-import ru.shift.shapes.types.ShapeType;
 import ru.shift.utils.FileUtil;
 
 import java.io.FileNotFoundException;
@@ -29,7 +25,7 @@ import java.io.IOException;
  * <p>Команда:
  * <ul>
  *     <li>читает тип фигуры из входного файла</li>
- *     <li>определяет подходящую фабрику через {@link FactoryRegistry}</li>
+ *     <li>определяет подходящую фабрику через {@link ShapeFactoryProvider}</li>
  *     <li>создаёт объект фигуры</li>
  *     <li>Достаёт нужный форматер через {@link StringFormatterRegistry}</li>
  *     <li>форматирует результат через детей {@link ru.shift.format.string.StringFormatter}</li>
@@ -80,30 +76,28 @@ public class ShapeCommand implements Runnable {
     @Override
     public void run() {
         try {
+            var readingFactoryProvider = new ReadingShapeFactoryProvider();
+
             FileUtil.createDirectoryIfNotExists(outputOptions.outputFile);
 
-            OutputWriter writer = outputOptions.consoleOutput
-                    ? new ConsoleOutputWriter()
-                    : new FileOutputWriter(outputOptions.outputFile);
-
             try (var reader = new FileInputReader(inputFile);
-                 writer) {
-                FormatterFactory<String> stringFormatterFactory = new StringFormatterRegistry();
+                 var writer = outputOptions.consoleOutput
+                         ? new ConsoleOutputWriter()
+                         : new FileOutputWriter(outputOptions.outputFile)) {
 
                 log.info("Чтение входного файла: {}, и создание фигуры по данным из него", inputFile);
-                String shapeText = reader.readLine(ShapeType.computeMaxLengthFigureType());
-                ShapeType shapeType = Mapper.fromStringToShapeType(shapeText);
+                String shapeText = reader.readLine(readingFactoryProvider.getMaxShapeTypeLength());
 
-                ShapeFactory<?> factory = FactoryRegistry.getFactory(shapeType)
-                        .orElseThrow();
+                var factory = readingFactoryProvider.getFactory(shapeText)
+                        .orElseThrow(() -> new UnknownShapeTypeException(shapeText));
+                Shape shape = factory.create(reader);
 
-                int maxStringLength = factory.getParamsNeedCount() * String.valueOf(Double.MAX_VALUE).length();
-                String[] params = reader.readLine(maxStringLength).split(" ");
-
-                Shape shape = factory.create(params);
-                log.info("Создана фигура с типом: {}", shape.getShapeType());
-
-                writer.write(stringFormatterFactory.getFormatter(shape).format(shape));
+                log.info("Создана фигура: {}", factory.getShapeType());
+                writer.write(
+                        new StringFormatterRegistry()
+                                .getFormatter(shape)
+                                .format(shape, factory.getShapeType())
+                );
             }
         } catch (FileNotFoundException e) {
             log.error("При открытии файла произошла ошибка: {}", e.getMessage());

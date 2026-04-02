@@ -18,5 +18,5 @@ public interface ShapeFormatter<S extends Shape, O> {
      * @param shape фигура для форматирования
      * @return результат форматирования
      */
-    O format(S shape);
+    O format(S shape, String shapeType);
 }

@@ -19,7 +19,7 @@ public class FactoriesValidator {
      * @param shapeType тип фигуры, для которой выполняется валидация
      * @throws WrongParamCountException если количество параметров некорректно
      */
-    public static void validateParamsCount(Object[] params, int needParamsCount, ShapeType shapeType) {
+    public static void validateParamsCount(Object[] params, int needParamsCount, String shapeType) {
         if (params.length != needParamsCount) {
             throw new WrongParamCountException(shapeType, needParamsCount);
         }

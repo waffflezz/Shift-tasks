@@ -13,10 +13,10 @@ import ru.shift.shapes.Shape;
  */
 public abstract class StringFormatter<S extends Shape> implements ShapeFormatter<S, String> {
     @Override
-    public final String format(S shape) {
+    public final String format(S shape, String shapeType) {
         StringBuilder builder = new StringBuilder();
 
-        appendCommonData(builder, shape);
+        appendCommonData(builder, shape, shapeType);
         appendSpecificData(builder, shape);
 
         return builder.toString();
@@ -29,9 +29,9 @@ public abstract class StringFormatter<S extends Shape> implements ShapeFormatter
      * @param builder билдeр строки
      * @param shape фигура
      */
-    protected void appendCommonData(StringBuilder builder, S shape) {
+    protected void appendCommonData(StringBuilder builder, S shape, String shapeType) {
         builder.append(Messages.SHAPE_TYPE)
-                .append(shape.getShapeType())
+                .append(shapeType)
                 .append(IOConstants.EOL);
 
         builder.append(Messages.SHAPE_AREA)
@@ -54,4 +54,6 @@ public abstract class StringFormatter<S extends Shape> implements ShapeFormatter
      * @param shape фигура
      */
     protected abstract void appendSpecificData(StringBuilder builder, S shape);
+
+    protected abstract Class<S> getShapeClass();
 }

@@ -10,7 +10,7 @@ import ru.shift.shapes.Shape;
  *
  * @param <O> тип результата форматирования
  */
-public interface FormatterFactory<O> {
+public interface FormatterRegistry<O> {
     /**
      * Возвращает форматтер для переданной фигуры.
      *

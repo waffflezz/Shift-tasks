@@ -30,4 +30,9 @@ public class CircleStringFormatter extends StringFormatter<Circle> {
                 .append(ShapeConstants.UNITS)
                 .append(IOConstants.EOL);
     }
+
+    @Override
+    protected Class<Circle> getShapeClass() {
+        return Circle.class;
+    }
 }

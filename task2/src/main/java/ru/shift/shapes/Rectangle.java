@@ -1,7 +1,6 @@
 package ru.shift.shapes;
 
 import lombok.Getter;
-import ru.shift.shapes.types.ShapeType;
 
 /**
  * Класс, представляющий прямоугольник.
@@ -10,7 +9,7 @@ import ru.shift.shapes.types.ShapeType;
  * При создании выполняется валидация сторон (см. {@link ShapesValidator}).</p>
  */
 @Getter
-public class Rectangle extends Shape {
+public final class Rectangle implements Shape {
     private final double width;
     private final double height;
 
@@ -55,11 +54,6 @@ public class Rectangle extends Shape {
      */
     public double computeDiagonal() {
         return Math.sqrt(width * width + height * height);
-    }
-
-    @Override
-    public ShapeType getShapeType() {
-        return ShapeType.RECTANGLE;
     }
 
     @Override

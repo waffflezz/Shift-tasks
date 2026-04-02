@@ -36,4 +36,9 @@ public class RectangleStringFormatter extends StringFormatter<Rectangle> {
                 .append(ShapeConstants.UNITS)
                 .append(IOConstants.EOL);
     }
+
+    @Override
+    protected Class<Rectangle> getShapeClass() {
+        return Rectangle.class;
+    }
 }

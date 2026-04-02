@@ -3,7 +3,6 @@ package ru.shift.shapes;
 import lombok.Getter;
 import ru.shift.exceptions.triangle.TriangleCantExistsException;
 import ru.shift.exceptions.triangle.TriangleSideBelowZeroException;
-import ru.shift.shapes.types.ShapeType;
 
 /**
  * Класс, представляющий треугольник, заданный длинами трёх сторон.
@@ -12,7 +11,7 @@ import ru.shift.shapes.types.ShapeType;
  * включая проверку положительности значений и неравенства треугольника.</p>
  */
 @Getter
-public class Triangle extends Shape {
+public final class Triangle implements Shape {
     private final double sideA;
     private final double sideB;
     private final double sideC;
@@ -71,11 +70,6 @@ public class Triangle extends Shape {
         return Math.toDegrees(
                 Math.acos((sideA * sideA + sideB * sideB - sideC * sideC) / (2 * sideA * sideB))
         );
-    }
-
-    @Override
-    public ShapeType getShapeType() {
-        return ShapeType.TRIANGLE;
     }
 
     @Override

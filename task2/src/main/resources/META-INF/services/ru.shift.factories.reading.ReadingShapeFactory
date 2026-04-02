@@ -1,0 +1,3 @@
+ru.shift.factories.reading.CircleReadingShapeFactory
+ru.shift.factories.reading.RectangleReadingShapeFactory
+ru.shift.factories.reading.TriangleReadingShapeFactory

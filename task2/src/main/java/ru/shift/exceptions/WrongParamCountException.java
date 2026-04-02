@@ -15,7 +15,7 @@ public class WrongParamCountException extends IllegalArgumentException {
      * @param shapeType тип фигуры
      * @param needParams ожидаемое количество параметров
      */
-    public WrongParamCountException(ShapeType shapeType, int needParams) {
+    public WrongParamCountException(String shapeType, int needParams) {
         super(Messages.WRONG_COUNT_OF_PARAM_EXCEPTION.formatted(shapeType, needParams));
     }
 }
