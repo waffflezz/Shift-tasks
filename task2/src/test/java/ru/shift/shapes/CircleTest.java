@@ -3,10 +3,8 @@ package ru.shift.shapes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.jupiter.api.Test;
 import ru.shift.constants.Messages;
 import ru.shift.exceptions.circle.CircleRadiusBelowZeroOrZeroException;
-import ru.shift.shapes.types.ShapeType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -84,18 +82,5 @@ class CircleTest {
 
         // Assert
         assertEquals(2 * Math.PI * radius, actualPerimeter, ShapeTestSuite.STANDARD_DELTA);
-    }
-
-    @Test
-    @DisplayName("Должен возвращать тип фигуры CIRCLE")
-    void shouldReturnCircleShapeType() {
-        // Arrange
-        Circle circle = new Circle(5.0);
-
-        // Act
-        ShapeType actualShapeType = circle.getShapeType();
-
-        // Assert
-        assertEquals(ShapeType.CIRCLE, actualShapeType);
     }
 }

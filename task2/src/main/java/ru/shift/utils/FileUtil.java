@@ -1,5 +1,7 @@
 package ru.shift.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +9,7 @@ import java.nio.file.Path;
 /**
  * Утилитный класс для работы с файловой системой.
  */
+@Slf4j
 public class FileUtil {
     /**
      * Создаёт родительские директории для указанного пути к файлу,
@@ -21,6 +24,7 @@ public class FileUtil {
      * @throws IOException ошибка при создании директорий
      */
     public static void createDirectoryIfNotExists(String filePath) throws IOException {
+        log.info("Попытка создать директории, если не созданы по пути: {}", filePath);
         if (filePath == null) {
             return;
         }
@@ -30,6 +34,7 @@ public class FileUtil {
 
         if (parent != null && Files.notExists(parent)) {
             Files.createDirectories(parent);
+            log.trace("Директории успешно созданы");
         }
     }
 }

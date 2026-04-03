@@ -11,6 +11,8 @@ import ru.shift.shapes.Circle;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CircleStringFormatterTest {
+    private static final String SHAPE_TYPE = "CIRCLE";
+
     @ParameterizedTest
     @ValueSource(doubles = {1.0, 2.5, 10.0})
     @DisplayName("Должен корректно форматировать окружность")
@@ -21,7 +23,7 @@ class CircleStringFormatterTest {
         String expected = buildExpectedCircleString(circle);
 
         // Act
-        String actual = formatter.format(circle);
+        String actual = formatter.format(circle, SHAPE_TYPE);
 
         // Assert
         assertEquals(expected, actual);
@@ -29,7 +31,7 @@ class CircleStringFormatterTest {
 
     private String buildExpectedCircleString(Circle circle) {
         return Messages.SHAPE_TYPE
-                + circle.getShapeType()
+                + SHAPE_TYPE
                 + IOConstants.EOL
                 + Messages.SHAPE_AREA
                 + ShapeConstants.DECIMAL_FORMAT.format(circle.computeArea())

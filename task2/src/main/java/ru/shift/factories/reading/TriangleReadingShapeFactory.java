@@ -1,7 +1,6 @@
 package ru.shift.factories.reading;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.shift.factories.FactoriesValidator;
 import ru.shift.io.InputReader;
 import ru.shift.shapes.Triangle;
 import ru.shift.utils.ParserUtil;
@@ -18,8 +17,8 @@ import java.io.IOException;
  * длины сторон треугольника.</p>
  */
 @Slf4j
-public class TriangleReadingShapeFactory implements ReadingShapeFactory<Triangle> {
-    private final static int PARAMS_NEED = 2;
+public class TriangleReadingShapeFactory extends ReadingShapeFactory<Triangle> {
+    private final static int PARAMS_NEED = 3;
     private final static int PARAMS_LINE_MAX_LEN = PARAMS_NEED * String.valueOf(Double.MAX_VALUE).length();
 
     @Override
@@ -29,8 +28,8 @@ public class TriangleReadingShapeFactory implements ReadingShapeFactory<Triangle
 
     @Override
     public Triangle create(InputReader reader) throws IOException {
-        String[] params = reader.readLine(PARAMS_LINE_MAX_LEN).split("\\s");
-        FactoriesValidator.validateParamsCount(params, getParamsNeedCount(), getShapeType());
+        log.info("Создание фигуры: {}", getShapeType());
+        var params = readParams(reader, PARAMS_LINE_MAX_LEN);
 
         return new Triangle(
                 ParserUtil.parsePositiveDouble(params[0]),

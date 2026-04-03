@@ -11,6 +11,8 @@ import ru.shift.shapes.Triangle;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TriangleStringFormatterTest {
+    private static final String SHAPE_TYPE = "TRIANGLE";
+
     @ParameterizedTest
     @CsvSource({
             "3, 4, 5",
@@ -25,7 +27,7 @@ class TriangleStringFormatterTest {
         String expected = buildExpectedTriangleString(triangle);
 
         // Act
-        String actual = formatter.format(triangle);
+        String actual = formatter.format(triangle, SHAPE_TYPE);
 
         // Assert
         assertEquals(expected, actual);
@@ -33,7 +35,7 @@ class TriangleStringFormatterTest {
 
     private String buildExpectedTriangleString(Triangle triangle) {
         return Messages.SHAPE_TYPE
-                + triangle.getShapeType()
+                + SHAPE_TYPE
                 + IOConstants.EOL
                 + Messages.SHAPE_AREA
                 + ShapeConstants.DECIMAL_FORMAT.format(triangle.computeArea())

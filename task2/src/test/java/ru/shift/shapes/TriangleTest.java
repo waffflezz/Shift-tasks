@@ -1,13 +1,11 @@
 package ru.shift.shapes;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.shift.constants.Messages;
 import ru.shift.exceptions.triangle.TriangleCantExistsException;
 import ru.shift.exceptions.triangle.TriangleSideBelowZeroException;
-import ru.shift.shapes.types.ShapeType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -161,18 +159,5 @@ class TriangleTest {
 
         // Assert
         assertEquals(expectedArea, actualArea, ShapeTestSuite.STANDARD_DELTA);
-    }
-
-    @Test
-    @DisplayName("Должен возвращать тип фигуры TRIANGLE")
-    void shouldReturnTriangleShapeType() {
-        // Arrange
-        Triangle triangle = new Triangle(3, 4, 5);
-
-        // Act
-        ShapeType actualShapeType = triangle.getShapeType();
-
-        // Assert
-        assertEquals(ShapeType.TRIANGLE, actualShapeType);
     }
 }

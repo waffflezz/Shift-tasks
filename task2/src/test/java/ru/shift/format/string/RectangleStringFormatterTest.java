@@ -11,6 +11,7 @@ import ru.shift.shapes.Rectangle;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RectangleStringFormatterTest {
+    private static final String SHAPE_TYPE = "RECTANGLE";
 
     @ParameterizedTest
     @CsvSource({
@@ -27,7 +28,7 @@ class RectangleStringFormatterTest {
         String expected = buildExpectedRectangleString(rectangle);
 
         // Act
-        String actual = formatter.format(rectangle);
+        String actual = formatter.format(rectangle, SHAPE_TYPE);
 
         // Assert
         assertEquals(expected, actual);
@@ -35,7 +36,7 @@ class RectangleStringFormatterTest {
 
     private String buildExpectedRectangleString(Rectangle rectangle) {
         return Messages.SHAPE_TYPE
-                + rectangle.getShapeType()
+                + SHAPE_TYPE
                 + IOConstants.EOL
                 + Messages.SHAPE_AREA
                 + ShapeConstants.DECIMAL_FORMAT.format(rectangle.computeArea())

@@ -1,7 +1,7 @@
 package ru.shift.factories;
 
+import ru.shift.exceptions.BlankParamException;
 import ru.shift.exceptions.WrongParamCountException;
-import ru.shift.shapes.types.ShapeType;
 
 /**
  * Утилитный класс для валидации параметров,
@@ -20,8 +20,12 @@ public class FactoriesValidator {
      * @throws WrongParamCountException если количество параметров некорректно
      */
     public static void validateParamsCount(Object[] params, int needParamsCount, String shapeType) {
-        if (params.length != needParamsCount) {
-            throw new WrongParamCountException(shapeType, needParamsCount);
-        }
+        if (params.length == needParamsCount) return;
+        throw new WrongParamCountException(shapeType, needParamsCount);
+    }
+
+    public static void validateBlankLine(String line) {
+        if (!line.isBlank()) return;
+        throw new BlankParamException();
     }
 }

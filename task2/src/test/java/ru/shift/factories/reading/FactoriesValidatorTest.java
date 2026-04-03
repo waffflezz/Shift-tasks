@@ -1,11 +1,12 @@
-package ru.shift.factories;
+package ru.shift.factories.reading;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import ru.shift.constants.Messages;
 import ru.shift.exceptions.WrongParamCountException;
-import ru.shift.shapes.types.ShapeType;
+import ru.shift.factories.FactoriesValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,11 +16,12 @@ class FactoriesValidatorTest {
     void shouldNotThrowWhenParamsCountIsValid() {
         // Arrange
         Object[] params = {"1", "2", "3"};
+        String shapeType = "TRIANGLE";
         int expectedCount = 3;
 
         // Act & Assert
         assertDoesNotThrow(() ->
-                FactoriesValidator.validateParamsCount(params, expectedCount, ShapeType.TRIANGLE)
+                FactoriesValidator.validateParamsCount(params, expectedCount, shapeType)
         );
     }
 
@@ -29,15 +31,19 @@ class FactoriesValidatorTest {
     void shouldThrowWhenParamsCountInvalid(int actualSize) {
         // Arrange
         Object[] params = new Object[actualSize];
+        String shapeType = "TRIANGLE";
         int expectedCount = 3;
 
         // Act
         WrongParamCountException exception = assertThrows(
                 WrongParamCountException.class,
-                () -> FactoriesValidator.validateParamsCount(params, expectedCount, ShapeType.TRIANGLE)
+                () -> FactoriesValidator.validateParamsCount(params, expectedCount, shapeType)
         );
 
         // Assert
-        assertNotNull(exception.getMessage());
+        assertEquals(
+                Messages.WRONG_COUNT_OF_PARAM_EXCEPTION.formatted(shapeType, expectedCount),
+                exception.getMessage()
+        );
     }
 }

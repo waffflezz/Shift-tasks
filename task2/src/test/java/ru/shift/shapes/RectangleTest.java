@@ -1,12 +1,10 @@
 package ru.shift.shapes;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.shift.constants.Messages;
 import ru.shift.exceptions.rectangle.RectangleSidesBelowZeroException;
-import ru.shift.shapes.types.ShapeType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -141,18 +139,5 @@ class RectangleTest {
 
         // Assert
         assertEquals(expected, actual);
-    }
-
-    @Test
-    @DisplayName("Должен возвращать тип фигуры RECTANGLE")
-    void shouldReturnRectangleType() {
-        // Arrange
-        Rectangle rectangle = new Rectangle(2, 3);
-
-        // Act
-        ShapeType actual = rectangle.getShapeType();
-
-        // Assert
-        assertEquals(ShapeType.RECTANGLE, actual);
     }
 }

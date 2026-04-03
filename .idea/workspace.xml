@@ -4,36 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования">
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactoryProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/ReadingShapeFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/ReadingShapeFactoryProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/RectangleReadingShapeFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/TriangleReadingShapeFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/resources/META-INF/services/ru.shift.factories.reading.ReadingShapeFactory" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc">
       <change beforePath="$PROJECT_DIR$/task1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task1/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/cli/ShapeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/cli/ShapeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/WrongParamCountException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/exceptions/WrongParamCountException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/CircleFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/reading/CircleReadingShapeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoriesValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoriesValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/FactoryRegistry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/RectangleFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/ShapeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/factories/TriangleFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/ShapeFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/ShapeFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/CircleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/CircleStringFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/RectangleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/RectangleStringFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatterRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/StringFormatterRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/TriangleStringFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/format/string/TriangleStringFormatter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Circle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/Triangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/Mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/task2/src/main/java/ru/shift/shapes/types/ShapeType.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,9 +85,12 @@
     &quot;Gradle.CircleFactoryTest.shouldThrowExceptionWhenParamIsNotNumber.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CircleReadingShapeFactoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsStringIsEmpty.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CircleStringFormatterTest.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.FactoriesValidatorTest.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.FactoryRegistryTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FactoryTestSuite.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.FileUtilTest.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.MapperTest.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.ParserUtilTest.executor&quot;: &quot;Run&quot;,
@@ -171,7 +146,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
       <module name="task2.main" />
-      <option name="PROGRAM_PARAMETERS" value="-f=test.txt -co" />
+      <option name="PROGRAM_PARAMETERS" value="-f=test.txt -o=output_test.txt" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ru.shift.*" />
@@ -209,7 +184,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CircleReadingShapeFactoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
@@ -222,7 +197,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.shift.factories.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero&quot;" />
+            <option value="&quot;ru.shift.factories.reading.CircleReadingShapeFactoryTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -236,7 +211,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsStringIsEmpty" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
@@ -249,7 +224,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.shift.factories.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero&quot;" />
+            <option value="&quot;ru.shift.factories.reading.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsStringIsEmpty&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -263,7 +238,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="FactoryTestSuite" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
@@ -276,7 +251,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.shift.factories.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative&quot;" />
+            <option value="&quot;ru.shift.factories.FactoryTestSuite&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -292,18 +267,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.CircleReadingShapeFactoryTest" />
+      <item itemvalue="Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsStringIsEmpty" />
+      <item itemvalue="Gradle.FactoryTestSuite" />
       <item itemvalue="Gradle.AllTests" />
-      <item itemvalue="Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero" />
-      <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero" />
-      <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.AllTests" />
-        <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative" />
-        <item itemvalue="Gradle.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero" />
-        <item itemvalue="Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.FactoryTestSuite" />
+        <item itemvalue="Gradle.CircleReadingShapeFactoryTest" />
+        <item itemvalue="Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsStringIsEmpty" />
       </list>
     </recent_temporary>
   </component>
@@ -434,7 +409,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774945805872</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc">
+      <option name="closed" value="true" />
+      <created>1775197118991</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1775197118991</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -462,7 +445,8 @@
     <MESSAGE value="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом" />
     <MESSAGE value="Добавлен javadoc для всех файлов. Исправлены небольшие несостыковочки по ходу просмотра всех файлов" />
     <MESSAGE value="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования" />
+    <MESSAGE value="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

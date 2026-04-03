@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.ArgGroup;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
+import ru.shift.exceptions.BlankParamException;
 import ru.shift.exceptions.UnknownShapeTypeException;
 import ru.shift.exceptions.WrongParamCountException;
 import ru.shift.factories.ShapeFactoryProvider;
@@ -78,7 +79,9 @@ public class ShapeCommand implements Runnable {
         try {
             var readingFactoryProvider = new ReadingShapeFactoryProvider();
 
-            FileUtil.createDirectoryIfNotExists(outputOptions.outputFile);
+            if (!outputOptions.consoleOutput) {
+                FileUtil.createDirectoryIfNotExists(outputOptions.outputFile);
+            }
 
             try (var reader = new FileInputReader(inputFile);
                  var writer = outputOptions.consoleOutput
@@ -90,6 +93,7 @@ public class ShapeCommand implements Runnable {
 
                 var factory = readingFactoryProvider.getFactory(shapeText)
                         .orElseThrow(() -> new UnknownShapeTypeException(shapeText));
+
                 Shape shape = factory.create(reader);
 
                 log.info("Создана фигура: {}", factory.getShapeType());
@@ -107,7 +111,7 @@ public class ShapeCommand implements Runnable {
             log.error("При работе с файлами произошла ошибка: {}", e.getMessage());
             log.debug("Подробная ошибка", e);
             System.exit(2);
-        } catch (WrongParamCountException e) {
+        } catch (WrongParamCountException | BlankParamException e) {
             log.error("Неверное количество аргументов для фигуры. Ошибка: {}", e.getMessage());
             log.debug("Подробная ошибка", e);
             System.exit(3);

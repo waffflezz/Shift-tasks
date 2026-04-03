@@ -10,19 +10,17 @@ import java.util.Optional;
 import java.util.ServiceLoader;
 
 /**
- * Реестр фабрик для создания геометрических фигур.
+ * Провайдер фабрик для создания геометрических фигур.
  *
  * <p>Хранит соответствие между {@link Shape} в строковом представлении и реализациями {@link ShapeFactory}.</p>
  *
  * <p>Используется для получения подходящей фабрики по типу фигуры.</p>
  */
-public class ReadingShapeFactoryProvider implements ShapeFactoryProvider {
+public class ReadingShapeFactoryProvider implements ShapeFactoryProvider<ReadingShapeFactory<?>> {
     private final Map<String, ReadingShapeFactory<?>> factoryMap = new HashMap<>();
 
     public ReadingShapeFactoryProvider() {
-        ServiceLoader.load(ReadingShapeFactory.class).forEach(f -> {
-            factoryMap.put(f.getShapeType(), f);
-        });
+        ServiceLoader.load(ReadingShapeFactory.class).forEach(f -> factoryMap.put(f.getShapeType(), f));
     }
 
     public int getMaxShapeTypeLength() {
@@ -33,10 +31,9 @@ public class ReadingShapeFactoryProvider implements ShapeFactoryProvider {
                 .orElse(0) + System.lineSeparator().length();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public <S extends Shape> Optional<ReadingShapeFactory<S>> getFactory(String shapeType) {
-        return Optional.ofNullable((ReadingShapeFactory<S>) factoryMap.get(shapeType));
+    public Optional<ReadingShapeFactory<?>> getFactory(String shapeType) {
+        return Optional.ofNullable(factoryMap.get(shapeType));
     }
 }
 

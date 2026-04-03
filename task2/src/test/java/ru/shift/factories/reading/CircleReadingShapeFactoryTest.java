@@ -1,21 +1,34 @@
-package ru.shift.factories;
+package ru.shift.factories.reading;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.shift.constants.Messages;
+import ru.shift.exceptions.BlankParamException;
 import ru.shift.exceptions.ParseDoubleException;
 import ru.shift.exceptions.WrongParamCountException;
+import ru.shift.io.InputReader;
 import ru.shift.shapes.Circle;
-import ru.shift.shapes.types.ShapeType;
 import ru.shift.utils.ParserUtil;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.when;
 
-class CircleFactoryTest {
-    private final CircleFactory factory = new CircleFactory();
+@ExtendWith(MockitoExtension.class)
+class CircleReadingShapeFactoryTest {
+
+    private final CircleReadingShapeFactory factory = new CircleReadingShapeFactory();
+
+    @Mock
+    private InputReader reader;
 
     @Test
     @DisplayName("Должен возвращать тип CIRCLE")
@@ -23,10 +36,10 @@ class CircleFactoryTest {
         // Arrange
 
         // Act
-        ShapeType actualShapeType = factory.getShapeType();
+        String actualShapeType = factory.getShapeType();
 
         // Assert
-        assertEquals(ShapeType.CIRCLE, actualShapeType);
+        assertEquals("CIRCLE", actualShapeType);
     }
 
     @Test
@@ -44,12 +57,13 @@ class CircleFactoryTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "2.5", "10"})
     @DisplayName("Должен корректно создавать окружность")
-    void shouldCreateCircle(String radius) {
+    void shouldCreateCircle(String radius) throws IOException {
         // Arrange
-        String[] params = {radius};
+        when(reader.readLine(anyInt()))
+                .thenReturn(radius);
 
         // Act
-        Circle actualCircle = factory.create(params);
+        Circle actualCircle = factory.create(reader);
 
         // Assert
         assertEquals(Double.parseDouble(radius), actualCircle.getRadius());
@@ -57,24 +71,25 @@ class CircleFactoryTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-            "",
-            "1,2"
+            "1 2",
+            "1 2 3"
     })
     @DisplayName("Должен выбрасывать исключение при неверном количестве параметров")
-    void shouldThrowExceptionWhenParamsCountIsInvalid(String rawParams) {
+    void shouldThrowExceptionWhenParamsCountIsInvalid(String rawParams) throws IOException {
         // Arrange
-        String[] params = rawParams.isEmpty() ? new String[0] : rawParams.split(",");
+        when(reader.readLine(anyInt()))
+                .thenReturn(rawParams);
 
         // Act
         WrongParamCountException exception = assertThrows(
                 WrongParamCountException.class,
-                () -> factory.create(params)
+                () -> factory.create(reader)
         );
 
         // Assert
         assertEquals(
                 Messages.WRONG_COUNT_OF_PARAM_EXCEPTION.formatted(
-                        ShapeType.CIRCLE,
+                        factory.getShapeType(),
                         factory.getParamsNeedCount()
                 ),
                 exception.getMessage()
@@ -82,15 +97,34 @@ class CircleFactoryTest {
     }
 
     @Test
-    @DisplayName("Должен выбрасывать исключение при нечисловом параметре")
-    void shouldThrowExceptionWhenParamIsNotNumber() {
+    @DisplayName("Должен выбрасывать исключение пустой строки при отсутствии параметров")
+    void shouldThrowExceptionWhenParamsStringIsEmpty() throws IOException {
         // Arrange
-        String[] params = {"abc"};
+        when(reader.readLine(anyInt())).thenReturn("");
+
+        // Act
+        BlankParamException exception = assertThrows(
+                BlankParamException.class,
+                () -> factory.create(reader)
+        );
+
+        assertEquals(
+                Messages.STRING_IS_BLANK,
+                exception.getMessage()
+        );
+    }
+
+    @Test
+    @DisplayName("Должен выбрасывать исключение при нечисловом параметре")
+    void shouldThrowExceptionWhenParamIsNotNumber() throws IOException {
+        // Arrange
+        when(reader.readLine(anyInt()))
+                .thenReturn("abc");
 
         // Act
         ParseDoubleException exception = assertThrows(
                 ParseDoubleException.class,
-                () -> factory.create(params)
+                () -> factory.create(reader)
         );
 
         // Assert
@@ -102,14 +136,15 @@ class CircleFactoryTest {
 
     @Test
     @DisplayName("Должен выбрасывать исключение при отрицательном радиусе")
-    void shouldThrowExceptionWhenRadiusIsNegative() {
+    void shouldThrowExceptionWhenRadiusIsNegative() throws IOException {
         // Arrange
-        String[] params = {"-1"};
+        when(reader.readLine(anyInt()))
+                .thenReturn("-1");
 
         // Act
         ParseDoubleException exception = assertThrows(
                 ParseDoubleException.class,
-                () -> factory.create(params)
+                () -> factory.create(reader)
         );
 
         // Assert
@@ -121,14 +156,15 @@ class CircleFactoryTest {
 
     @Test
     @DisplayName("Должен выбрасывать исключение при нулевом радиусе")
-    void shouldThrowExceptionWhenRadiusIsZero() {
+    void shouldThrowExceptionWhenRadiusIsZero() throws IOException {
         // Arrange
-        String[] params = {"0"};
+        when(reader.readLine(anyInt()))
+                .thenReturn("0");
 
         // Act
         ParseDoubleException exception = assertThrows(
                 ParseDoubleException.class,
-                () -> factory.create(params)
+                () -> factory.create(reader)
         );
 
         // Assert

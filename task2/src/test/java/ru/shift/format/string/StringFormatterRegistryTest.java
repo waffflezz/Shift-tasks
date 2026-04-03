@@ -2,51 +2,48 @@ package ru.shift.format.string;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import ru.shift.format.ShapeFormatter;
 import ru.shift.shapes.Circle;
 import ru.shift.shapes.Rectangle;
+import ru.shift.shapes.Triangle;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@ExtendWith(MockitoExtension.class)
 class StringFormatterRegistryTest {
 
     private final StringFormatterRegistry registry = new StringFormatterRegistry();
 
-    @Mock
-    private ShapeFormatter<Circle, String> circleFormatter;
-
-    @Mock
-    private ShapeFormatter<Rectangle, String> rectangleFormatter;
-
     @Test
-    @DisplayName("Должен возвращать зарегистрированный mock formatter для Circle")
-    void shouldReturnRegisteredMockFormatterForCircle() {
-        // Arrange
+    @DisplayName("Должен возвращать formatter для Circle, загруженный через ServiceLoader")
+    void shouldReturnFormatterForCircle() {
         Circle circle = new Circle(5.0);
-        StringFormatterRegistry.registerFormatter(Circle.class, circleFormatter);
 
-        // Act
-        ShapeFormatter<Circle, String> actualFormatter = registry.getFormatter(circle);
+        ShapeFormatter<Circle, String> formatter = registry.getFormatter(circle);
 
-        // Assert
-        assertSame(circleFormatter, actualFormatter);
+        assertNotNull(formatter);
+        assertInstanceOf(CircleStringFormatter.class, formatter);
     }
 
     @Test
-    @DisplayName("Должен возвращать зарегистрированный mock formatter для Rectangle")
-    void shouldReturnRegisteredMockFormatterForRectangle() {
-        // Arrange
+    @DisplayName("Должен возвращать formatter для Rectangle, загруженный через ServiceLoader")
+    void shouldReturnFormatterForRectangle() {
         Rectangle rectangle = new Rectangle(4.0, 6.0);
-        StringFormatterRegistry.registerFormatter(Rectangle.class, rectangleFormatter);
 
-        // Act
-        ShapeFormatter<Rectangle, String> actualFormatter = registry.getFormatter(rectangle);
+        ShapeFormatter<Rectangle, String> formatter = registry.getFormatter(rectangle);
 
-        // Assert
-        assertSame(rectangleFormatter, actualFormatter);
+        assertNotNull(formatter);
+        assertInstanceOf(RectangleStringFormatter.class, formatter);
+    }
+
+    @Test
+    @DisplayName("Должен возвращать formatter для Triangle, загруженный через ServiceLoader")
+    void shouldReturnFormatterForTriangle() {
+        Triangle triangle = new Triangle(3.0, 4.0, 5.0);
+
+        ShapeFormatter<Triangle, String> formatter = registry.getFormatter(triangle);
+
+        assertNotNull(formatter);
+        assertInstanceOf(TriangleStringFormatter.class, formatter);
     }
 }
