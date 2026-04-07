@@ -19,7 +19,6 @@ import java.io.IOException;
 @Slf4j
 public class RectangleReadingShapeFactory extends ReadingShapeFactory<Rectangle> {
     private final static int PARAMS_NEED = 2;
-    private final static int PARAMS_LINE_MAX_LEN = PARAMS_NEED * String.valueOf(Double.MAX_VALUE).length();
 
     @Override
     public String getShapeType() {
@@ -29,7 +28,7 @@ public class RectangleReadingShapeFactory extends ReadingShapeFactory<Rectangle>
     @Override
     public Rectangle create(InputReader reader) throws IOException {
         log.info("Создание фигуры: {}", getShapeType());
-        var params = readParams(reader, PARAMS_LINE_MAX_LEN);
+        var params = readParams(reader);
 
         return new Rectangle(
                 ParserUtil.parsePositiveDouble(params[0]),

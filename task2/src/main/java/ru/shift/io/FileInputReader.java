@@ -1,7 +1,6 @@
 package ru.shift.io;
 
 import lombok.extern.slf4j.Slf4j;
-import ru.shift.constants.IOConstants;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -12,7 +11,7 @@ import java.nio.charset.StandardCharsets;
  * <p>Чтение осуществляется посимвольно с использованием {@link BufferedReader}
  * и кодировки UTF-8.</p>
  *
- * <p>Метод {@link #readLine(int)} читает строку до символа перевода строки
+ * <p>Метод {@link #readLine} читает строку до символа перевода строки
  * или до достижения максимальной длины.</p>
  */
 @Slf4j
@@ -20,7 +19,7 @@ public class FileInputReader implements InputReader {
     private final BufferedReader reader;
 
     /**
-     * Создаёт объект для чтения из файла.
+     * Создаёт объект для чтения из файла с стандартным ограничением по длине.
      *
      * @param filePath путь к входному файлу
      * @throws FileNotFoundException если файл не найден или недоступен
@@ -35,19 +34,8 @@ public class FileInputReader implements InputReader {
     }
 
     @Override
-    public String readLine(int maxLength) throws IOException {
-        StringBuilder builder = new StringBuilder(maxLength);
-        int currChar;
-        while (builder.length() < maxLength && (currChar = reader.read()) != IOConstants.EOF) {
-            if (currChar == '\n') {
-                break;
-            }
-            if (currChar != '\r') {
-                builder.append((char) currChar);
-            }
-        }
-
-        return builder.toString().trim();
+    public String readLine() throws IOException {
+        return reader.readLine().trim();
     }
 
     @Override

@@ -23,14 +23,6 @@ public class ReadingShapeFactoryProvider implements ShapeFactoryProvider<Reading
         ServiceLoader.load(ReadingShapeFactory.class).forEach(f -> factoryMap.put(f.getShapeType(), f));
     }
 
-    public int getMaxShapeTypeLength() {
-        return factoryMap.values().stream()
-                .map(ReadingShapeFactory::getShapeType)
-                .mapToInt(String::length)
-                .max()
-                .orElse(0) + System.lineSeparator().length();
-    }
-
     @Override
     public Optional<ReadingShapeFactory<?>> getFactory(String shapeType) {
         return Optional.ofNullable(factoryMap.get(shapeType));

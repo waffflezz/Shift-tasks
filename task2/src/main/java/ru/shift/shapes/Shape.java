@@ -17,4 +17,11 @@ public interface Shape {
      * @return периметр фигуры
      */
     double computePerimeter();
+
+    /**
+     * Возвращает тип фигуры
+     *
+     * @return тип фигуры
+     */
+    String getShapeType();
 }

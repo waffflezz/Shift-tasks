@@ -12,6 +12,8 @@ import ru.shift.exceptions.triangle.TriangleSideBelowZeroException;
  */
 @Getter
 public final class Triangle implements Shape {
+    private static final String TYPE = "TRIANGLE";
+
     private final double sideA;
     private final double sideB;
     private final double sideC;
@@ -81,5 +83,10 @@ public final class Triangle implements Shape {
     @Override
     public double computePerimeter() {
         return sideA + sideB + sideC;
+    }
+
+    @Override
+    public String getShapeType() {
+        return TYPE;
     }
 }

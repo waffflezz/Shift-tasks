@@ -61,17 +61,4 @@ class ReadingShapeFactoryProviderTest {
         // Assert
         assertTrue(actualFactory.isEmpty());
     }
-
-    @Test
-    @DisplayName("Должен возвращать длину самого длинного типа фигуры с учетом перевода строки")
-    void shouldReturnMaxShapeTypeLength() {
-        // Arrange
-        int expectedMaxLength = "RECTANGLE".length() + System.lineSeparator().length();
-
-        // Act
-        int actualMaxLength = provider.getMaxShapeTypeLength();
-
-        // Assert
-        assertEquals(expectedMaxLength, actualMaxLength);
-    }
 }

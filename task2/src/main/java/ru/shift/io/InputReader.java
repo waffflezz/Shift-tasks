@@ -13,14 +13,10 @@ import java.io.IOException;
  */
 public interface InputReader extends AutoCloseable {
     /**
-     * Читает одну строку из источника ввода с ограничением по длине.
+     * Читает одну строку из источника ввода.
      *
-     * <p>Если длина строки превышает {@code maxLength},
-     * поведение определяется реализацией.</p>
-     *
-     * @param maxLength максимальная допустимая длина строки
      * @return прочитанная строка
      * @throws IOException если произошла ошибка ввода-вывода
      */
-    String readLine(int maxLength) throws IOException;
+    String readLine() throws IOException;
 }

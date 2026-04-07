@@ -15,6 +15,7 @@ import ru.shift.io.FileInputReader;
 import ru.shift.io.FileOutputWriter;
 import ru.shift.shapes.Shape;
 import ru.shift.utils.FileUtil;
+import ru.shift.utils.LoggerUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -78,6 +79,7 @@ public class ShapeCommand implements Runnable {
     public void run() {
         try {
             var readingFactoryProvider = new ReadingShapeFactoryProvider();
+            var stringFormatterRegistry = new StringFormatterRegistry();
 
             if (!outputOptions.consoleOutput) {
                 FileUtil.createDirectoryIfNotExists(outputOptions.outputFile);
@@ -89,39 +91,34 @@ public class ShapeCommand implements Runnable {
                          : new FileOutputWriter(outputOptions.outputFile)) {
 
                 log.info("Чтение входного файла: {}, и создание фигуры по данным из него", inputFile);
-                String shapeText = reader.readLine(readingFactoryProvider.getMaxShapeTypeLength());
+                String shapeText = reader.readLine();
 
                 var factory = readingFactoryProvider.getFactory(shapeText)
                         .orElseThrow(() -> new UnknownShapeTypeException(shapeText));
 
                 Shape shape = factory.create(reader);
 
-                log.info("Создана фигура: {}", factory.getShapeType());
+                log.info("Создана фигура: {}", shape.getShapeType());
                 writer.write(
-                        new StringFormatterRegistry()
+                        stringFormatterRegistry
                                 .getFormatter(shape)
                                 .format(shape, factory.getShapeType())
                 );
             }
         } catch (FileNotFoundException e) {
-            log.error("При открытии файла произошла ошибка: {}", e.getMessage());
-            log.debug("Подробная ошибка", e);
+            LoggerUtil.logErrorWithDebug("При открытии файла произошла ошибка", e);
             System.exit(1);
         } catch (IOException e) {
-            log.error("При работе с файлами произошла ошибка: {}", e.getMessage());
-            log.debug("Подробная ошибка", e);
+            LoggerUtil.logErrorWithDebug("При работе с файлами произошла ошибка", e);
             System.exit(2);
         } catch (WrongParamCountException | BlankParamException e) {
-            log.error("Неверное количество аргументов для фигуры. Ошибка: {}", e.getMessage());
-            log.debug("Подробная ошибка", e);
+            LoggerUtil.logErrorWithDebug("Неверное количество аргументов для фигуры", e);
             System.exit(3);
         } catch (UnknownShapeTypeException e) {
-            log.error(e.getMessage());
-            log.debug("Подробная ошибка", e);
+            LoggerUtil.logErrorWithDebug("Неизвестный тип фигуры", e);
             System.exit(4);
         } catch (Exception e) {
-            log.error("Произошла непредвиденная ошибка: {}", e.getMessage());
-            log.debug("Подробная ошибка:", e);
+            LoggerUtil.logErrorWithDebug("Произошла непредвиденная ошибка", e);
             System.exit(5);
         }
         log.info("Успешное завершение программы");

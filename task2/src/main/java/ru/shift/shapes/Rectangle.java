@@ -10,6 +10,8 @@ import lombok.Getter;
  */
 @Getter
 public final class Rectangle implements Shape {
+    private static final String TYPE = "RECTANGLE";
+
     private final double width;
     private final double height;
 
@@ -64,5 +66,10 @@ public final class Rectangle implements Shape {
     @Override
     public double computePerimeter() {
         return 2 * (width + height);
+    }
+
+    @Override
+    public String getShapeType() {
+        return TYPE;
     }
 }

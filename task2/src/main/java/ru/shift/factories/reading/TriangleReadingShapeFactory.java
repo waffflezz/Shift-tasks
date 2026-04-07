@@ -19,7 +19,6 @@ import java.io.IOException;
 @Slf4j
 public class TriangleReadingShapeFactory extends ReadingShapeFactory<Triangle> {
     private final static int PARAMS_NEED = 3;
-    private final static int PARAMS_LINE_MAX_LEN = PARAMS_NEED * String.valueOf(Double.MAX_VALUE).length();
 
     @Override
     public String getShapeType() {
@@ -29,7 +28,7 @@ public class TriangleReadingShapeFactory extends ReadingShapeFactory<Triangle> {
     @Override
     public Triangle create(InputReader reader) throws IOException {
         log.info("Создание фигуры: {}", getShapeType());
-        var params = readParams(reader, PARAMS_LINE_MAX_LEN);
+        var params = readParams(reader);
 
         return new Triangle(
                 ParserUtil.parsePositiveDouble(params[0]),

@@ -19,7 +19,6 @@ import java.io.IOException;
 @Slf4j
 public class CircleReadingShapeFactory extends ReadingShapeFactory<Circle> {
     private final static int PARAMS_NEED = 1;
-    private final static int PARAMS_LINE_MAX_LEN = PARAMS_NEED * String.valueOf(Double.MAX_VALUE).length();
 
     @Override
     public String getShapeType() {
@@ -29,8 +28,8 @@ public class CircleReadingShapeFactory extends ReadingShapeFactory<Circle> {
     @Override
     public Circle create(InputReader reader) throws IOException {
         log.info("Создание фигуры: {}", getShapeType());
-        var params = readParams(reader, PARAMS_LINE_MAX_LEN);
-        return new Circle(ParserUtil.parsePositiveDouble(params[0]));
+        var line = reader.readLine();
+        return new Circle(ParserUtil.parsePositiveDouble(line));
     }
 
     @Override

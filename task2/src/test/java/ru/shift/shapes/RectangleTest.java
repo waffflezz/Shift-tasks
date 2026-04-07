@@ -1,6 +1,7 @@
 package ru.shift.shapes;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.shift.constants.Messages;
@@ -139,5 +140,18 @@ class RectangleTest {
 
         // Assert
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Должен корректно отдавать тип фигуры")
+    void shouldCorrectGetShapeType() {
+        // Arrange
+        Rectangle rectangle = new Rectangle(5, 5);
+
+        // Act
+        String shapeType = rectangle.getShapeType();
+
+        // Assert
+        assertEquals("RECTANGLE", shapeType);
     }
 }

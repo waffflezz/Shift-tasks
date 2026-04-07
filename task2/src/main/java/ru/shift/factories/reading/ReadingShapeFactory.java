@@ -30,13 +30,12 @@ public abstract class ReadingShapeFactory<S extends Shape> implements ShapeFacto
      * </p>
      *
      * @param reader источник входных данных
-     * @param paramsMaxLineLen максимальная длина строки с параметрами
      * @return массив параметров, полученных из строки
      * @throws IOException если произошла ошибка чтения
      * @throws IllegalArgumentException если строка пустая или количество параметров некорректно
      */
-    protected String[] readParams(InputReader reader, int paramsMaxLineLen) throws IOException {
-        String line = reader.readLine(paramsMaxLineLen);
+    protected String[] readParams(InputReader reader) throws IOException {
+        String line = reader.readLine();
         FactoriesValidator.validateBlankLine(line);
 
         String[] params = line.split("\\s+");

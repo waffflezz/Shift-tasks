@@ -1,6 +1,7 @@
 package ru.shift.shapes;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import ru.shift.constants.Messages;
@@ -82,5 +83,18 @@ class CircleTest {
 
         // Assert
         assertEquals(2 * Math.PI * radius, actualPerimeter, ShapeTestSuite.STANDARD_DELTA);
+    }
+
+    @Test
+    @DisplayName("Должен корректно отдавать тип фигуры")
+    void shouldCorrectGetShapeType() {
+        // Arrange
+        Circle circle = new Circle(5);
+
+        // Act
+        String shapeType = circle.getShapeType();
+
+        // Assert
+        assertEquals("CIRCLE", shapeType);
     }
 }

@@ -18,7 +18,6 @@ import ru.shift.shapes.Triangle;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -62,8 +61,7 @@ class TriangleReadingShapeFactoryTest {
     @DisplayName("Должен корректно создавать треугольник")
     void shouldCreateTriangle(double a, double b, double c) throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn(a + " " + b + " " + c);
+        when(reader.readLine()).thenReturn(a + " " + b + " " + c);
 
         // Act
         Triangle triangle = factory.create(reader);
@@ -80,8 +78,7 @@ class TriangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение при недостаточном количестве параметров")
     void shouldThrowExceptionWhenParamsCountInvalid() throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn("3 4");
+        when(reader.readLine()).thenReturn("3 4");
 
         // Act
         WrongParamCountException exception = assertThrows(
@@ -103,7 +100,7 @@ class TriangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение пустой строки при отсутствии параметров")
     void shouldThrowExceptionWhenParamsStringIsEmpty() throws IOException {
         // Arrange
-        when(reader.readLine(anyInt())).thenReturn("");
+        when(reader.readLine()).thenReturn("");
 
         // Act
         BlankParamException exception = assertThrows(
@@ -121,8 +118,7 @@ class TriangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение при невалидных числах")
     void shouldThrowExceptionWhenParamsNotNumbers() throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn("a b c");
+        when(reader.readLine()).thenReturn("a b c");
 
         // Act
         ParseDoubleException exception = assertThrows(
@@ -142,8 +138,7 @@ class TriangleReadingShapeFactoryTest {
         double sideB = 2;
         double sideC = 3;
 
-        when(reader.readLine(anyInt()))
-                .thenReturn(sideA + " " + sideB + " " + sideC);
+        when(reader.readLine()).thenReturn(sideA + " " + sideB + " " + sideC);
 
         // Act
         TriangleCantExistsException exception = assertThrows(

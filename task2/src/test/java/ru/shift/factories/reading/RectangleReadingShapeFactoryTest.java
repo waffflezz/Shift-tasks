@@ -20,7 +20,6 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -64,8 +63,7 @@ class RectangleReadingShapeFactoryTest {
     @DisplayName("Должен корректно создавать прямоугольник")
     void shouldCreateRectangle(double width, double height) throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn(width + " " + height);
+        when(reader.readLine()).thenReturn(width + " " + height);
 
         // Act
         Rectangle actualRectangle = factory.create(reader);
@@ -85,8 +83,7 @@ class RectangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение при неверном количестве параметров")
     void shouldThrowExceptionWhenParamsCountIsInvalid(String rawParams) throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn(rawParams);
+        when(reader.readLine()).thenReturn(rawParams);
 
         // Act
         WrongParamCountException exception = assertThrows(
@@ -108,7 +105,7 @@ class RectangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение пустой строки при отсутствии параметров")
     void shouldThrowExceptionWhenParamsStringIsEmpty() throws IOException {
         // Arrange
-        when(reader.readLine(anyInt())).thenReturn("");
+        when(reader.readLine()).thenReturn("");
 
         // Act
         BlankParamException exception = assertThrows(
@@ -126,8 +123,7 @@ class RectangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение при нечисловых параметрах")
     void shouldThrowExceptionWhenParamsAreNotNumbers() throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn("a b");
+        when(reader.readLine()).thenReturn("a b");
 
         // Act
         ParseDoubleException exception = assertThrows(
@@ -146,8 +142,7 @@ class RectangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение при отрицательных значениях")
     void shouldThrowExceptionWhenParamsAreNegative() throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn("-1 5");
+        when(reader.readLine()).thenReturn("-1 5");
 
         // Act
         ParseDoubleException exception = assertThrows(
@@ -166,8 +161,7 @@ class RectangleReadingShapeFactoryTest {
     @DisplayName("Должен выбрасывать исключение при нулевом значении стороны")
     void shouldThrowExceptionWhenAnySideIsZero() throws IOException {
         // Arrange
-        when(reader.readLine(anyInt()))
-                .thenReturn("0 5");
+        when(reader.readLine()).thenReturn("0 5");
 
         // Act
         ParseDoubleException exception = assertThrows(

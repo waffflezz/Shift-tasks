@@ -1,6 +1,7 @@
 package ru.shift.shapes;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.shift.constants.Messages;
@@ -159,5 +160,18 @@ class TriangleTest {
 
         // Assert
         assertEquals(expectedArea, actualArea, ShapeTestSuite.STANDARD_DELTA);
+    }
+
+    @Test
+    @DisplayName("Должен корректно отдавать тип фигуры")
+    void shouldCorrectGetShapeType() {
+        // Arrange
+        Triangle triangle = new Triangle(3, 4, 5);
+
+        // Act
+        String shapeType = triangle.getShapeType();
+
+        // Assert
+        assertEquals("TRIANGLE", shapeType);
     }
 }

@@ -11,6 +11,8 @@ import ru.shift.exceptions.circle.CircleRadiusBelowZeroOrZeroException;
  */
 @Getter
 public final class Circle implements Shape {
+    private static final String TYPE = "CIRCLE";
+
     private final double radius;
 
     /**
@@ -42,5 +44,10 @@ public final class Circle implements Shape {
     @Override
     public double computePerimeter() {
         return 2 * Math.PI * radius;
+    }
+
+    @Override
+    public String getShapeType() {
+        return TYPE;
     }
 }
