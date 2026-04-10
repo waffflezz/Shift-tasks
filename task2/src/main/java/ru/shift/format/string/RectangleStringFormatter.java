@@ -1,0 +1,44 @@
+package ru.shift.format.string;
+
+import ru.shift.constants.IOConstants;
+import ru.shift.constants.Messages;
+import ru.shift.constants.ShapeConstants;
+import ru.shift.shapes.Rectangle;
+
+/**
+ * Реализация {@link StringFormatter} для форматирования прямоугольника.
+ *
+ * <p>Дополняет общее строковое представление фигуры специфичными данными:
+ * <ul>
+ *     <li>длина диагонали ({@link Rectangle#computeDiagonal()})</li>
+ *     <li>длина большей стороны ({@link Rectangle#getMaxSide()})</li>
+ *     <li>длина меньшей стороны ({@link Rectangle#getMinSide()})</li>
+ * </ul>
+ *
+ * <p>Все числовые значения форматируются с использованием
+ * {@link ShapeConstants#DECIMAL_FORMAT}.</p>
+ */
+public class RectangleStringFormatter extends StringFormatter<Rectangle> {
+    @Override
+    protected void appendSpecificData(StringBuilder builder, Rectangle shape) {
+        builder.append(Messages.RECTANGLE_DIAGONAL)
+                .append(ShapeConstants.DECIMAL_FORMAT.format(shape.computeDiagonal()))
+                .append(ShapeConstants.UNITS)
+                .append(IOConstants.EOL);
+
+        builder.append(Messages.RECTANGLE_LENGTH)
+                .append(ShapeConstants.DECIMAL_FORMAT.format(shape.getMaxSide()))
+                .append(ShapeConstants.UNITS)
+                .append(IOConstants.EOL);
+
+        builder.append(Messages.RECTANGLE_WIDTH)
+                .append(ShapeConstants.DECIMAL_FORMAT.format(shape.getMinSide()))
+                .append(ShapeConstants.UNITS)
+                .append(IOConstants.EOL);
+    }
+
+    @Override
+    protected Class<Rectangle> getShapeClass() {
+        return Rectangle.class;
+    }
+}

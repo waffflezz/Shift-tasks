@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc.">
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/StringCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/main/java/ru/shift/StringCalculatorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2/src/test/java/ru/shift/StringCalculatorTest.java" afterDir="false" />
+    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке">
+      <change beforePath="$PROJECT_DIR$/task1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task1/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +32,9 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/task2">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -52,6 +53,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -64,6 +67,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -72,43 +78,81 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.StringCalculatorTest.empty_string_return0.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StringCalculatorTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task1 [:ru.shift.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task2 [:ru.shift.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task2 [dependencies].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.task2 [test].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;task1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.AllTests.executor": "Coverage",
+    "Gradle.CircleFactoryTest.shouldThrowExceptionWhenParamIsNotNumber.executor": "Run",
+    "Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsNegative.executor": "Run",
+    "Gradle.CircleFactoryTest.shouldThrowExceptionWhenRadiusIsZero.executor": "Run",
+    "Gradle.CircleReadingShapeFactoryTest.executor": "Run",
+    "Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid.executor": "Run",
+    "Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsStringIsEmpty.executor": "Run",
+    "Gradle.CircleStringFormatterTest.executor": "Run",
+    "Gradle.FactoriesValidatorTest.executor": "Run",
+    "Gradle.FactoryRegistryTest.executor": "Run",
+    "Gradle.FactoryTestSuite.executor": "Run",
+    "Gradle.FileUtilTest.executor": "Run",
+    "Gradle.MapperTest.executor": "Run",
+    "Gradle.ParserUtilTest.executor": "Run",
+    "Gradle.ParserUtilTest.shouldThrowExceptionWhenNotANumber.executor": "Run",
+    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenAnySideIsZero.executor": "Run",
+    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNegative.executor": "Run",
+    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsAreNotNumbers.executor": "Run",
+    "Gradle.RectangleFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid.executor": "Run",
+    "Gradle.RectangleStringFormatterTest.executor": "Run",
+    "Gradle.ShapeTestSuite.executor": "Run",
+    "Gradle.ShapeTestsSuite.executor": "Run",
+    "Gradle.ShapeTypeTest.executor": "Run",
+    "Gradle.StringCalculatorTest.empty_string_return0.executor": "Run",
+    "Gradle.StringCalculatorTest.executor": "Run",
+    "Gradle.StringFormatterRegistryTest.executor": "Run",
+    "Gradle.TriangleFactoryTest.shouldThrowExceptionWhenParamsCountInvalid.executor": "Run",
+    "Gradle.TriangleFactoryTest.shouldThrowExceptionWhenParamsNotNumbers.executor": "Run",
+    "Gradle.TriangleFactoryTest.shouldThrowExceptionWhenTriangleInvalid.executor": "Run",
+    "Gradle.TriangleTest.shouldCorrectGetShapeType.executor": "Run",
+    "Gradle.task1 [:ru.shift.Main.main()].executor": "Run",
+    "Gradle.task2 [:ru.shift.Main.main()].executor": "Run",
+    "Gradle.task2 [dependencies].executor": "Run",
+    "Gradle.task2 [test].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "task2",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.tabs"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ru.shift" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
       <module name="task2.main" />
+      <option name="PROGRAM_PARAMETERS" value="-f=test.txt -co" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.shift.constants.*" />
+          <option name="PATTERN" value="ru.shift.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -116,20 +160,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
-      <module name="task1.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.shift.constants.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StringCalculatorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AllTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
@@ -142,7 +173,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.shift.StringCalculatorTest&quot;" />
+            <option value="&quot;ru.shift.AllTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -156,7 +187,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="StringCalculatorTest.empty_string_return0" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
@@ -169,7 +200,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.shift.StringCalculatorTest.empty_string_return0&quot;" />
+            <option value="&quot;ru.shift.factories.reading.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -183,38 +214,74 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="task2 [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ShapeTestSuite" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="dependencies" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.shift.shapes.ShapeTestSuite&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
       <GradleProfilingDisabled>false</GradleProfilingDisabled>
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="TriangleTest.shouldCorrectGetShapeType" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.shift.shapes.TriangleTest.shouldCorrectGetShapeType&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid" />
+      <item itemvalue="Gradle.ShapeTestSuite" />
+      <item itemvalue="Gradle.TriangleTest.shouldCorrectGetShapeType" />
+      <item itemvalue="Gradle.AllTests" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.StringCalculatorTest" />
-        <item itemvalue="Gradle.StringCalculatorTest.empty_string_return0" />
-        <item itemvalue="Gradle.task2 [dependencies]" />
+        <item itemvalue="Gradle.AllTests" />
+        <item itemvalue="Gradle.TriangleTest.shouldCorrectGetShapeType" />
+        <item itemvalue="Gradle.ShapeTestSuite" />
+        <item itemvalue="Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid" />
       </list>
     </recent_temporary>
   </component>
@@ -297,7 +364,87 @@
       <option name="project" value="LOCAL" />
       <updated>1774520193571</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Начальный коммит. Добавлены фигуры, получения различных характеристик этих фигур. Константы вынесены по своим классам, на будущее сделан маппер, чтобы определять тип фигуры. Сделаны свои исключения">
+      <option name="closed" value="true" />
+      <created>1774605214998</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1774605214998</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Добавлен форматер. Из фигур вынесена логика отображения характеристик в текст, теперь этим занимается форматер. Добавлены абстрактные ввод и вывод. Начата работа над точкой входа и сбора всей логики вместе">
+      <option name="closed" value="true" />
+      <created>1774857019230</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1774857019231</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом">
+      <option name="closed" value="true" />
+      <created>1774886328979</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1774886328979</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Добавлен javadoc для всех файлов. Исправлены небольшие несостыковочки по ходу просмотра всех файлов">
+      <option name="closed" value="true" />
+      <created>1774899216345</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1774899216345</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования">
+      <option name="closed" value="true" />
+      <created>1774945767243</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1774945767243</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования">
+      <option name="closed" value="true" />
+      <created>1774945805872</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1774945805872</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc">
+      <option name="closed" value="true" />
+      <created>1775197118991</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1775197118991</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc">
+      <option name="closed" value="true" />
+      <created>1775197289728</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1775197289728</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Небольшие исправления javadoc">
+      <option name="closed" value="true" />
+      <created>1775197389177</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1775197389177</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке">
+      <option name="closed" value="true" />
+      <created>1775539599467</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1775539599467</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -320,7 +467,15 @@
     <MESSAGE value="Учтены замечания code review. String.repeat в билдере заменен на метод .repeat из самого билдера. Убраны комментарии, магические числа вынесены в константы, комментарии к константам добавлены. Написан класс Validator, чтобы вынести логику валидирования из класса таблицы" />
     <MESSAGE value="Учтены замечания code review. Вынес различные сообщения в отдельный класс, с возможностью их форматирования. Теперь берется сообщение из ошибки валидатора, а также добавлен кейс на возможную неизвестную ошибку. Добавлена отдельная ошибка. Константы вынесены в свои классы для переиспользования. Плюсом добавлены javadoc и в TUI вынесена в константу число для выхода из программы" />
     <MESSAGE value="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc." />
-    <option name="LAST_COMMIT_MESSAGE" value="Учтены замечания code review. Messages перенесено в пакет constants. Поправлен javadoc, т.к. где-то оставались &quot;захардкоженные&quot; значения. В TUI теперь строка формируется лишь один раз. Вернул папку .idea из .gitignore. Дополнительно вынес input для выхода в статик константу, чтобы можно было указать её в javadoc." />
+    <MESSAGE value="Начальный коммит. Добавлены фигуры, получения различных характеристик этих фигур. Константы вынесены по своим классам, на будущее сделан маппер, чтобы определять тип фигуры. Сделаны свои исключения" />
+    <MESSAGE value="Добавлен форматер. Из фигур вынесена логика отображения характеристик в текст, теперь этим занимается форматер. Добавлены абстрактные ввод и вывод. Начата работа над точкой входа и сбора всей логики вместе" />
+    <MESSAGE value="Добавил фабрики для создания фигур. Добавил логирование. Небольшие исправления по коду в целом" />
+    <MESSAGE value="Добавлен javadoc для всех файлов. Исправлены небольшие несостыковочки по ходу просмотра всех файлов" />
+    <MESSAGE value="Добавлены тесты на всё, кроме точек входа и IO. Мелкие исправления по коду, в ходе его тестирования" />
+    <MESSAGE value="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc" />
+    <MESSAGE value="Небольшие исправления javadoc" />
+    <MESSAGE value="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -332,5 +487,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/2026_01_skorobogatov$AllTests.ic" NAME="AllTests Coverage Results" MODIFIED="1775539071377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
