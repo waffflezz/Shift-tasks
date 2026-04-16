@@ -5,7 +5,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке">
-      <change beforePath="$PROJECT_DIR$/task1/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task1/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/GameLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/MainGameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombsGeneratedDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/CellFlagChangedDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/GameStartedDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/OpenedCellDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Cell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Field.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/MainModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/ModelObservers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/CellChange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/GameStarter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/BombsGeneratedListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellFlagChangedListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellOpenListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameLostListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameStartListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameWonListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/ModelListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/observer/ObserversRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/ButtonType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/CellClickHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/HighScoresView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/LoseView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/MainView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/RecordsView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/SettingsView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/WinView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/HighScoresWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/LoseWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/MainWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/RecordsWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/SettingsWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/WinWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/cell.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/empty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/flag.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/mine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/mineImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/timer.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +82,9 @@
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/task2">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/task3">
       <ProjectState />
     </projectState>
     <projectState path="$PROJECT_DIR$/untitled">
@@ -89,6 +154,7 @@
     "Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid.executor": "Run",
     "Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsStringIsEmpty.executor": "Run",
     "Gradle.CircleStringFormatterTest.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
     "Gradle.FactoriesValidatorTest.executor": "Run",
     "Gradle.FactoryRegistryTest.executor": "Run",
     "Gradle.FactoryTestSuite.executor": "Run",
@@ -115,6 +181,8 @@
     "Gradle.task2 [:ru.shift.Main.main()].executor": "Run",
     "Gradle.task2 [dependencies].executor": "Run",
     "Gradle.task2 [test].executor": "Run",
+    "Gradle.task3 [:ru.shift.Main.main()].executor": "Run",
+    "Gradle.task3 [:ru.shift.newp.NewMain.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -124,28 +192,46 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "task2",
+    "git-widget-placeholder": "task3",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task3/src/main/java/ru/shift/newp/view",
     "onboarding.tips.debug.path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.tabs"
+    "settings.editor.selected.configurable": "preferences.sourceCode.JAVA"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/task3/src/main/java/ru/shift/newp/view" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/task3/src/main/resources/images" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ru.shift" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
+      <module name="task3.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.shift.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.shift.Main" />
       <module name="task2.main" />
@@ -153,6 +239,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ru.shift.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NewMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.shift.newp.NewMain" />
+      <module name="task3.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.shift.newp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -174,60 +273,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;ru.shift.AllTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;ru.shift.factories.reading.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ShapeTestSuite" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/task2" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;ru.shift.shapes.ShapeTestSuite&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -269,19 +314,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.NewMain" />
+      <item itemvalue="Application.Main (1)" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid" />
-      <item itemvalue="Gradle.ShapeTestSuite" />
       <item itemvalue="Gradle.TriangleTest.shouldCorrectGetShapeType" />
       <item itemvalue="Gradle.AllTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.NewMain" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.AllTests" />
         <item itemvalue="Gradle.TriangleTest.shouldCorrectGetShapeType" />
-        <item itemvalue="Gradle.ShapeTestSuite" />
-        <item itemvalue="Gradle.CircleReadingShapeFactoryTest.shouldThrowExceptionWhenParamsCountIsInvalid" />
       </list>
     </recent_temporary>
   </component>
