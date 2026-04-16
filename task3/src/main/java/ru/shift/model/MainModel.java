@@ -9,9 +9,8 @@ import ru.shift.dto.OpenedCellDto;
 import ru.shift.model.listeners.BombsGeneratedListener;
 import ru.shift.model.listeners.CellFlagChangedListener;
 import ru.shift.model.listeners.CellOpenListener;
-import ru.shift.model.listeners.GameLostListener;
 import ru.shift.model.listeners.GameStartListener;
-import ru.shift.model.listeners.GameWonListener;
+import ru.shift.model.listeners.GameStateChangedListener;
 import ru.shift.model.listeners.ModelListener;
 import ru.shift.observer.ObserversRegistry;
 
@@ -68,6 +67,7 @@ public class MainModel implements GameModel {
             fillFieldWithMines(x, y);
             calculateAdjacentMinesCounts();
             gameState = GameState.IN_PROGRESS;
+            notifyGameStateChanged();
         }
 
         if (cell.isMined()) {
@@ -324,7 +324,7 @@ public class MainModel implements GameModel {
         }
 
         gameState = GameState.LOST;
-        observers.notifyListeners(GameLostListener.class, GameLostListener::onGameLost);
+        notifyGameStateChanged();
     }
 
     private void notifyGameWonIfNeeded() {
@@ -333,7 +333,7 @@ public class MainModel implements GameModel {
         }
 
         gameState = GameState.WON;
-        observers.notifyListeners(GameWonListener.class, GameWonListener::onGameWon);
+        notifyGameStateChanged();
     }
 
     private void applyGameSettings(int width, int height, int minesCount) {
@@ -355,6 +355,10 @@ public class MainModel implements GameModel {
     private void notifyGameStarted() {
         GameStartedDto gameStarted = new GameStartedDto(width, height, minesCount);
         observers.notifyListeners(GameStartListener.class, listener -> listener.onGameStarted(gameStarted));
+    }
+
+    private void notifyGameStateChanged() {
+        observers.notifyListeners(GameStateChangedListener.class, listener -> listener.onGameStateChanged(gameState));
     }
 
     private boolean isInsideField(int x, int y) {

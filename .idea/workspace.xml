@@ -4,70 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке">
-      <change afterPath="$PROJECT_DIR$/task3/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/GameLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/MainGameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombsGeneratedDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/CellFlagChangedDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/GameStartedDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/OpenedCellDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/MainModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/ModelObservers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/CellChange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/GameStarter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/BombsGeneratedListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellFlagChangedListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellOpenListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameLostListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameStartListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameWonListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/ModelListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/observer/ObserversRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/ButtonType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/CellClickHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/HighScoresView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/LoseView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/MainView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/RecordsView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/SettingsView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/WinView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/HighScoresWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/LoseWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/MainWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/RecordsWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/SettingsWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/WinWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/cell.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/empty.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/flag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/mine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/mineImage.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3/src/main/resources/images/timer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Доделал внешние функции, везде чутка причесал код. Доделал сохранение лучшего результата. Переделал логику работы с View, теперь она полностью независима от Controller. Добавил также таймер">
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/timer/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/timer/Timer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/SettingsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/SettingsView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,11 +129,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "task3",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task3/src/main/java/ru/shift/newp/view",
+    "last_opened_file_path": "/home/dima/Загрузки/tmp/TsftTasks-master/task3",
     "onboarding.tips.debug.path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -216,6 +156,9 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ru.shift" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.shift.view.actions" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main (1)">
@@ -489,7 +432,23 @@
       <option name="project" value="LOCAL" />
       <updated>1775539599467</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Начальный коммит, немного большой. Определена архитектура проекта. Добавлена модель с слушателями на определенные действия. View использует интерфейс контроллера, пока интерфейс, как и контроллер один, имеет смысл раздробить на разные, но пока пусть будет так. Контроллер принимает в себя контракты модели, собранные под одним интерфейсом и вызывает их. Модель и представление не знают друг о друге и общаются по средствам слушателей. В Main происходит сборка всех элементов программы. Интерфейсы Observers вынесены и лишь конкретные компоненты делают собственную реализацию. Осталось добавить внешние компоненты и окно выигрыша">
+      <option name="closed" value="true" />
+      <created>1776331144873</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1776331144873</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Доделал внешние функции, везде чутка причесал код. Доделал сохранение лучшего результата. Переделал логику работы с View, теперь она полностью независима от Controller. Добавил также таймер">
+      <option name="closed" value="true" />
+      <created>1776365524853</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1776365524853</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -520,7 +479,9 @@
     <MESSAGE value="Исправлены тесты. Немного подправлены фабрики. Исправлены мелкие ошибки по коду, где-то добавлены нехватающие javadoc" />
     <MESSAGE value="Небольшие исправления javadoc" />
     <MESSAGE value="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке" />
-    <option name="LAST_COMMIT_MESSAGE" value="Исправления после code review. Принял решение FileInputReader сделать простым, без обрезания по длине. Все остальные замечания были исправлены, кроме подвзяки на Messages при проверке" />
+    <MESSAGE value="Начальный коммит, немного большой. Определена архитектура проекта. Добавлена модель с слушателями на определенные действия. View использует интерфейс контроллера, пока интерфейс, как и контроллер один, имеет смысл раздробить на разные, но пока пусть будет так. Контроллер принимает в себя контракты модели, собранные под одним интерфейсом и вызывает их. Модель и представление не знают друг о друге и общаются по средствам слушателей. В Main происходит сборка всех элементов программы. Интерфейсы Observers вынесены и лишь конкретные компоненты делают собственную реализацию. Осталось добавить внешние компоненты и окно выигрыша" />
+    <MESSAGE value="Доделал внешние функции, везде чутка причесал код. Доделал сохранение лучшего результата. Переделал логику работы с View, теперь она полностью независима от Controller. Добавил также таймер" />
+    <option name="LAST_COMMIT_MESSAGE" value="Доделал внешние функции, везде чутка причесал код. Доделал сохранение лучшего результата. Переделал логику работы с View, теперь она полностью независима от Controller. Добавил также таймер" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

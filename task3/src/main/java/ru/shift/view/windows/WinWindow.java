@@ -54,7 +54,7 @@ public class WinWindow {
         JButton newGameButton = new JButton("New game");
         newGameButton.setPreferredSize(new Dimension(100, 25));
         newGameButton.addActionListener(e -> {
-            dialog.setVisible(false);
+            dialog.dispose();
 
             if (newGameAction != null) {
                 newGameAction.actionPerformed(e);

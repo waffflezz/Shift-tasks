@@ -1,26 +1,41 @@
 package ru.shift.view.views;
 
-import ru.shift.controller.Controller;
-import ru.shift.model.listeners.GameLostListener;
+import ru.shift.model.GameState;
+import ru.shift.model.listeners.GameStateChangedListener;
+import ru.shift.view.actions.GameResultViewActions;
 import ru.shift.view.windows.LoseWindow;
 
+import javax.swing.*;
 import java.awt.Window;
+import java.awt.event.ActionListener;
 
-public class LoseView implements GameLostListener {
+public class LoseView implements GameResultViewActions, GameStateChangedListener {
     private final LoseWindow loseWindow;
 
-    public LoseView(Window owner, Controller controller) {
+    public LoseView(Window owner) {
         loseWindow = new LoseWindow(owner);
-        loseWindow.setNewGameAction(e -> controller.startNewGame());
-        loseWindow.setExitAction(e -> System.exit(0));
     }
 
     public void setVisible(boolean visible) {
-        loseWindow.setVisible(visible);
+        SwingUtilities.invokeLater(() -> loseWindow.setVisible(visible));
     }
 
     @Override
-    public void onGameLost() {
-        loseWindow.setVisible(true);
+    public void onGameStateChanged(GameState gameState) {
+        if (gameState != GameState.LOST) {
+            return;
+        }
+
+        setVisible(true);
+    }
+
+    @Override
+    public void setNewGameAction(ActionListener action) {
+        loseWindow.setNewGameAction(action);
+    }
+
+    @Override
+    public void setExitAction(ActionListener action) {
+        loseWindow.setExitAction(action);
     }
 }

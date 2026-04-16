@@ -43,11 +43,7 @@ public class ModelObservers implements ObserversRegistry<ModelListener> {
         }
 
         for (ModelListener listener : listeners) {
-            notifier.accept(castListener(listenerType, listener));
+            notifier.accept(listenerType.cast(listener));
         }
-    }
-
-    private <L extends ModelListener> L castListener(Class<L> listenerType, ModelListener listener) {
-        return listenerType.cast(listener);
     }
 }

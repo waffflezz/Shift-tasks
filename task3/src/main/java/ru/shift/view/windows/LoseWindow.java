@@ -78,7 +78,7 @@ public class LoseWindow {
         JButton exitButton = new JButton("Exit");
         exitButton.setPreferredSize(new Dimension(100, 25));
         exitButton.addActionListener(e -> {
-            dialog.setVisible(false);
+            dialog.dispose();
 
             if (exitAction != null) {
                 exitAction.actionPerformed(e);
