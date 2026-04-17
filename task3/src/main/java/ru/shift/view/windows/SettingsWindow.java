@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
+/**
+ * Модальный диалог для выбора сложности следующей игры.
+ */
 public class SettingsWindow {
     private final JDialog dialog;
     private final Map<GameType, JRadioButton> radioButtonsMap = new HashMap<>(3);
@@ -17,6 +20,11 @@ public class SettingsWindow {
     private Consumer<GameType> applyHandler;
     private GameType gameType;
 
+    /**
+     * Создаёт диалог настроек.
+     *
+     * @param owner родительское окно
+     */
     public SettingsWindow(Window owner) {
         dialog = new JDialog(owner, "Settings", Dialog.ModalityType.APPLICATION_MODAL);
 
@@ -40,10 +48,20 @@ public class SettingsWindow {
         setSelectedGameType(GameType.NOVICE);
     }
 
+    /**
+     * Показывает или скрывает диалог.
+     *
+     * @param visible признак видимости
+     */
     public void setVisible(boolean visible) {
         dialog.setVisible(visible);
     }
 
+    /**
+     * Выбирает указанный тип игры в диалоге.
+     *
+     * @param gameType тип игры для выбора
+     */
     public void setSelectedGameType(GameType gameType) {
         JRadioButton radioButton = radioButtonsMap.get(gameType);
 
@@ -55,6 +73,15 @@ public class SettingsWindow {
         radioGroup.setSelected(radioButton.getModel(), true);
     }
 
+    /**
+     * Создаёт радиокнопку для типа игры.
+     *
+     * @param radioButtonText отображаемый текст
+     * @param gameType представляемый тип игры
+     * @param layout целевой компоновщик
+     * @param gridY индекс строки
+     * @return созданная радиокнопка
+     */
     private JRadioButton createRadioButton(String radioButtonText, GameType gameType, GridBagLayout layout, int gridY) {
         JRadioButton radioButton = new JRadioButton(radioButtonText);
         radioButton.addActionListener(e -> this.gameType = gameType);
@@ -75,6 +102,12 @@ public class SettingsWindow {
         return radioButton;
     }
 
+    /**
+     * Создаёт кнопку применения выбранных настроек.
+     *
+     * @param layout целевой компоновщик
+     * @return кнопка применения
+     */
     private JButton createOkButton(GridBagLayout layout) {
         JButton okButton = new JButton("OK");
         okButton.setPreferredSize(new Dimension(80, 25));
@@ -99,6 +132,12 @@ public class SettingsWindow {
         return okButton;
     }
 
+    /**
+     * Создаёт кнопку закрытия диалога без применения изменений.
+     *
+     * @param layout целевой компоновщик
+     * @return кнопка отмены
+     */
     private JButton createCloseButton(GridBagLayout layout) {
         JButton cancelButton = new JButton("Cancel");
         cancelButton.setPreferredSize(new Dimension(80, 25));

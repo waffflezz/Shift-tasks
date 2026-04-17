@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Представляет одну клетку игрового поля.
+ */
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -15,6 +18,11 @@ public class Cell {
     private boolean mined;
     private boolean flagged;
 
+    /**
+     * Открывает клетку, если она ещё не была открыта.
+     *
+     * @return {@code true}, если состояние клетки изменилось, иначе {@code false}
+     */
     public boolean open() {
         if (opened) {
             return false;

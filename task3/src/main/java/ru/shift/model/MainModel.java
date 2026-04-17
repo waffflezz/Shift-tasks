@@ -1,5 +1,6 @@
 package ru.shift.model;
 
+import lombok.extern.slf4j.Slf4j;
 import ru.shift.GameLevel;
 import ru.shift.dto.BombDto;
 import ru.shift.dto.BombsGeneratedDto;
@@ -12,13 +13,17 @@ import ru.shift.model.listeners.CellOpenListener;
 import ru.shift.model.listeners.GameStartListener;
 import ru.shift.model.listeners.GameStateChangedListener;
 import ru.shift.model.listeners.ModelListener;
-import ru.shift.observer.ObserversRegistry;
+import ru.shift.observers.ObserversRegistry;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Основная игровая модель, управляющая состоянием поля и уведомляющая слушателей.
+ */
+@Slf4j
 public class MainModel implements GameModel {
     private final ObserversRegistry<ModelListener> observers;
 
@@ -32,6 +37,14 @@ public class MainModel implements GameModel {
     private int flagsCount;
     private GameState gameState;
 
+    /**
+     * Создаёт игровую модель с указанными настройками поля.
+     *
+     * @param width ширина поля
+     * @param height высота поля
+     * @param minesCount количество мин на поле
+     * @param observers реестр слушателей модели
+     */
     public MainModel(int width, int height, int minesCount, ObserversRegistry<ModelListener> observers) {
         validateMinesCount(width, height, minesCount);
         this.observers = observers;
@@ -40,19 +53,27 @@ public class MainModel implements GameModel {
 
     @Override
     public void startNewGame() {
+        log.info("Start new game");
+
         resetGameState();
         notifyGameStarted();
+        notifyGameStateChanged();
     }
 
     @Override
     public void startNewGame(GameLevel gameLevel) {
+        log.info("Start new game with level {}", gameLevel.name());
+
         applyGameSettings(gameLevel.getWidth(), gameLevel.getHeight(), gameLevel.getMinesCount());
         resetGameState();
         notifyGameStarted();
+        notifyGameStateChanged();
     }
 
     @Override
     public void openCell(int x, int y) {
+        log.debug("Try to open cell in cords X: {}, Y: {}", x, y);
+
         if (isGameFinished()) {
             return;
         }
@@ -88,6 +109,8 @@ public class MainModel implements GameModel {
 
     @Override
     public void openNeighboringCells(int x, int y) {
+        log.debug("Try to open neighboring cells in cords X: {}, Y: {}", x, y);
+
         if (isGameFinished()) {
             return;
         }
@@ -98,7 +121,8 @@ public class MainModel implements GameModel {
             return;
         }
 
-        if (countNeighboringFlags(x, y) != cell.getAdjacentMinesCount()) {
+        int neighboringFlagsCount = countNeighboringFlags(x, y);
+        if (neighboringFlagsCount != cell.getAdjacentMinesCount()) {
             return;
         }
 
@@ -133,6 +157,8 @@ public class MainModel implements GameModel {
 
     @Override
     public void toggleFlag(int x, int y) {
+        log.debug("Try to toggle flag in cords X: {}, Y: {}", x, y);
+
         if (isGameFinished()) {
             return;
         }
@@ -161,7 +187,15 @@ public class MainModel implements GameModel {
         observers.notifyListeners(CellFlagChangedListener.class, listener -> listener.onCellFlagChanged(cellFlagChanged));
     }
 
+    /**
+     * Случайным образом расставляет мины на поле, исключая первую открытую клетку.
+     *
+     * @param excludedX координата исключённой клетки по X
+     * @param excludedY координата исключённой клетки по Y
+     */
     private void fillFieldWithMines(int excludedX, int excludedY) {
+        log.debug("Generate {} bombs excluding cords X: {}, Y: {}", minesCount, excludedX, excludedY);
+
         int excludedIndex = excludedY * width + excludedX;
         int availableCellsCount = width * height - 1;
         int[] availableCellIndexes = new int[availableCellsCount];
@@ -191,6 +225,9 @@ public class MainModel implements GameModel {
         observers.notifyListeners(BombsGeneratedListener.class, listener -> listener.onBombsGenerated(bombsGenerated));
     }
 
+    /**
+     * Вычисляет количество соседних мин для каждой клетки.
+     */
     private void calculateAdjacentMinesCounts() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -199,6 +236,13 @@ public class MainModel implements GameModel {
         }
     }
 
+    /**
+     * Подсчитывает количество мин вокруг указанной клетки.
+     *
+     * @param x координата клетки по X
+     * @param y координата клетки по Y
+     * @return количество соседних заминированных клеток
+     */
     private int countAdjacentMines(int x, int y) {
         int adjacentMinesCount = 0;
 
@@ -211,6 +255,13 @@ public class MainModel implements GameModel {
         return adjacentMinesCount;
     }
 
+    /**
+     * Подсчитывает количество флагов вокруг указанной клетки.
+     *
+     * @param x координата клетки по X
+     * @param y координата клетки по Y
+     * @return количество соседних помеченных клеток
+     */
     private int countNeighboringFlags(int x, int y) {
         int neighboringFlagsCount = 0;
 
@@ -223,7 +274,15 @@ public class MainModel implements GameModel {
         return neighboringFlagsCount;
     }
 
+    /**
+     * Открывает связанную пустую область с помощью обхода в ширину.
+     *
+     * @param startX начальная координата клетки по X
+     * @param startY начальная координата клетки по Y
+     */
     private void openEmptyArea(int startX, int startY) {
+        log.debug("Start opening empty area from cords X: {}, Y: {}", startX, startY);
+
         ArrayDeque<Cell> cellsToOpen = new ArrayDeque<>();
         cellsToOpen.add(field.getCell(startX, startY));
 
@@ -245,6 +304,13 @@ public class MainModel implements GameModel {
         }
     }
 
+    /**
+     * Добавляет соседние клетки-кандидаты для дальнейшей обработки пустой области.
+     *
+     * @param cellsToOpen очередь клеток на обработку
+     * @param x координата исходной клетки по X
+     * @param y координата исходной клетки по Y
+     */
     private void addNeighboringCells(ArrayDeque<Cell> cellsToOpen, int x, int y) {
         for (Cell neighbor : getNeighboringCells(x, y)) {
             if (neighbor.isOpened() || neighbor.isMined()) {
@@ -255,6 +321,13 @@ public class MainModel implements GameModel {
         }
     }
 
+    /**
+     * Возвращает все корректные соседние клетки вокруг указанных координат.
+     *
+     * @param x координата клетки по X
+     * @param y координата клетки по Y
+     * @return соседние клетки
+     */
     private List<Cell> getNeighboringCells(int x, int y) {
         final int cellsAround = 8;
         List<Cell> neighboringCells = new ArrayList<>(cellsAround);
@@ -279,6 +352,11 @@ public class MainModel implements GameModel {
         return neighboringCells;
     }
 
+    /**
+     * Снимает флаг с клетки перед её открытием и уведомляет слушателей.
+     *
+     * @param cell клетка для обновления
+     */
     private void removeFlagIfNeeded(Cell cell) {
         if (!cell.isFlagged()) {
             return;
@@ -296,6 +374,11 @@ public class MainModel implements GameModel {
         observers.notifyListeners(CellFlagChangedListener.class, listener -> listener.onCellFlagChanged(cellFlagChanged));
     }
 
+    /**
+     * Открывает клетку и уведомляет слушателей, если её состояние изменилось.
+     *
+     * @param cell клетка для открытия
+     */
     private void openCellAndNotify(Cell cell) {
         if (!cell.open()) {
             return;
@@ -308,6 +391,11 @@ public class MainModel implements GameModel {
         notifyCellOpened(cell);
     }
 
+    /**
+     * Публикует событие открытия клетки.
+     *
+     * @param cell открытая клетка
+     */
     private void notifyCellOpened(Cell cell) {
         OpenedCellDto openedCell = new OpenedCellDto(
                 cell.getX(),
@@ -318,24 +406,39 @@ public class MainModel implements GameModel {
         observers.notifyListeners(CellOpenListener.class, listener -> listener.onCellOpened(openedCell));
     }
 
+    /**
+     * Переводит игру в состояние проигрыша и уведомляет слушателей.
+     */
     private void notifyGameLost() {
         if (isGameFinished()) {
             return;
         }
 
         gameState = GameState.LOST;
+        log.info("Game lost");
         notifyGameStateChanged();
     }
 
+    /**
+     * Переводит игру в состояние победы, когда открыты все безопасные клетки.
+     */
     private void notifyGameWonIfNeeded() {
         if (isGameFinished() || !hasWon()) {
             return;
         }
 
         gameState = GameState.WON;
+        log.info("Game won");
         notifyGameStateChanged();
     }
 
+    /**
+     * Применяет к модели размеры поля и количество мин.
+     *
+     * @param width ширина поля
+     * @param height высота поля
+     * @param minesCount количество мин на поле
+     */
     private void applyGameSettings(int width, int height, int minesCount) {
         validateMinesCount(width, height, minesCount);
         this.width = width;
@@ -343,42 +446,91 @@ public class MainModel implements GameModel {
         this.minesCount = minesCount;
         this.safeCellsCount = width * height - minesCount;
         this.field = new Field(width, height);
+        log.debug(
+                "Apply game settings. Width: {}, height: {}, mines: {}, safe cells: {}",
+                width,
+                height,
+                minesCount,
+                safeCellsCount
+        );
     }
 
+    /**
+     * Сбрасывает всё изменяемое состояние для новой игры.
+     */
     private void resetGameState() {
         field = new Field(width, height);
         openedSafeCellsCount = 0;
         flagsCount = 0;
         gameState = GameState.NEW;
+        log.debug("Reset game state for field {}x{} with {} mines", width, height, minesCount);
     }
 
+    /**
+     * Публикует событие запуска игры.
+     */
     private void notifyGameStarted() {
         GameStartedDto gameStarted = new GameStartedDto(width, height, minesCount);
         observers.notifyListeners(GameStartListener.class, listener -> listener.onGameStarted(gameStarted));
     }
 
+    /**
+     * Публикует текущее состояние игры.
+     */
     private void notifyGameStateChanged() {
+        log.info("Game state changed to {}", gameState);
         observers.notifyListeners(GameStateChangedListener.class, listener -> listener.onGameStateChanged(gameState));
     }
 
+    /**
+     * Проверяет, принадлежат ли координаты текущему полю.
+     *
+     * @param x координата клетки по X
+     * @param y координата клетки по Y
+     * @return {@code true}, если координаты корректны
+     */
     private boolean isInsideField(int x, int y) {
         return x >= 0 && x < width && y >= 0 && y < height;
     }
 
+    /**
+     * Проверяет, открыты ли все безопасные клетки.
+     *
+     * @return {@code true}, если игрок победил
+     */
     private boolean hasWon() {
         return openedSafeCellsCount == safeCellsCount;
     }
 
+    /**
+     * Проверяет, завершилась ли уже игра.
+     *
+     * @return {@code true}, если игра выиграна или проиграна
+     */
     private boolean isGameFinished() {
         return gameState == GameState.WON || gameState == GameState.LOST;
     }
 
+    /**
+     * Меняет местами два элемента массива.
+     *
+     * @param values исходный массив
+     * @param firstIndex индекс первого элемента
+     * @param secondIndex индекс второго элемента
+     */
     private void swap(int[] values, int firstIndex, int secondIndex) {
         int temp = values[firstIndex];
         values[firstIndex] = values[secondIndex];
         values[secondIndex] = temp;
     }
 
+    /**
+     * Проверяет, можно ли разместить запрошенное количество мин на поле.
+     *
+     * @param width ширина поля
+     * @param height высота поля
+     * @param minesCount количество мин
+     */
     private void validateMinesCount(int width, int height, int minesCount) {
         if (minesCount < 0) {
             throw new IllegalArgumentException("Количество мин не может быть отрицательным");

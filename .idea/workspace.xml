@@ -5,8 +5,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f564250e-45f0-4fc4-bd76-6007ddfff2a8" name="Changes" comment="Доделал внешние функции, везде чутка причесал код. Доделал сохранение лучшего результата. Переделал логику работы с View, теперь она полностью независима от Controller. Добавил также таймер">
+      <change afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/observers/ObserversByTypeRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/task3/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/GameLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/GameLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/MainGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/controller/MainGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombsGeneratedDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/BombsGeneratedDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/CellFlagChangedDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/CellFlagChangedDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/GameStartedDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/GameStartedDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/HighScoresDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/HighScoresDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/OpenedCellDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/OpenedCellDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/ScoreDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/ScoreDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/TimerTickDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/dto/TimerTickDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/ExternalObservers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/contracts/ScoreSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/contracts/ScoreSaver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/ExternalListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/ExternalListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/HighScoresListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/HighScoresListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/NewRecordListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/NewRecordListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/TimerTickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/listeners/TimerTickListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/score/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/score/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/score/ScoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/score/ScoreRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/timer/Timer.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/external/timer/Timer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/MainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/MainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/ModelObservers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/CellChange.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/CellChange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/GameStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/contracts/GameStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/BombsGeneratedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/BombsGeneratedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellFlagChangedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellFlagChangedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellOpenListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/CellOpenListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameStartListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameStartListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameStateChangedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/GameStateChangedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/ModelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/model/listeners/ModelListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/observer/ObserversRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/observers/ObserversRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/GameResultViewActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/GameResultViewActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/MainViewActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/MainViewActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/RecordsViewActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/RecordsViewActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/SettingsViewActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/actions/SettingsViewActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/ButtonType.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/ButtonType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameType.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/types/GameType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/CellClickHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/CellClickHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/HighScoresView.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/HighScoresView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/LoseView.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/LoseView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/RecordsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/RecordsView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/SettingsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/SettingsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/WinView.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/views/WinView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/HighScoresWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/HighScoresWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/LoseWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/LoseWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/RecordsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/RecordsWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/SettingsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/SettingsWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/WinWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/src/main/java/ru/shift/view/windows/WinWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +191,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "task3",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/dima/Загрузки/tmp/TsftTasks-master/task3",
+    "last_opened_file_path": "/home/dima/Загрузки/tmp/TsftTasks-master",
     "onboarding.tips.debug.path": "/home/dima/IdeaProjects/2026_01_skorobogatov/task2/src/main/java/ru/shift/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -158,6 +215,8 @@
       <recent name="ru.shift" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.shift.external" />
+      <recent name="ru.shift.observer" />
       <recent name="ru.shift.view.actions" />
     </key>
   </component>
@@ -448,7 +507,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776365524853</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Доделал внешние функции, везде чутка причесал код. Доделал сохранение лучшего результата. Переделал логику работы с View, теперь она полностью независима от Controller. Добавил также таймер">
+      <option name="closed" value="true" />
+      <created>1776365688659</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1776365688659</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

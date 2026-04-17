@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Модальный диалог, показываемый при поражении игрока.
+ */
 public class LoseWindow {
     private final JDialog dialog;
     @Setter
@@ -13,6 +16,11 @@ public class LoseWindow {
     @Setter
     private ActionListener exitAction;
 
+    /**
+     * Создаёт диалог поражения.
+     *
+     * @param owner родительское окно
+     */
     public LoseWindow(Window owner) {
         dialog = new JDialog(owner, "Lose", Dialog.ModalityType.APPLICATION_MODAL);
 
@@ -31,10 +39,21 @@ public class LoseWindow {
         dialog.setLocationRelativeTo(owner);
     }
 
+    /**
+     * Показывает или скрывает диалог.
+     *
+     * @param visible признак видимости
+     */
     public void setVisible(boolean visible) {
         dialog.setVisible(visible);
     }
 
+    /**
+     * Создаёт заголовок диалога.
+     *
+     * @param layout целевой компоновщик
+     * @return метка заголовка
+     */
     private JLabel createTitleLabel(GridBagLayout layout) {
         JLabel label = new JLabel("You lose!");
 
@@ -50,6 +69,12 @@ public class LoseWindow {
         return label;
     }
 
+    /**
+     * Создаёт кнопку запуска новой игры.
+     *
+     * @param layout целевой компоновщик
+     * @return кнопка новой игры
+     */
     private JButton createNewGameButton(GridBagLayout layout) {
         JButton newGameButton = new JButton("New game");
         newGameButton.setPreferredSize(new Dimension(100, 25));
@@ -74,6 +99,12 @@ public class LoseWindow {
         return newGameButton;
     }
 
+    /**
+     * Создаёт кнопку выхода из приложения.
+     *
+     * @param layout целевой компоновщик
+     * @return кнопка выхода
+     */
     private JButton createExitButton(GridBagLayout layout) {
         JButton exitButton = new JButton("Exit");
         exitButton.setPreferredSize(new Dimension(100, 25));

@@ -2,6 +2,9 @@ package ru.shift.view.types;
 
 import javax.swing.*;
 
+/**
+ * Предоставляет изображения интерфейса, используемые в игре.
+ */
 public enum GameImage {
     CLOSED("images/cell.png"),
     MARKED("images/flag.png"),
@@ -25,6 +28,11 @@ public enum GameImage {
         this.fileName = fileName;
     }
 
+    /**
+     * Возвращает иконку изображения для значения enum.
+     *
+     * @return иконка изображения
+     */
     public synchronized ImageIcon getImageIcon() {
         if (imageIcon == null) {
             imageIcon = new ImageIcon(ClassLoader.getSystemResource(fileName));

@@ -9,13 +9,26 @@ import javax.swing.*;
 import java.awt.Window;
 import java.awt.event.ActionListener;
 
+/**
+ * Показывает окно поражения, когда игрок проигрывает.
+ */
 public class LoseView implements GameResultViewActions, GameStateChangedListener {
     private final LoseWindow loseWindow;
 
+    /**
+     * Создаёт представление окна поражения.
+     *
+     * @param owner родительское окно
+     */
     public LoseView(Window owner) {
         loseWindow = new LoseWindow(owner);
     }
 
+    /**
+     * Показывает или скрывает окно поражения.
+     *
+     * @param visible признак видимости
+     */
     public void setVisible(boolean visible) {
         SwingUtilities.invokeLater(() -> loseWindow.setVisible(visible));
     }

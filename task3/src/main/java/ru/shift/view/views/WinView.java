@@ -9,13 +9,26 @@ import javax.swing.*;
 import java.awt.Window;
 import java.awt.event.ActionListener;
 
+/**
+ * Показывает окно победы, когда игрок выигрывает.
+ */
 public class WinView implements GameResultViewActions, GameStateChangedListener {
     private final WinWindow winWindow;
 
+    /**
+     * Создаёт представление окна победы.
+     *
+     * @param owner родительское окно
+     */
     public WinView(Window owner) {
         winWindow = new WinWindow(owner);
     }
 
+    /**
+     * Показывает или скрывает окно победы.
+     *
+     * @param visible признак видимости
+     */
     public void setVisible(boolean visible) {
         SwingUtilities.invokeLater(() -> winWindow.setVisible(visible));
     }

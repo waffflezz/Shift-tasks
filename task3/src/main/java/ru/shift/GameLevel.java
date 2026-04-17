@@ -3,6 +3,9 @@ package ru.shift;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Содержит предопределённые конфигурации игры.
+ */
 @Getter
 @RequiredArgsConstructor
 public enum GameLevel {

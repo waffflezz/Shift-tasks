@@ -6,11 +6,21 @@ import ru.shift.model.GameModel;
 import ru.shift.view.types.ButtonType;
 import ru.shift.view.actions.MainViewActions;
 
+/**
+ * Связывает действия интерфейса с игровой моделью и внешними сервисами.
+ */
 public class MainGameController implements Controller {
     private final GameModel model;
     private final ScoreSaver scoreSaver;
     private final MainViewActions view;
 
+    /**
+     * Создаёт контроллер и привязывает все действия представления.
+     *
+     * @param model игровая модель
+     * @param view фасад основного представления
+     * @param scoreSaver сервис для сохранения рекордов
+     */
     public MainGameController(
             GameModel model,
             MainViewActions view,
@@ -47,6 +57,9 @@ public class MainGameController implements Controller {
         model.toggleFlag(x, y);
     }
 
+    /**
+     * Подписывает представление на действия контроллера.
+     */
     private void bindView() {
         view.setNewGameMenuAction(e -> startNewGame());
         view.setHighScoresMenuAction(e -> view.showHighScores());

@@ -13,10 +13,13 @@ import ru.shift.model.GameState;
 import ru.shift.model.listeners.GameStartListener;
 import ru.shift.model.listeners.GameStateChangedListener;
 import ru.shift.model.listeners.ModelListener;
-import ru.shift.observer.ObserversRegistry;
+import ru.shift.observers.ObserversRegistry;
 
 import java.util.Optional;
 
+/**
+ * Отслеживает рекорды завершённых игр и публикует связанные с ними события.
+ */
 public class Score implements GameStartListener, GameStateChangedListener, ScoreSaver {
     private static final String DEFAULT_PLAYER_NAME = "Anonymous";
     private static final int MAX_PLAYER_NAME_LENGTH = 32;
@@ -29,6 +32,14 @@ public class Score implements GameStartListener, GameStateChangedListener, Score
     private GameLevel currentGameLevel;
     private boolean scoreCanBeSaved;
 
+    /**
+     * Создаёт сервис работы с рекордами и подписывает его на события модели.
+     *
+     * @param repository хранилище рекордов
+     * @param modelObservers реестр наблюдателей модели
+     * @param observers реестр внешних наблюдателей
+     * @param timer таймер, используемый для определения времени прохождения
+     */
     public Score(
             ScoreRepository repository,
             ObserversRegistry<ModelListener> modelObservers,
@@ -81,14 +92,28 @@ public class Score implements GameStartListener, GameStateChangedListener, Score
         notifyHighScoresChanged(highScores);
     }
 
+    /**
+     * Публикует текущие сохранённые рекорды.
+     */
     public void publishHighScores() {
         notifyHighScoresChanged(repository.load());
     }
 
+    /**
+     * Уведомляет слушателей об изменении рекордов.
+     *
+     * @param highScores обновлённые рекорды
+     */
     private void notifyHighScoresChanged(HighScoresDto highScores) {
         observers.notifyListeners(HighScoresListener.class, listener -> listener.onHighScoresChanged(highScores));
     }
 
+    /**
+     * Определяет уровень игры по параметрам поля из данных при старте.
+     *
+     * @param gameStarted данные о запущенной игре
+     * @return найденный предопределённый уровень, если он существует
+     */
     private Optional<GameLevel> resolveGameLevel(GameStartedDto gameStarted) {
         for (GameLevel gameLevel : GameLevel.values()) {
             if (gameLevel.getWidth() == gameStarted.width()
@@ -100,6 +125,12 @@ public class Score implements GameStartListener, GameStateChangedListener, Score
         return Optional.empty();
     }
 
+    /**
+     * Нормализует имя игрока перед сохранением результата.
+     *
+     * @param playerName исходное имя игрока
+     * @return нормализованное имя игрока
+     */
     private String normalizePlayerName(String playerName) {
         if (playerName == null) {
             return DEFAULT_PLAYER_NAME;
@@ -118,6 +149,9 @@ public class Score implements GameStartListener, GameStateChangedListener, Score
         return normalizedPlayerName;
     }
 
+    /**
+     * Подписывает этот сервис на события модели.
+     */
     private void bindObservers() {
         modelObservers.addListener(GameStateChangedListener.class, this);
         modelObservers.addListener(GameStartListener.class, this);

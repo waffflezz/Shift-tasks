@@ -15,7 +15,7 @@ import ru.shift.model.listeners.CellOpenListener;
 import ru.shift.model.listeners.GameStartListener;
 import ru.shift.model.listeners.GameStateChangedListener;
 import ru.shift.model.listeners.ModelListener;
-import ru.shift.observer.ObserversRegistry;
+import ru.shift.observers.ObserversRegistry;
 import ru.shift.view.types.GameImage;
 import ru.shift.view.actions.GameResultViewActions;
 import ru.shift.view.actions.MainViewActions;
@@ -31,6 +31,9 @@ import ru.shift.view.windows.MainWindow;
 
 import java.awt.event.ActionListener;
 
+/**
+ * Основной слой представления, обновляющий главное игровое окно.
+ */
 public class MainView implements MainViewActions,
         GameStartListener, CellOpenListener, BombsGeneratedListener,
         CellFlagChangedListener, TimerTickListener {
@@ -50,6 +53,12 @@ public class MainView implements MainViewActions,
     private boolean[][] bombs;
     private boolean[][] flaggedCells;
 
+    /**
+     * Создаёт основное представление и подписывает его на события модели и внешние события.
+     *
+     * @param modelObservers реестр наблюдателей модели
+     * @param externalObservers реестр внешних наблюдателей
+     */
     public MainView(
             ObserversRegistry<ModelListener> modelObservers,
             ObserversRegistry<ExternalListener> externalObservers
@@ -64,6 +73,11 @@ public class MainView implements MainViewActions,
         bindObservers(modelObservers, externalObservers);
     }
 
+    /**
+     * Показывает или скрывает главное окно.
+     *
+     * @param visible признак видимости
+     */
     public void setVisible(boolean visible) {
         mainWindow.setVisible(visible);
     }
@@ -170,6 +184,12 @@ public class MainView implements MainViewActions,
         return recordsView;
     }
 
+    /**
+     * Определяет изображение для открытой клетки.
+     *
+     * @param openedCell данные об открытой клетке
+     * @return изображение, которое нужно отобразить
+     */
     private GameImage resolveCellImage(OpenedCellDto openedCell) {
         if (openedCell.mined()) {
             return GameImage.BOMB;
@@ -191,6 +211,11 @@ public class MainView implements MainViewActions,
         };
     }
 
+    /**
+     * Показывает бомбы на поле, если включён отладочный режим отображения.
+     *
+     * @param bombsGenerated данные о сгенерированных бомбах
+     */
     private void showBombs(BombsGeneratedDto bombsGenerated) {
         if (!DEBUG_SHOW_BOMBS) {
             return;
@@ -205,6 +230,12 @@ public class MainView implements MainViewActions,
         }
     }
 
+    /**
+     * Подписывает представление на все необходимые наблюдатели.
+     *
+     * @param modelObservers реестр наблюдателей модели
+     * @param externalObservers реестр внешних наблюдателей
+     */
     private void bindObservers(
             ObserversRegistry<ModelListener> modelObservers,
             ObserversRegistry<ExternalListener> externalObservers

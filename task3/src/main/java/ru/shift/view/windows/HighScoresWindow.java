@@ -3,6 +3,9 @@ package ru.shift.view.windows;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Модальный диалог, отображающий лучшие результаты для каждого уровня сложности.
+ */
 public class HighScoresWindow {
     public static final String DEFAULT_RECORD_TEXT = "Unknown - 999";
 
@@ -11,6 +14,11 @@ public class HighScoresWindow {
     private final JLabel mediumRecordLabel;
     private final JLabel expertRecordLabel;
 
+    /**
+     * Создаёт диалог рекордов.
+     *
+     * @param owner родительское окно
+     */
     public HighScoresWindow(Window owner) {
         dialog = new JDialog(owner, "High Scores", Dialog.ModalityType.APPLICATION_MODAL);
 
@@ -34,26 +42,65 @@ public class HighScoresWindow {
         dialog.setLocationRelativeTo(owner);
     }
 
+    /**
+     * Показывает или скрывает диалог.
+     *
+     * @param visible признак видимости
+     */
     public void setVisible(boolean visible) {
         dialog.setVisible(visible);
     }
 
+    /**
+     * Обновляет текст рекорда для лёгкого режима.
+     *
+     * @param winnerName имя игрока
+     * @param timeValue время рекорда
+     */
     public void setNoviceRecord(String winnerName, int timeValue) {
         noviceRecordLabel.setText(createRecordText(winnerName, timeValue));
     }
 
+    /**
+     * Обновляет текст рекорда для среднего режима.
+     *
+     * @param winnerName имя игрока
+     * @param timeValue время рекорда
+     */
     public void setMediumRecord(String winnerName, int timeValue) {
         mediumRecordLabel.setText(createRecordText(winnerName, timeValue));
     }
 
+    /**
+     * Обновляет текст рекорда для сложного режима.
+     *
+     * @param winnerName имя игрока
+     * @param timeValue время рекорда
+     */
     public void setExpertRecord(String winnerName, int timeValue) {
         expertRecordLabel.setText(createRecordText(winnerName, timeValue));
     }
 
+    /**
+     * Формирует текст метки для рекорда.
+     *
+     * @param winnerName имя игрока
+     * @param timeValue время рекорда
+     * @return строка рекорда в нужном формате
+     */
     private String createRecordText(String winnerName, int timeValue) {
         return winnerName + " - " + timeValue;
     }
 
+    /**
+     * Создаёт метку и размещает её в GridBagLayout.
+     *
+     * @param labelText текст метки
+     * @param layout целевой компоновщик
+     * @param gridY индекс строки
+     * @param margin верхний отступ
+     * @return созданная метка
+     */
     private JLabel createLabel(String labelText, GridBagLayout layout, int gridY, int margin) {
         JLabel label = new JLabel(labelText);
 
@@ -70,6 +117,12 @@ public class HighScoresWindow {
         return label;
     }
 
+    /**
+     * Создаёт кнопку закрытия диалога.
+     *
+     * @param layout целевой компоновщик
+     * @return кнопка закрытия
+     */
     private JButton createCloseButton(GridBagLayout layout) {
         JButton okButton = new JButton("OK");
         okButton.addActionListener(e -> dialog.setVisible(false));
