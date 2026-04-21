@@ -33,7 +33,7 @@ public class RecordsView implements RecordsViewActions, NewRecordListener {
      * @param visible признак видимости
      */
     public void setVisible(boolean visible) {
-        SwingUtilities.invokeLater(() -> recordsWindow.setVisible(visible));
+        recordsWindow.setVisible(visible);
     }
 
     @Override

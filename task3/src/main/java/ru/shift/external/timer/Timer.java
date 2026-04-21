@@ -12,6 +12,7 @@ import ru.shift.observers.ObserversRegistry;
 
 import java.time.Instant;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -24,8 +25,9 @@ public class Timer implements GameStateChangedListener {
 
     private final ObserversRegistry<ExternalListener> externalObservers;
     private final ObserversRegistry<ModelListener> modelObservers;
+    private final ScheduledExecutorService scheduler;
 
-    private ScheduledExecutorService scheduler;
+    private ScheduledFuture<?> timerTask;
 
     @Getter
     private volatile int secondPassed;
@@ -42,6 +44,11 @@ public class Timer implements GameStateChangedListener {
     ) {
         this.externalObservers = externalObservers;
         this.modelObservers = modelObservers;
+        this.scheduler = Executors.newSingleThreadScheduledExecutor(runnable -> {
+            Thread thread = new Thread(runnable, "game-timer");
+            thread.setDaemon(true);
+            return thread;
+        });
 
         bindObservers();
     }
@@ -59,15 +66,12 @@ public class Timer implements GameStateChangedListener {
      * Запускает или перезапускает обновления таймера.
      */
     private void start() {
-        if (scheduler != null && !scheduler.isShutdown()) {
-            stop();
-        }
+        stop();
 
         var startTimeNanos = Instant.now();
 
         secondPassed = 0;
-        scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(() -> {
+        timerTask = scheduler.scheduleAtFixedRate(() -> {
             try {
                 long elapsedTime = Instant.now().toEpochMilli() - startTimeNanos.toEpochMilli();
                 int newSeconds = (int) (elapsedTime / 1000);
@@ -86,8 +90,9 @@ public class Timer implements GameStateChangedListener {
      * Останавливает обновления таймера.
      */
     private void stop() {
-        if (scheduler != null) {
-            scheduler.shutdownNow();
+        if (timerTask != null) {
+            timerTask.cancel(true);
+            timerTask = null;
         }
     }
 

@@ -18,6 +18,7 @@ public class MainWindow {
     private final JFrame frame;
     private final Container contentPane;
     private final GridBagLayout mainLayout;
+    private final AboutWindow aboutWindow;
 
     private JMenuItem newGameMenu;
     private JMenuItem highScoresMenu;
@@ -36,6 +37,7 @@ public class MainWindow {
         frame = new JFrame("Miner");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        aboutWindow = new AboutWindow(frame);
 
         createMenu();
 
@@ -153,12 +155,15 @@ public class MainWindow {
     private void createMenu() {
         JMenuBar menuBar = new JMenuBar();
         JMenu gameMenu = new JMenu("Game");
+        JMenuItem aboutMenu = new JMenuItem("About");
+        aboutMenu.addActionListener(e -> aboutWindow.setVisible(true));
 
         gameMenu.add(newGameMenu = new JMenuItem("New Game"));
         gameMenu.addSeparator();
         gameMenu.add(highScoresMenu = new JMenuItem("High Scores"));
         gameMenu.add(settingsMenu = new JMenuItem("Settings"));
         gameMenu.addSeparator();
+        gameMenu.add(aboutMenu);
 
         JMenuItem exitMenu = new JMenuItem("Exit");
         gameMenu.add(exitMenu);
