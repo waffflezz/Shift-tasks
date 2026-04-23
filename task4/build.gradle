@@ -1,0 +1,90 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.shift'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    jmh {
+        java.srcDir 'src/jmh/java'
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += output + compileClasspath + sourceSets.main.runtimeClasspath
+    }
+}
+
+configurations {
+    jmhImplementation.extendsFrom implementation
+    jmhCompileOnly.extendsFrom compileOnly
+    jmhAnnotationProcessor.extendsFrom annotationProcessor
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    runtimeOnly 'ch.qos.logback:logback-classic:1.5.6'
+    implementation 'info.picocli:picocli:4.7.7'
+
+    jmhImplementation 'org.openjdk.jmh:jmh-core:1.37'
+    jmhAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+def extraJmhArgs = {
+    project.findProperty('jmhArgs') ? project.property('jmhArgs').toString().split('\\s+') as List : []
+}
+
+tasks.register('jmh', JavaExec) {
+    group = 'benchmark'
+    description = 'Runs all JMH benchmarks and prints summary tables.'
+    dependsOn tasks.named('jmhClasses')
+    classpath = sourceSets.jmh.runtimeClasspath
+    mainClass = 'jmh.SeriesBenchmarkRunner'
+    args = extraJmhArgs()
+}
+
+tasks.register('jmhSingleVsParallel', JavaExec) {
+    group = 'benchmark'
+    description = 'Runs JMH benchmark comparing single-thread, fixed executor and fork-join defaults.'
+    dependsOn tasks.named('jmhClasses')
+    classpath = sourceSets.jmh.runtimeClasspath
+    mainClass = 'jmh.SeriesBenchmarkRunner'
+    args = ['jmh.SingleVsParallelBenchmark'] + extraJmhArgs()
+}
+
+tasks.register('jmhFixedTuning', JavaExec) {
+    group = 'benchmark'
+    description = 'Runs JMH benchmark for FixedExecutor poolSize/taskCount tuning.'
+    dependsOn tasks.named('jmhClasses')
+    classpath = sourceSets.jmh.runtimeClasspath
+    mainClass = 'jmh.SeriesBenchmarkRunner'
+    args = ['jmh.FixedExecutorTuningBenchmark'] + extraJmhArgs()
+}
+
+tasks.register('jmhForkJoinTuning', JavaExec) {
+    group = 'benchmark'
+    description = 'Runs JMH benchmark for ForkJoin parallelism/threshold tuning.'
+    dependsOn tasks.named('jmhClasses')
+    classpath = sourceSets.jmh.runtimeClasspath
+    mainClass = 'jmh.SeriesBenchmarkRunner'
+    args = ['jmh.ForkJoinTuningBenchmark'] + extraJmhArgs()
+}
