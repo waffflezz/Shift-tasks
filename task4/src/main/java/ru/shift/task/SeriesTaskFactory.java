@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.LongToDoubleFunction;
 
+/**
+ * Фабрика задач для разбиения диапазона индексов ряда на независимые части.
+ */
 public final class SeriesTaskFactory implements TaskFactory {
     @Override
     public List<SeriesTask> createTasks(

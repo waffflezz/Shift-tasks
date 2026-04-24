@@ -15,7 +15,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Координирует взаимодействие с пользователем и запуск вычисления выбранного ряда.
+ */
 public final class MultiThreadService {
+    /**
+     * Запускает сценарий выбора ряда, решателя и количества членов, после чего выводит результат вычисления.
+     *
+     * @param options параметры запуска приложения
+     */
     public void run(OptionsDto options) {
         Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
@@ -32,6 +40,13 @@ public final class MultiThreadService {
         printCalculation(series, solver, termsCount);
     }
 
+    /**
+     * Запрашивает у пользователя ряд из списка, зарегистрированного в реестре.
+     *
+     * @param scanner источник пользовательского ввода
+     * @param seriesRegistry реестр доступных рядов
+     * @return выбранный пользователем ряд
+     */
     private static Series readSeries(Scanner scanner, SeriesRegistry seriesRegistry) {
         List<Series> series = List.copyOf(seriesRegistry.getAll());
 
@@ -56,6 +71,13 @@ public final class MultiThreadService {
         }
     }
 
+    /**
+     * Запрашивает у пользователя вариант многопоточного решателя и создаёт его экземпляр.
+     *
+     * @param scanner источник пользовательского ввода
+     * @param options параметры запуска приложения
+     * @return выбранный многопоточный решатель
+     */
     private static SeriesSolver readMultithreadSolver(Scanner scanner, OptionsDto options) {
         List<SolverOption> solverOptions = List.of(
                 new SolverOption(
@@ -88,6 +110,12 @@ public final class MultiThreadService {
         }
     }
 
+    /**
+     * Считывает количество суммируемых членов ряда и проверяет, что оно неотрицательно.
+     *
+     * @param scanner источник пользовательского ввода
+     * @return количество членов ряда
+     */
     private static long readTermsCount(Scanner scanner) {
         System.out.print(Messages.ENTER_N);
         long termsCount = ConsoleInput.readLong(scanner);
@@ -99,6 +127,14 @@ public final class MultiThreadService {
         return termsCount;
     }
 
+    /**
+     * Выбирает однопоточный или многопоточный решатель в зависимости от порогового значения.
+     *
+     * @param termsCount количество членов ряда
+     * @param multithreadSolver многопоточный решатель-кандидат
+     * @param threshold порог переключения на многопоточный режим
+     * @return решатель, который должен быть использован для вычисления
+     */
     private static SeriesSolver selectSolver(long termsCount, SeriesSolver multithreadSolver, long threshold) {
         if (termsCount <= threshold) {
             System.out.printf(Messages.USING_SINGLE_THREAD_SOLVER, termsCount, threshold);
@@ -109,6 +145,13 @@ public final class MultiThreadService {
         return multithreadSolver;
     }
 
+    /**
+     * Вычисляет сумму ряда выбранным решателем и выводит результат в консоль.
+     *
+     * @param series выбранный ряд
+     * @param solver решатель для вычисления суммы
+     * @param termsCount количество суммируемых членов
+     */
     private static void printCalculation(
             Series series,
             SeriesSolver solver,
@@ -125,6 +168,12 @@ public final class MultiThreadService {
         );
     }
 
+    /**
+     * Внутреннее представление пункта меню выбора решателя.
+     *
+     * @param name отображаемое имя решателя
+     * @param solver экземпляр решателя
+     */
     private record SolverOption(String name, SeriesSolver solver) {
     }
 }

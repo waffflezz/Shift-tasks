@@ -3,8 +3,16 @@ package ru.shift.cli;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+/**
+ * Проверяет корректность аргументов командной строки.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 final class Validator {
+    /**
+     * Валидирует параметры запуска и выбрасывает исключение при некорректных значениях.
+     *
+     * @param options параметры запуска
+     */
     static void validateOptions(OptionsDto options) {
         if (options.threshold() < 0) {
             throw new IllegalArgumentException("threshold must be non-negative");

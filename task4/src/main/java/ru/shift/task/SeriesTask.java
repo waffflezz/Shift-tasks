@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.Callable;
 import java.util.function.LongToDoubleFunction;
 
+/**
+ * Задача для последовательного вычисления суммы членов ряда на поддиапазоне индексов.
+ */
 @Slf4j
 public final class SeriesTask implements Callable<Double>, TaskIdentifier {
     private final int id;
@@ -15,6 +18,14 @@ public final class SeriesTask implements Callable<Double>, TaskIdentifier {
     @Getter
     private double result;
 
+    /**
+     * Создаёт задачу вычисления суммы на заданном диапазоне.
+     *
+     * @param id идентификатор задачи
+     * @param function функция вычисления члена ряда
+     * @param startInclusive начальный индекс диапазона включительно
+     * @param endExclusive конечный индекс диапазона исключительно
+     */
     public SeriesTask(int id, LongToDoubleFunction function, long startInclusive, long endExclusive) {
         this.id = id;
         this.function = function;
@@ -45,6 +56,11 @@ public final class SeriesTask implements Callable<Double>, TaskIdentifier {
         return result;
     }
 
+    /**
+     * Последовательно суммирует члены ряда на диапазоне задачи.
+     *
+     * @return частичная сумма ряда
+     */
     private double calculateSum() {
         double sum = 0.0;
 

@@ -5,6 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Реестр доступных для вычисления числовых рядов.
+ */
 public final class SeriesRegistry implements Registry<Series, String> {
     private static final double GEOMETRIC_Q = 1.0 / 3.0;
 
@@ -21,7 +24,7 @@ public final class SeriesRegistry implements Registry<Series, String> {
             return Optional.empty();
         }
 
-        return Optional.ofNullable(seriesByCode.get(normalizeCode(code)));
+        return Optional.ofNullable(seriesByCode.get(code));
     }
 
     @Override
@@ -35,9 +38,14 @@ public final class SeriesRegistry implements Registry<Series, String> {
             return Optional.empty();
         }
 
-        return Optional.ofNullable(seriesByCode.remove(normalizeCode(code)));
+        return Optional.ofNullable(seriesByCode.remove(code));
     }
 
+    /**
+     * Создаёт и заполняет реестр рядами, доступными по умолчанию.
+     *
+     * @return карта рядов, индексированная по нормализованному коду
+     */
     private static Map<String, Series> createSeriesByCode() {
         Map<String, Series> seriesByCode = new LinkedHashMap<>();
 
@@ -77,11 +85,13 @@ public final class SeriesRegistry implements Registry<Series, String> {
         return seriesByCode;
     }
 
+    /**
+     * Регистрирует ряд используя нормализованный код в качестве ключа.
+     *
+     * @param seriesByCode карта рядов
+     * @param series ряд для регистрации
+     */
     private static void register(Map<String, Series> seriesByCode, Series series) {
-        seriesByCode.put(normalizeCode(series.code()), series);
-    }
-
-    private static String normalizeCode(String code) {
-        return code.trim().toLowerCase();
+        seriesByCode.put(series.code(), series);
     }
 }

@@ -5,6 +5,9 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import ru.shift.service.MultiThreadService;
 
+/**
+ * Точка входа для обработки аргументов командной строки и запуска основного сценария приложения.
+ */
 @Slf4j
 @Command(
         name = "task4",
@@ -54,6 +57,9 @@ public final class MultiThreadCommand implements Runnable {
     )
     private Long forkThreshold = DEFAULT_FORK_THRESHOLD;
 
+    /**
+     * Собирает параметры запуска, валидирует их и передаёт управление сервисному слою.
+     */
     @Override
     public void run() {
         var optionsDto = new OptionsDto(

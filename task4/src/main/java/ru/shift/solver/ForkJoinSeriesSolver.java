@@ -4,12 +4,21 @@ import ru.shift.series.Series;
 import ru.shift.task.ForkJoinSeriesTask;
 import java.util.concurrent.ForkJoinPool;
 
+/**
+ * Солвер, вычисляющий сумму ряда с помощью {@link ForkJoinPool}.
+ */
 public final class ForkJoinSeriesSolver implements SeriesSolver {
     private static final String FORK_JOIN_SOLVER_NAME = "fork-join";
 
     private final int parallelism;
     private final long threshold;
 
+    /**
+     * Создаёт солвер на основе модели {@code fork-join}.
+     *
+     * @param parallelism уровень параллелизма пула
+     * @param threshold порог разбиения задач на подзадачи
+     */
     public ForkJoinSeriesSolver(int parallelism, long threshold) {
         if (parallelism <= 0) {
             throw new IllegalArgumentException("parallelism must be positive");

@@ -6,15 +6,26 @@ import ru.shift.task.SeriesTaskFactory;
 import ru.shift.task.TaskFactory;
 import java.util.List;
 
+/**
+ * Солвер, вычисляющий сумму ряда в одном потоке.
+ */
 public final class SingleThreadSeriesSolver implements SeriesSolver {
     private static final String SINGLE_THREAD_SOLVER_NAME = "single-thread";
 
     private final TaskFactory taskFactory;
 
+    /**
+     * Создаёт однопоточный солвер с фабрикой задач по умолчанию.
+     */
     public SingleThreadSeriesSolver() {
         this(new SeriesTaskFactory());
     }
 
+    /**
+     * Создаёт однопоточный солвер с указанной фабрикой задач.
+     *
+     * @param taskFactory фабрика задач для построения вычислительной задачи
+     */
     public SingleThreadSeriesSolver(TaskFactory taskFactory) {
         this.taskFactory = taskFactory;
     }

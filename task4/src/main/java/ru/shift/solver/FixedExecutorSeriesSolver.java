@@ -11,6 +11,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * Солвер, вычисляющий сумму ряда через фиксированный пул потоков {@link Executors#newFixedThreadPool(int)}.
+ */
 public final class FixedExecutorSeriesSolver implements SeriesSolver {
     private final static String FIXED_EXECUTOR_SOLVER_NAME = "fixed-executor";
 
@@ -18,10 +21,23 @@ public final class FixedExecutorSeriesSolver implements SeriesSolver {
     private final int taskCount;
     private final TaskFactory taskFactory;
 
+    /**
+     * Создаёт солвер с фабрикой задач по умолчанию.
+     *
+     * @param poolSize размер пула потоков
+     * @param taskCount количество создаваемых задач
+     */
     public FixedExecutorSeriesSolver(int poolSize, int taskCount) {
         this(poolSize, taskCount, new SeriesTaskFactory());
     }
 
+    /**
+     * Создаёт солвер с настраиваемой фабрикой задач.
+     *
+     * @param poolSize размер пула потоков
+     * @param taskCount количество создаваемых задач
+     * @param taskFactory фабрика задач для разбиения диапазона
+     */
     public FixedExecutorSeriesSolver(int poolSize, int taskCount, TaskFactory taskFactory) {
         if (poolSize <= 0) {
             throw new IllegalArgumentException("poolSize must be positive");
@@ -45,8 +61,10 @@ public final class FixedExecutorSeriesSolver implements SeriesSolver {
     public double calculate(Series series, long termsCount) {
         SeriesSolverValidator.validate(series, termsCount);
 
+        double result = 0.0;
+
         if (termsCount == 0) {
-            return 0.0;
+            return result;
         }
 
         long start = series.firstIndex();
@@ -59,39 +77,25 @@ public final class FixedExecutorSeriesSolver implements SeriesSolver {
         );
 
         if (tasks.isEmpty()) {
-            return 0.0;
+            return result;
         }
 
         try (ExecutorService executorService = Executors.newFixedThreadPool(poolSize)) {
             List<Future<Double>> futures = executorService.invokeAll(tasks);
 
-            for (Future<Double> future : futures) {
-                waitForResult(future);
+            try {
+                for (Future<Double> future : futures) {
+                    result += future.get();
+                }
+            } catch (InterruptedException exception) {
+                throw new IllegalStateException("Series calculation was interrupted", exception);
+            } catch (ExecutionException exception) {
+                throw new IllegalStateException("Series calculation failed", exception);
             }
 
-            return sumResults(tasks);
+            return result;
         } catch (InterruptedException exception) {
             throw new IllegalStateException("Series calculation was interrupted", exception);
         }
-    }
-
-    private void waitForResult(Future<Double> future) {
-        try {
-            future.get();
-        } catch (InterruptedException exception) {
-            throw new IllegalStateException("Series calculation was interrupted", exception);
-        } catch (ExecutionException exception) {
-            throw new IllegalStateException("Series calculation failed", exception);
-        }
-    }
-
-    private double sumResults(List<SeriesTask> tasks) {
-        double sum = 0.0;
-
-        for (SeriesTask task : tasks) {
-            sum += task.getResult();
-        }
-
-        return sum;
     }
 }

@@ -3,14 +3,23 @@ package ru.shift.solver;
 import lombok.extern.slf4j.Slf4j;
 import ru.shift.series.Series;
 
+/**
+ * Декоратор солвера, измеряющий и логирующий время вычисления суммы ряда.
+ */
 @Slf4j
 public final class TimedSeriesSolver implements SeriesSolver {
     private final SeriesSolver solver;
 
+    /**
+     * Создаёт декоратор над указанным солвером.
+     *
+     * @param solver солвер, выполнение которого нужно измерять
+     */
     public TimedSeriesSolver(SeriesSolver solver) {
         this.solver = solver;
     }
 
+    @Override
     public String name() {
         return solver.name();
     }

@@ -3,6 +3,9 @@ package ru.shift.constants;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+/**
+ * Константы текстовых сообщений, используемых в консольном интерфейсе приложения.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Messages {
     public static final String AVAILABLE_FUNCTIONS = "Available functions:";

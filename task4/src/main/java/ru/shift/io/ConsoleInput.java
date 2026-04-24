@@ -6,9 +6,18 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;
 
+/**
+ * Утилита для безопасного чтения числовых значений из консоли.
+ */
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ConsoleInput {
+    /**
+     * Считывает из потока следующее целое число, пропуская некорректные.
+     *
+     * @param scanner источник входных данных
+     * @return считанное целое число
+     */
     public static int readInt(Scanner scanner) {
         while (scanner.hasNext()) {
             if (scanner.hasNextInt()) {
@@ -21,6 +30,12 @@ public final class ConsoleInput {
         throw new IllegalStateException("Input ended before int value was read");
     }
 
+    /**
+     * Считывает из потока следующее значение типа {@code long}, пропуская некорректные.
+     *
+     * @param scanner источник входных данных
+     * @return считанное значение типа {@code long}
+     */
     public static long readLong(Scanner scanner) {
         while (scanner.hasNext()) {
             if (scanner.hasNextLong()) {
