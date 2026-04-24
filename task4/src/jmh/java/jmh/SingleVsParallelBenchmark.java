@@ -29,7 +29,7 @@ public class SingleVsParallelBenchmark {
     private final static int FIXED_THREADS = 8;
     private final static int FIXED_TASKS = 64;
 
-    private final static int FORK_THREADS = 8;
+    private final static int FORK_THREADS = 6;
     private final static long FORK_THRESHOLD = 1000;
 
     @Param({"powers-of-two"})
