@@ -5,6 +5,9 @@ import java.util.Queue;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Потокобезопасное хранилище ресурсов ограниченного размера.
+ */
 @Slf4j
 public class Storage {
     private final Object isNotFull = new Object();
@@ -13,10 +16,22 @@ public class Storage {
     private final Queue<Resource> queue = new ArrayDeque<>();
     private final int maxSize;
 
+    /**
+     * Создает хранилище с ограничением по количеству ресурсов.
+     *
+     * @param maxSize максимальный размер очереди
+     */
     public Storage(int maxSize) {
         this.maxSize = maxSize;
     }
 
+    /**
+     * Помещает ресурс в хранилище, ожидая освобождения места при переполнении.
+     *
+     * @param producerName имя производителя, используемое в логах
+     * @param resource добавляемый ресурс
+     * @throws InterruptedException если ожидание свободного места было прервано
+     */
     public void put(String producerName, Resource resource) throws InterruptedException {
         log.info("{} хочет положить ресурс {}", producerName, resource.getId());
 
@@ -64,6 +79,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Извлекает ресурс из хранилища, ожидая появления данных при пустой очереди.
+     *
+     * @param consumerName имя потребителя, используемое в логах
+     * @return извлеченный ресурс
+     * @throws InterruptedException если ожидание ресурса было прервано
+     */
     public Resource get(String consumerName) throws InterruptedException {
         while (true) {
             Resource resource = null;
@@ -108,12 +130,18 @@ public class Storage {
         }
     }
 
+    /**
+     * Уведомляет ожидающий поток о появлении свободного места в хранилище.
+     */
     private void notifyIsNotFull() {
         synchronized (isNotFull) {
             isNotFull.notify();
         }
     }
 
+    /**
+     * Уведомляет ожидающий поток о появлении хотя бы одного ресурса в хранилище.
+     */
     private void notifyIsNotEmpty() {
         synchronized (isNotEmpty) {
             isNotEmpty.notify();

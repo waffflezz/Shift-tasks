@@ -3,8 +3,16 @@ package ru.shift.config;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+/**
+ * Проверяет корректность значений конфигурации приложения.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 final class Validator {
+    /**
+     * Валидирует обязательные поля и числовые ограничения конфигурации.
+     *
+     * @param config конфигурация приложения
+     */
     static void validate(AppConfig config) {
         if (config == null) {
             throw new IllegalArgumentException("AppConfig не должен быть null");

@@ -2,6 +2,9 @@ package ru.shift;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Производитель ресурсов, который с заданной периодичностью создает объекты и помещает их в хранилище.
+ */
 @Slf4j
 public class Producer implements Runnable {
     private final static String ID_PATTERN = "ПРОИЗВОДИТЕЛЬ %d.";
@@ -12,12 +15,22 @@ public class Producer implements Runnable {
 
     private volatile boolean running = true;
 
+    /**
+     * Создает производителя.
+     *
+     * @param id идентификатор производителя
+     * @param storage общее хранилище ресурсов
+     * @param producerTimeMillis время производства одного ресурса в миллисекундах
+     */
     public Producer(int id, Storage storage, long producerTimeMillis) {
         this.id = ID_PATTERN.formatted(id);
         this.storage = storage;
         this.producerTimeMillis = producerTimeMillis;
     }
 
+    /**
+     * Выполняет основной цикл производства ресурсов до остановки потока или получения сигнала завершения.
+     */
     @Override
     public void run() {
         log.info("{} начал работу", id);
@@ -36,6 +49,9 @@ public class Producer implements Runnable {
         }
     }
 
+    /**
+     * Запрашивает остановку производителя.
+     */
     public void stop() {
         running = false;
     }

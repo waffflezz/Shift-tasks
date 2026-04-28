@@ -5,6 +5,9 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import ru.shift.service.ProducerConsumerService;
 
+/**
+ * Класс команды командной строки для запуска сценария производителей и потребителей.
+ */
 @Slf4j
 @Command(
         name = "Task 5",
@@ -21,6 +24,9 @@ public class ProducerConsumerCommand implements Runnable {
     )
     private String configFileName;
 
+    /**
+     * Запускает сервис с выбранным конфигурационным файлом.
+     */
     @Override
     public void run() {
         producerConsumerService.run(configFileName);

@@ -9,13 +9,26 @@ import ru.shift.Storage;
 import ru.shift.config.AppConfig;
 import ru.shift.config.ConfigLoader;
 
+/**
+ * Сервис запуска сценария с производителями, потребителями и общим хранилищем.
+ */
 @Slf4j
 public class ProducerConsumerService {
+    /**
+     * Загружает конфигурацию и запускает сценарий.
+     *
+     * @param configFileName имя файла конфигурации
+     */
     public void run(String configFileName) {
         AppConfig config = ConfigLoader.load(configFileName);
         runScenario(config);
     }
 
+    /**
+     * Выполняет сценарий по заданной конфигурации и корректно завершает все рабочие потоки.
+     *
+     * @param config параметры сценария
+     */
     private void runScenario(AppConfig config) {
         log.info("=== Старт: {} ===", config.scenarioName());
 

@@ -7,8 +7,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Загружает конфигурацию приложения из properties-файла в ресурсах проекта.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ConfigLoader {
+    private static final String CONFIG_DIR = "configs/";
+
+    /**
+     * Читает файл конфигурации, преобразует его в объект настроек и валидирует результат.
+     *
+     * @param propertyFileName имя файла конфигурации
+     * @return загруженная конфигурация
+     */
     public static AppConfig load(String propertyFileName) {
         String normalizePropertyFileName = normalizeConfigPath(propertyFileName);
 
@@ -37,15 +48,21 @@ public final class ConfigLoader {
         }
     }
 
+    /**
+     * Приводит имя конфигурационного файла к пути внутри каталога ресурсов {@link ConfigLoader#CONFIG_DIR}.
+     *
+     * @param configFileName имя файла конфигурации
+     * @return нормализованный путь к файлу конфигурации
+     */
     private static String normalizeConfigPath(String configFileName) {
         if (configFileName == null || configFileName.isBlank()) {
             throw new IllegalArgumentException("Имя конфиг-файла не должно быть пустым");
         }
 
-        if (configFileName.startsWith("configs/")) {
+        if (configFileName.startsWith(CONFIG_DIR)) {
             return configFileName;
         }
 
-        return "configs/" + configFileName;
+        return CONFIG_DIR + configFileName;
     }
 }
