@@ -16,7 +16,7 @@ import ru.shift.service.MultiThreadService;
         description = "Calculates selected series using single-thread or multithread solver depending on N threshold."
 )
 public final class MultiThreadCommand implements Runnable {
-    private static final int AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors();
+    private static final int AVAILABLE_PROCESSORS = Runtime.getRuntime().availableProcessors() - 1;
     private static final long DEFAULT_FORK_THRESHOLD = 100_000;
     private final MultiThreadService multiThreadService = new MultiThreadService();
 
