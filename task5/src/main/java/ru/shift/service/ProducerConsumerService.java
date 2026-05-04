@@ -3,11 +3,14 @@ package ru.shift.service;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import ru.shift.Consumer;
-import ru.shift.Producer;
-import ru.shift.Storage;
+import ru.shift.actors.Actor;
+import ru.shift.storage.BoundedStorage;
+import ru.shift.storage.Storage;
 import ru.shift.config.AppConfig;
 import ru.shift.config.ConfigLoader;
+import ru.shift.factories.ActorFactory;
+import ru.shift.factories.ConsumerFactory;
+import ru.shift.factories.ProducerFactory;
 
 /**
  * Сервис запуска сценария с производителями, потребителями и общим хранилищем.
@@ -32,23 +35,24 @@ public class ProducerConsumerService {
     private void runScenario(AppConfig config) {
         log.info("=== Старт: {} ===", config.scenarioName());
 
-        Storage storage = new Storage(config.storageSize());
-        List<Producer> producers = new ArrayList<>();
-        List<Consumer> consumers = new ArrayList<>();
+        Storage storage = new BoundedStorage(config.storageSize());
+        ActorFactory producerFactory = new ProducerFactory();
+        ActorFactory consumerFactory = new ConsumerFactory();
+        List<Actor> actors = new ArrayList<>();
         List<Thread> threads = new ArrayList<>();
 
         for (int i = 1; i <= config.producerCount(); i++) {
-            Producer producer = new Producer(i, storage, config.producerTimeMillis());
+            Actor producer = producerFactory.create(i, storage, config.producerTimeMillis());
             Thread producerThread = new Thread(producer, "producer-" + i);
-            producers.add(producer);
+            actors.add(producer);
             threads.add(producerThread);
             producerThread.start();
         }
 
         for (int i = 1; i <= config.consumerCount(); i++) {
-            Consumer consumer = new Consumer(i, storage, config.consumerTimeMillis());
+            Actor consumer = consumerFactory.create(i, storage, config.consumerTimeMillis());
             Thread consumerThread = new Thread(consumer, "consumer-" + i);
-            consumers.add(consumer);
+            actors.add(consumer);
             threads.add(consumerThread);
             consumerThread.start();
         }
@@ -56,10 +60,9 @@ public class ProducerConsumerService {
         try {
             Thread.sleep(config.scenarioDurationMillis());
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            log.error("Ошибка во время ожидания завершения сценария", e);
         } finally {
-            producers.forEach(Producer::stop);
-            consumers.forEach(Consumer::stop);
+            actors.forEach(Actor::stop);
 
             for (Thread thread : threads) {
                 thread.interrupt();
@@ -69,7 +72,7 @@ public class ProducerConsumerService {
                 try {
                     thread.join();
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
+                    log.error("Ошибка во время ожидания завершения рабочего потока", e);
                     break;
                 }
             }

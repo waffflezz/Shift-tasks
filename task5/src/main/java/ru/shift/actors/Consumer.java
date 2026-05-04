@@ -1,12 +1,13 @@
-package ru.shift;
+package ru.shift.actors;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.shift.storage.Storage;
 
 /**
  * Потребитель ресурсов, который извлекает объекты из хранилища и обрабатывает их с заданной задержкой.
  */
 @Slf4j
-public class Consumer implements Runnable {
+public class Consumer implements Actor {
     private static final String ID_PATTERN = "ПОТРЕБИТЕЛЬ %d.";
 
     private final String id;
@@ -32,6 +33,7 @@ public class Consumer implements Runnable {
      * Выполняет основной цикл получения и потребления ресурсов до остановки потока или получения прерывания.
      */
     @Override
+    @SuppressWarnings("BusyWait")
     public void run() {
         log.info("{} начал работу", id);
 
@@ -39,8 +41,6 @@ public class Consumer implements Runnable {
             try {
                 Resource resource = storage.get(id);
                 log.info("{} потребляет ресурс {}", id, resource.getId());
-
-                //noinspection BusyWait
                 Thread.sleep(consumerTimeMillis);
                 log.info("{} потребил ресурс {}", id, resource.getId());
             } catch (InterruptedException e) {
@@ -50,9 +50,7 @@ public class Consumer implements Runnable {
         }
     }
 
-    /**
-     * Запрашивает остановку потребителя.
-     */
+    @Override
     public void stop() {
         running = false;
     }

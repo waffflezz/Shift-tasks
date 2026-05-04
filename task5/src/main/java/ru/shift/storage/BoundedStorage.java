@@ -1,15 +1,16 @@
-package ru.shift;
+package ru.shift.storage;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.shift.actors.Resource;
 
 /**
  * Потокобезопасное хранилище ресурсов ограниченного размера.
  */
 @Slf4j
-public class Storage {
+public class BoundedStorage implements Storage {
     private final Object isNotFull = new Object();
     private final Object isNotEmpty = new Object();
 
@@ -21,17 +22,11 @@ public class Storage {
      *
      * @param maxSize максимальный размер очереди
      */
-    public Storage(int maxSize) {
+    public BoundedStorage(int maxSize) {
         this.maxSize = maxSize;
     }
 
-    /**
-     * Помещает ресурс в хранилище, ожидая освобождения места при переполнении.
-     *
-     * @param producerName имя производителя, используемое в логах
-     * @param resource добавляемый ресурс
-     * @throws InterruptedException если ожидание свободного места было прервано
-     */
+    @Override
     public void put(String producerName, Resource resource) throws InterruptedException {
         log.info("{} хочет положить ресурс {}", producerName, resource.getId());
 
@@ -79,13 +74,7 @@ public class Storage {
         }
     }
 
-    /**
-     * Извлекает ресурс из хранилища, ожидая появления данных при пустой очереди.
-     *
-     * @param consumerName имя потребителя, используемое в логах
-     * @return извлеченный ресурс
-     * @throws InterruptedException если ожидание ресурса было прервано
-     */
+    @Override
     public Resource get(String consumerName) throws InterruptedException {
         while (true) {
             Resource resource = null;
