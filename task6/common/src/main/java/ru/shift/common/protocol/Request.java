@@ -1,11 +1,7 @@
 package ru.shift.common.protocol;
 
-import ru.shift.common.dto.request.RequestBody;
+import ru.shift.common.dto.Body;
 
-public interface Request<T extends RequestBody> {
-    String getId();
-
-    MessageType getMessageType();
-
+public interface Request<T extends Body> extends Message {
     T getBody();
 }

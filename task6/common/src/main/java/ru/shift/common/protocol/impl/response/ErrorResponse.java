@@ -1,17 +1,26 @@
 package ru.shift.common.protocol.impl.response;
 
-import java.util.function.Function;
+import lombok.NoArgsConstructor;
+import ru.shift.common.dto.Body;
+import ru.shift.common.dto.response.ErrorResponseDto;
+import ru.shift.common.protocol.MessageVisitor;
+import ru.shift.common.protocol.Response;
 
-public record ErrorResponse<T>(String requestId, int code, String message) implements Response<T> {
-    private ErrorResponse() {
-        this(null, 0, null);
+import java.util.function.Consumer;
+
+public record ErrorResponse(String id, ErrorResponseDto body) implements Response<ErrorResponseDto> {
+    @Override
+    public String getId() {
+        return id;
     }
 
     @Override
-    public <R> R fold(
-            Function<SuccessResponse<T>, R> success,
-            Function<ErrorResponse<T>, R> error
-    ) {
-        return error.apply(this);
+    public ErrorResponseDto getBody() {
+        return body;
+    }
+
+    @Override
+    public void accept(MessageVisitor visitor) {
+        visitor.visit(this);
     }
 }

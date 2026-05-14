@@ -1,17 +1,24 @@
 package ru.shift.common.protocol.impl.response;
 
-import java.util.function.Function;
+import ru.shift.common.dto.Body;
+import ru.shift.common.protocol.MessageVisitor;
+import ru.shift.common.protocol.Response;
 
-public record SuccessResponse<T>(String requestId, T body) implements Response<T> {
-    private SuccessResponse() {
-        this(null, null);
+import java.util.function.Consumer;
+
+public record SuccessResponse<T extends Body>(String id, T body) implements Response<T> {
+    @Override
+    public String getId() {
+        return id;
     }
 
     @Override
-    public <R> R fold(
-            Function<SuccessResponse<T>, R> success,
-            Function<ErrorResponse<T>, R> error
-    ) {
-        return success.apply(this);
+    public T getBody() {
+        return body;
+    }
+
+    @Override
+    public void accept(MessageVisitor visitor) {
+        visitor.visit(this);
     }
 }

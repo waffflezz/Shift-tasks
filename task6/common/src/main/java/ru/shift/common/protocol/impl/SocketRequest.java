@@ -1,20 +1,14 @@
 package ru.shift.common.protocol.impl;
 
-import ru.shift.common.dto.request.RequestBody;
-import ru.shift.common.protocol.MessageType;
+import ru.shift.common.dto.Body;
+import ru.shift.common.protocol.MessageVisitor;
 import ru.shift.common.protocol.Request;
 
 import java.util.UUID;
 
-public class SocketRequest<T extends RequestBody> implements Request<T> {
-    private final String id;
-    private final MessageType messageType;
-    private final T body;
-
+public record SocketRequest<T extends Body>(String id, T body) implements Request<T> {
     public SocketRequest(T body) {
-        this.id = UUID.randomUUID().toString();
-        this.messageType = body.getMessageType();
-        this.body = body;
+        this(UUID.randomUUID().toString(), body);
     }
 
     @Override
@@ -23,12 +17,12 @@ public class SocketRequest<T extends RequestBody> implements Request<T> {
     }
 
     @Override
-    public MessageType getMessageType() {
-        return messageType;
+    public T getBody() {
+        return body;
     }
 
     @Override
-    public T getBody() {
-        return body;
+    public void accept(MessageVisitor visitor) {
+        visitor.visit(this);
     }
 }
