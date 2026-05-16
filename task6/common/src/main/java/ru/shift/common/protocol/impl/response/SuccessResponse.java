@@ -1,10 +1,8 @@
 package ru.shift.common.protocol.impl.response;
 
-import ru.shift.common.dto.Body;
+import ru.shift.common.protocol.dto.Body;
 import ru.shift.common.protocol.MessageVisitor;
 import ru.shift.common.protocol.Response;
-
-import java.util.function.Consumer;
 
 public record SuccessResponse<T extends Body>(String id, T body) implements Response<T> {
     @Override

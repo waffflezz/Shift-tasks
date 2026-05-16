@@ -1,4 +1,4 @@
-package ru.shift.common.dto;
+package ru.shift.common.protocol.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 

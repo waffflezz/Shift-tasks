@@ -1,6 +1,6 @@
-package ru.shift.common.dto.response;
+package ru.shift.common.protocol.dto.response;
 
-import ru.shift.common.dto.Body;
+import ru.shift.common.protocol.dto.Body;
 
 public record LoginResponseDto(
         String userId,

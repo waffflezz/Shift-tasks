@@ -1,17 +1,19 @@
 package ru.shift.server.kernel;
 
-import ru.shift.common.dto.request.LoginRequestDto;
+import lombok.RequiredArgsConstructor;
+import ru.shift.common.protocol.dto.request.LoginRequestDto;
 import ru.shift.common.protocol.MessageVisitorAdapter;
 import ru.shift.common.protocol.Request;
 import ru.shift.server.handlers.AuthHandler;
+import ru.shift.server.session.ClientSession;
 
+@RequiredArgsConstructor
 public final class ServerVisitor extends MessageVisitorAdapter {
-    private final Dispatcher dispatcher = new Dispatcher();
+    private final Dispatcher dispatcher;
+    private final ClientSession session;
 
     @Override
     public void visit(Request<?> request) {
-        dispatcher
-                .addHandler(LoginRequestDto.class, new AuthHandler())
-                .dispatch(request);
+        dispatcher.dispatch(request, session);
     }
 }

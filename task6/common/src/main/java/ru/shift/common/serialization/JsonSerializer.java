@@ -5,8 +5,9 @@ import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import ru.shift.common.dto.request.LoginRequestDto;
-import ru.shift.common.dto.response.LoginResponseDto;
+import ru.shift.common.protocol.dto.request.LoginRequestDto;
+import ru.shift.common.protocol.dto.response.ErrorResponseDto;
+import ru.shift.common.protocol.dto.response.LoginResponseDto;
 import ru.shift.common.exceptions.SerializeException;
 import ru.shift.common.protocol.Message;
 import ru.shift.common.protocol.impl.SocketRequest;
@@ -26,15 +27,16 @@ public class JsonSerializer {
     private static void registerMessages() {
         mapper.registerSubtypes(
                 named(SocketRequest.class, JsonSerializationTypes.REQUEST),
-                named(SuccessResponse.class, JsonSerializationTypes.SUCCESS_RESPONSE),
-                named(ErrorResponse.class, JsonSerializationTypes.ERROR_RESPONSE)
+                named(SuccessResponse.class, JsonSerializationTypes.SUCCESS),
+                named(ErrorResponse.class, JsonSerializationTypes.ERROR)
         );
     }
 
     private static void registerBodies() {
         mapper.registerSubtypes(
                 named(LoginRequestDto.class, JsonSerializationTypes.LOGIN_REQUEST),
-                named(LoginResponseDto.class, JsonSerializationTypes.LOGIN_RESPONSE)
+                named(LoginResponseDto.class, JsonSerializationTypes.LOGIN_RESPONSE),
+                named(ErrorResponseDto.class, JsonSerializationTypes.ERROR_RESPONSE)
         );
     }
 

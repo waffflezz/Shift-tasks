@@ -1,7 +1,0 @@
-package ru.shift.common.dto.request;
-
-import ru.shift.common.dto.Body;
-
-public record LoginRequestDto(
-        String username
-) implements Body { }

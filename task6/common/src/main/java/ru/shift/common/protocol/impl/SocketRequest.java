@@ -1,6 +1,6 @@
 package ru.shift.common.protocol.impl;
 
-import ru.shift.common.dto.Body;
+import ru.shift.common.protocol.dto.Body;
 import ru.shift.common.protocol.MessageVisitor;
 import ru.shift.common.protocol.Request;
 

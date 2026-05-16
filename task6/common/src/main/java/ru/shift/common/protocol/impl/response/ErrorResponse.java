@@ -1,12 +1,8 @@
 package ru.shift.common.protocol.impl.response;
 
-import lombok.NoArgsConstructor;
-import ru.shift.common.dto.Body;
-import ru.shift.common.dto.response.ErrorResponseDto;
+import ru.shift.common.protocol.dto.response.ErrorResponseDto;
 import ru.shift.common.protocol.MessageVisitor;
 import ru.shift.common.protocol.Response;
-
-import java.util.function.Consumer;
 
 public record ErrorResponse(String id, ErrorResponseDto body) implements Response<ErrorResponseDto> {
     @Override
