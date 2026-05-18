@@ -1,4 +1,4 @@
-package ru.shift.client.model.client;
+package ru.shift.client.model.connection;
 
 import ru.shift.common.channel.Channel;
 import ru.shift.common.protocol.Request;

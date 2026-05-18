@@ -1,4 +1,4 @@
-package ru.shift.client.model.client;
+package ru.shift.client.model.connection;
 
 import lombok.RequiredArgsConstructor;
 import ru.shift.common.protocol.MessageVisitorAdapter;

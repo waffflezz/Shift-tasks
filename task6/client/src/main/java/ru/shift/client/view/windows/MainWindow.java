@@ -102,10 +102,6 @@ public class MainWindow {
         frame.dispose();
     }
 
-    public JFrame getFrame() {
-        return frame;
-    }
-
     public void addMessage(String message) {
         chatArea.append(message + "\n");
         chatArea.setCaretPosition(chatArea.getDocument().getLength());
