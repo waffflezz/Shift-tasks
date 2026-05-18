@@ -41,9 +41,5 @@ final class Validator {
         if (config.storageSize() <= 0) {
             throw new IllegalArgumentException("storageSize должен быть больше 0");
         }
-
-        if (config.scenarioDurationMillis() <= 0) {
-            throw new IllegalArgumentException("scenarioDurationMillis должен быть больше 0");
-        }
     }
 }

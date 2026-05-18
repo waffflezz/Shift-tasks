@@ -13,7 +13,6 @@ public class Main {
      * @param args аргументы командной строки
      */
     public static void main(String[] args) {
-        int exitCode = new CommandLine(new ProducerConsumerCommand()).execute(args);
-        System.exit(exitCode);
+        new CommandLine(new ProducerConsumerCommand()).execute(args);
     }
 }

@@ -37,8 +37,7 @@ public final class ConfigLoader {
                 Integer.parseInt(properties.getProperty("consumerCount")),
                 Long.parseLong(properties.getProperty("producerTime")),
                 Long.parseLong(properties.getProperty("consumerTime")),
-                Integer.parseInt(properties.getProperty("storageSize")),
-                Long.parseLong(properties.getProperty("scenarioDurationMillis"))
+                Integer.parseInt(properties.getProperty("storageSize"))
             );
 
             Validator.validate(config);

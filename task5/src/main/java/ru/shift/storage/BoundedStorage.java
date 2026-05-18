@@ -30,14 +30,11 @@ public class BoundedStorage implements Storage {
     public void put(String producerName, Resource resource) throws InterruptedException {
         log.info("{} хочет положить ресурс {}", producerName, resource.getId());
 
+        int currentSize;
         while (true) {
-            boolean added = false;
-            int currentSize;
-
             synchronized (queue) {
                 if (queue.size() < maxSize) {
                     queue.add(resource);
-                    added = true;
                     currentSize = queue.size();
                     log.info(
                         "{} положил ресурс {}. текущий размер: {}/{}",
@@ -46,14 +43,11 @@ public class BoundedStorage implements Storage {
                         currentSize,
                         maxSize
                     );
+                    notifyIsNotEmpty();
+                    return;
                 } else {
                     currentSize = queue.size();
                 }
-            }
-
-            if (added) {
-                notifyIsNotEmpty();
-                return;
             }
 
             synchronized (isNotFull) {
@@ -76,10 +70,9 @@ public class BoundedStorage implements Storage {
 
     @Override
     public Resource get(String consumerName) throws InterruptedException {
+        Resource resource;
+        int currentSize;
         while (true) {
-            Resource resource = null;
-            int currentSize;
-
             synchronized (queue) {
                 if (!queue.isEmpty()) {
                     resource = queue.remove();
@@ -91,14 +84,11 @@ public class BoundedStorage implements Storage {
                         currentSize,
                         maxSize
                     );
+                    notifyIsNotFull();
+                    return resource;
                 } else {
                     currentSize = queue.size();
                 }
-            }
-
-            if (resource != null) {
-                notifyIsNotFull();
-                return resource;
             }
 
             synchronized (isNotEmpty) {
