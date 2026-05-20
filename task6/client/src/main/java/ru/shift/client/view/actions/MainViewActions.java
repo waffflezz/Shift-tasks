@@ -1,9 +1,5 @@
 package ru.shift.client.view.actions;
 
-import ru.shift.client.view.views.CellClickHandler;
-
-import java.awt.event.ActionListener;
-
 /**
  * Описывает операции, доступные через основное представление.
  */

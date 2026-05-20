@@ -1,10 +1,11 @@
 package ru.shift.client.controller;
 
 public interface Controller {
+    void start();
 
-    void connectToServer();
+    void connectToServer(String ip, int port);
 
-    void auth();
+    void auth(String nickname);
 
     void sendMessage();
 

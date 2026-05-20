@@ -10,8 +10,7 @@ import java.util.concurrent.Executors;
 @RequiredArgsConstructor
 public class ServerListener implements AutoCloseable {
     private final Channel channel;
-    private final ClientVisitor visitor;
-
+    private final ClientCore clientCore;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     public void start() {
@@ -19,14 +18,13 @@ public class ServerListener implements AutoCloseable {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
                     Message message = channel.read();
-                    message.accept(visitor);
+                    clientCore.handleMessage(message);
                 } catch (Exception e) {
                     //TODO: log
                 }
             }
         });
     }
-
 
     @Override
     public void close() {

@@ -9,4 +9,6 @@ public interface MessageVisitor {
     void visit(SuccessResponse<?> response);
 
     void visit(ErrorResponse response);
+
+    void visit(Notification<?> notification);
 }

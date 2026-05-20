@@ -1,10 +1,10 @@
-package ru.shift.common.protocol.dto.request;
+package ru.shift.common.protocol.dto.notification;
 
 import ru.shift.common.protocol.dto.Body;
 
 import java.time.Instant;
 
-public record LoginRequestDto(
+public record JoinNotificationDto(
         String username,
         Instant time
-) implements Body { }
+) implements Body {}

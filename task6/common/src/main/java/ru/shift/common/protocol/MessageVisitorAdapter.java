@@ -15,4 +15,8 @@ public abstract class MessageVisitorAdapter implements MessageVisitor {
     @Override
     public void visit(ErrorResponse response) {
     }
+
+    @Override
+    public void visit(Notification<?> notification) {
+    }
 }

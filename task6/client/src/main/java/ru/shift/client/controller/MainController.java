@@ -18,13 +18,18 @@ public class MainController implements Controller {
     }
 
     @Override
-    public void connectToServer() {
-
+    public void start() {
+        model.start();
     }
 
     @Override
-    public void auth() {
+    public void connectToServer(String ip, int port) {
+        model.connect(ip, port);
+    }
 
+    @Override
+    public void auth(String nickname) {
+        model.auth(nickname);
     }
 
     @Override
@@ -38,14 +43,13 @@ public class MainController implements Controller {
     }
 
     private void bindView() {
-        view.join().setConnectionAction(e -> connectToServer());
+        view.join().setConnectionAction(this::connectToServer);
+        view.auth().setAuthAction(this::auth);
 
-        view.auth().setAuthAction(e -> auth());
+//        view.chat().setSendMessageAction(e -> sendMessage());
 
-        view.chat().setSendMessageAction(e -> sendMessage());
+//        view.chat().setMessageInputAction(e -> sendMessage());
 
-        view.chat().setMessageInputAction(e -> sendMessage());
-
-        view.chat().setWindowCloseAction(e -> disconnect());
+//        view.chat().setWindowCloseAction(e -> disconnect());
     }
 }

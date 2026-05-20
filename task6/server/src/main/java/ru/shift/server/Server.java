@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.shift.common.protocol.dto.request.LoginRequestDto;
 import ru.shift.server.handlers.AuthHandler;
 import ru.shift.server.kernel.Dispatcher;
+import ru.shift.server.kernel.SessionBroadcaster;
 import ru.shift.server.listener.ClientListener;
 import ru.shift.server.session.ServerContext;
 import ru.shift.server.session.UserSessionRegistry;
@@ -20,11 +21,16 @@ public class Server {
     private final int port;
     private final ExecutorService pool = Executors.newCachedThreadPool();
 
-    private final ServerContext context = new ServerContext(new UserSessionRegistry());
-    private final Dispatcher dispatcher = new Dispatcher(context);
+    private final Dispatcher dispatcher;
 
     public Server(int port) {
         this.port = port;
+
+        var userRegistry = new UserSessionRegistry();
+        var sessionBroadcaster = new SessionBroadcaster(userRegistry);
+        ServerContext context = new ServerContext(userRegistry, sessionBroadcaster);
+        this.dispatcher = new Dispatcher(context);
+
         registryHandlers();
     }
 

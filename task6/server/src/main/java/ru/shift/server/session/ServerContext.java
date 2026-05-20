@@ -1,4 +1,8 @@
 package ru.shift.server.session;
 
-public record ServerContext(UserSessionRegistry users) {
-}
+import ru.shift.server.kernel.SessionBroadcaster;
+
+public record ServerContext(
+        UserSessionRegistry users,
+        SessionBroadcaster broadcaster
+) {}

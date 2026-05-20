@@ -5,11 +5,15 @@ import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import ru.shift.common.protocol.dto.notification.JoinNotificationDto;
 import ru.shift.common.protocol.dto.request.LoginRequestDto;
+import ru.shift.common.protocol.dto.request.UsersListRequestDto;
 import ru.shift.common.protocol.dto.response.ErrorResponseDto;
 import ru.shift.common.protocol.dto.response.LoginResponseDto;
 import ru.shift.common.exceptions.SerializeException;
 import ru.shift.common.protocol.Message;
+import ru.shift.common.protocol.dto.response.UsersListResponseDto;
+import ru.shift.common.protocol.impl.SocketNotification;
 import ru.shift.common.protocol.impl.SocketRequest;
 import ru.shift.common.protocol.impl.response.ErrorResponse;
 import ru.shift.common.protocol.impl.response.SuccessResponse;
@@ -28,7 +32,8 @@ public class JsonSerializer {
         mapper.registerSubtypes(
                 named(SocketRequest.class, JsonSerializationTypes.REQUEST),
                 named(SuccessResponse.class, JsonSerializationTypes.SUCCESS),
-                named(ErrorResponse.class, JsonSerializationTypes.ERROR)
+                named(ErrorResponse.class, JsonSerializationTypes.ERROR),
+                named(SocketNotification.class, JsonSerializationTypes.NOTIFICATION)
         );
     }
 
@@ -36,7 +41,13 @@ public class JsonSerializer {
         mapper.registerSubtypes(
                 named(LoginRequestDto.class, JsonSerializationTypes.LOGIN_REQUEST),
                 named(LoginResponseDto.class, JsonSerializationTypes.LOGIN_RESPONSE),
-                named(ErrorResponseDto.class, JsonSerializationTypes.ERROR_RESPONSE)
+                named(UsersListRequestDto.class, JsonSerializationTypes.USERS_LIST_REQUEST),
+                named(UsersListResponseDto.class, JsonSerializationTypes.USERS_LIST_RESPONSE),
+
+
+                named(ErrorResponseDto.class, JsonSerializationTypes.ERROR_RESPONSE),
+
+                named(JoinNotificationDto.class, JsonSerializationTypes.JOIN_NOTIFICATION)
         );
     }
 

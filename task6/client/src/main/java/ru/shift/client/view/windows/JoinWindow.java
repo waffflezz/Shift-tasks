@@ -1,8 +1,10 @@
 package ru.shift.client.view.windows;
 
+import lombok.Setter;
+import ru.shift.client.view.views.handlers.ConnectionHandler;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class JoinWindow {
     private final JFrame frame;
@@ -11,14 +13,23 @@ public class JoinWindow {
     private JTextField portField;
     private JButton connectButton;
 
+    private JLabel errorLabel;
+
+    @Setter
+    private ConnectionHandler connectionHandler;
+
     public JoinWindow() {
-        frame = new JFrame("Auth");
+        frame = new JFrame("Connect");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(300, 180);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout());
 
         createForm();
+
+        connectButton.addActionListener(l -> {
+            connectionHandler.handle(getIp(), getPort());
+        });
     }
 
     private void createForm() {
@@ -52,16 +63,30 @@ public class JoinWindow {
         gbc.weightx = 1;
         panel.add(portField, gbc);
 
-        connectButton = new JButton("Connect");
-        connectButton.setFocusPainted(false);
+        errorLabel = new JLabel();
+        errorLabel.setForeground(Color.RED);
+        errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;
 
+        panel.add(errorLabel, gbc);
+
+        connectButton = new JButton("Connect");
+        connectButton.setFocusPainted(false);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+
         panel.add(connectButton, gbc);
 
         frame.add(panel, BorderLayout.CENTER);
+    }
+
+    public void showError(String error) {
+        errorLabel.setText("Ошибка: " + error);
     }
 
     public void setVisible(boolean visible) {
@@ -72,19 +97,11 @@ public class JoinWindow {
         frame.dispose();
     }
 
-    public JFrame getFrame() {
-        return frame;
-    }
-
     public String getIp() {
         return ipField.getText();
     }
 
     public int getPort() {
         return Integer.parseInt(portField.getText());
-    }
-
-    public void setConnectAction(ActionListener listener) {
-        connectButton.addActionListener(listener);
     }
 }

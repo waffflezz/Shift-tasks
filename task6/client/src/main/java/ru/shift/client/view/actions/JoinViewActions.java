@@ -1,7 +1,7 @@
 package ru.shift.client.view.actions;
 
-import java.awt.event.ActionListener;
+import ru.shift.client.view.views.handlers.ConnectionHandler;
 
 public interface JoinViewActions {
-    void setConnectionAction(ActionListener listener);
+    void setConnectionAction(ConnectionHandler handler);
 }
