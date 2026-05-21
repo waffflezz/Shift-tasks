@@ -43,28 +43,38 @@ public class BoundedStorage implements Storage {
                         currentSize,
                         maxSize
                     );
-                    notifyIsNotEmpty();
-                    return;
-                } else {
-                    currentSize = queue.size();
+                    break;
                 }
             }
 
             synchronized (isNotFull) {
                 synchronized (queue) {
                     if (queue.size() < maxSize) {
-                        continue;
+                        queue.add(resource);
+                        currentSize = queue.size();
+                        log.info(
+                                "{} положил ресурс {}. текущий размер: {}/{}",
+                                producerName,
+                                resource.getId(),
+                                currentSize,
+                                maxSize
+                        );
+                        break;
                     }
 
                     log.info(
                             "{} ожидает: хранилище полное. Текущий размер: {}/{}",
                             producerName,
-                            currentSize,
+                            queue.size(),
                             maxSize
                     );
                 }
                 isNotFull.wait();
             }
+        }
+
+        if (currentSize >= 1) {
+            notifyIsNotEmpty();
         }
     }
 
@@ -84,29 +94,39 @@ public class BoundedStorage implements Storage {
                         currentSize,
                         maxSize
                     );
-                    notifyIsNotFull();
-                    return resource;
-                } else {
-                    currentSize = queue.size();
+                    break;
                 }
             }
 
             synchronized (isNotEmpty) {
                 synchronized (queue) {
                     if (!queue.isEmpty()) {
-                        continue;
+                        resource = queue.remove();
+                        currentSize = queue.size();
+                        log.info(
+                                "{} взял ресурс {} из хранилища. Текущий размер: {}/{}",
+                                consumerName,
+                                resource.getId(),
+                                currentSize,
+                                maxSize
+                        );
+                        break;
                     }
 
                     log.info(
-                            "{} ожидает: хранилище пустое. Текущий размер: {}/{}",
+                            "{} ожидает: хранилище пустое. Текущий размер: 0/{}",
                             consumerName,
-                            currentSize,
                             maxSize
                     );
                 }
                 isNotEmpty.wait();
             }
         }
+
+        if (currentSize == maxSize - 1) {
+            notifyIsNotFull();
+        }
+        return resource;
     }
 
     /**
