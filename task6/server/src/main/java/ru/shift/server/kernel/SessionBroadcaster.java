@@ -1,12 +1,12 @@
 package ru.shift.server.kernel;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.shift.common.protocol.Message;
 import ru.shift.server.session.ClientSession;
 import ru.shift.server.session.UserSessionRegistry;
 
-import java.util.Set;
-
+@Slf4j
 @RequiredArgsConstructor
 public class SessionBroadcaster implements Broadcaster {
     private final UserSessionRegistry users;

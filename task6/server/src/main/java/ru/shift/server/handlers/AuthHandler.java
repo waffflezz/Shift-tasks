@@ -37,7 +37,7 @@ public class AuthHandler implements Handler<LoginRequestDto> {
         session.send(
                 new SuccessResponse<>(
                         request.getId(),
-                        new LoginResponseDto("123", username)
+                        new LoginResponseDto(username)
                 )
         );
     }

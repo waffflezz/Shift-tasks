@@ -1,7 +1,15 @@
 package ru.shift.client.view.windows;
 
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import ru.shift.client.view.views.handlers.MessageHandler;
+
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -13,7 +21,9 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Slf4j
 public class MainWindow {
+    private static final int MAX_CHARS = 100;
 
     private final JFrame frame;
     private JLabel onlineLabel;
@@ -23,6 +33,10 @@ public class MainWindow {
     private DefaultListModel<String> usersModel;
     private JTextField inputField;
     private JButton sendButton;
+    private JLabel charCountLabel;
+
+    @Setter
+    private MessageHandler messageHandler;
 
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
             .withZone(ZoneId.systemDefault());
@@ -42,6 +56,97 @@ public class MainWindow {
         createTopPanel();
         createCenterPanel();
         createBottomPanel();
+
+        sendButton.addActionListener(e -> sendMessage());
+        inputField.addActionListener(e -> sendMessage());
+
+        inputField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateCharCount();
+                limitInput();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateCharCount();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateCharCount();
+            }
+        });
+    }
+
+    public void addUserMessage(String username, String message, Instant time) {
+        String timeStr = timeFormatter.format(time);
+        appendStyledMessage(username, message, timeStr, userColor, Color.WHITE, false);
+    }
+
+    public void addSystemMessage(String message, Instant time) {
+        String timeStr = timeFormatter.format(time);
+        appendStyledMessage(null, message, timeStr, systemColor, systemBgColor, true);
+    }
+
+    public void setVisible(boolean visible) {
+        frame.setVisible(visible);
+    }
+
+    public void dispose() {
+        frame.dispose();
+    }
+
+    public void setUsers(List<String> users) {
+        usersModel.clear();
+        for (String user : users) {
+            usersModel.addElement(user);
+        }
+        updateOnlineCount();
+    }
+
+    public void addUser(String username) {
+        if (!usersModel.contains(username)) {
+            usersModel.addElement(username);
+            updateOnlineCount();
+        }
+    }
+
+    public void removeUser(String username) {
+        usersModel.removeElement(username);
+        updateOnlineCount();
+    }
+
+    public String getInputText() {
+        return inputField.getText();
+    }
+
+    public void clearInput() {
+        inputField.setText("");
+    }
+
+    public void setOnlineCount(int count) {
+        onlineLabel.setText("Online: " + count);
+    }
+
+    private void updateCharCount() {
+        int length = inputField.getText().length();
+        charCountLabel.setText(length + "/" + MAX_CHARS);
+
+        // Меняем цвет при приближении к лимиту
+        if (length >= MAX_CHARS) {
+            charCountLabel.setForeground(Color.RED);
+        } else if (length >= MAX_CHARS * 0.8) {
+            charCountLabel.setForeground(Color.ORANGE);
+        } else {
+            charCountLabel.setForeground(new Color(120, 120, 120));
+        }
+    }
+
+    private void limitInput() {
+        if (inputField.getText().length() > MAX_CHARS) {
+            inputField.setText(inputField.getText().substring(0, MAX_CHARS));
+        }
     }
 
     private void createTopPanel() {
@@ -88,24 +193,51 @@ public class MainWindow {
         JPanel bottom = new JPanel(new BorderLayout());
         bottom.setBackground(new Color(210, 220, 235));
 
+        JPanel inputPanel = new JPanel(new BorderLayout());
+        inputPanel.setBackground(new Color(210, 220, 235));
+
         inputField = new JTextField();
+        inputField.setDocument(new PlainDocument() {
+            @Override
+            public void insertString(int offs, String str, AttributeSet a) {
+                if (str == null) return;
+                if (getLength() + str.length() <= MAX_CHARS) {
+                    try {
+                        super.insertString(offs, str, a);
+                    } catch (BadLocationException e) {
+                        log.warn("Can't insert string. Error: {}", e.getMessage());
+                    }
+                }
+            }
+        });
+
+        charCountLabel = new JLabel("0/" + MAX_CHARS);
+        charCountLabel.setFont(new Font("Monospaced", Font.PLAIN, 11));
+        charCountLabel.setForeground(new Color(120, 120, 120));
+        charCountLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
+
+        inputPanel.add(inputField, BorderLayout.CENTER);
+        inputPanel.add(charCountLabel, BorderLayout.EAST);
+
         sendButton = new JButton("Send");
         sendButton.setFocusPainted(false);
 
-        bottom.add(inputField, BorderLayout.CENTER);
+        bottom.add(inputPanel, BorderLayout.CENTER);
         bottom.add(sendButton, BorderLayout.EAST);
 
         frame.add(bottom, BorderLayout.SOUTH);
     }
 
-    public void addUserMessage(String username, String message, LocalDateTime time) {
-        String timeStr = time.format(timeFormatter);
-        appendStyledMessage(username, message, timeStr, userColor, Color.WHITE, false);
-    }
+    private void sendMessage() {
+        String text = inputField.getText().trim();
 
-    public void addSystemMessage(String message, Instant time) {
-        String timeStr = timeFormatter.format(time);
-        appendStyledMessage(null, message, timeStr, systemColor, systemBgColor, true);
+        if (text.isEmpty()) {
+            return;
+        }
+
+        if (messageHandler != null) {
+            messageHandler.handle(text);
+        }
     }
 
     private void appendStyledMessage(String username, String message, String timeStr,
@@ -155,7 +287,7 @@ public class MainWindow {
 
             autoScrollToBottom();
         } catch (BadLocationException e) {
-            e.printStackTrace();
+            log.error("Error with Swing, when style message. Error: {}", e.getMessage());
         }
     }
 
@@ -170,52 +302,7 @@ public class MainWindow {
         });
     }
 
-    public void setVisible(boolean visible) {
-        frame.setVisible(visible);
-    }
-
-    public void dispose() {
-        frame.dispose();
-    }
-
-    public void setUsers(List<String> users) {
-        usersModel.clear();
-        for (String user : users) {
-            usersModel.addElement(user);
-        }
-        updateOnlineCount();
-    }
-
-    public void addUser(String username) {
-        if (!usersModel.contains(username)) {
-            usersModel.addElement(username);
-            updateOnlineCount();
-        }
-    }
-
-    public void removeUser(String username) {
-        usersModel.removeElement(username);
-        updateOnlineCount();
-    }
-
-    public void setOnlineCount(int count) {
-        onlineLabel.setText("Online: " + count);
-    }
-
     private void updateOnlineCount() {
         onlineLabel.setText("Online: " + usersModel.size());
-    }
-
-    public void setSendAction(ActionListener listener) {
-        sendButton.addActionListener(listener);
-        inputField.addActionListener(listener);
-    }
-
-    public String getInputText() {
-        return inputField.getText();
-    }
-
-    public void clearInput() {
-        inputField.setText("");
     }
 }

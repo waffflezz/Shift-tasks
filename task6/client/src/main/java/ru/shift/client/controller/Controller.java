@@ -7,7 +7,7 @@ public interface Controller {
 
     void auth(String nickname);
 
-    void sendMessage();
+    void sendMessage(String message);
 
     void disconnect();
 }

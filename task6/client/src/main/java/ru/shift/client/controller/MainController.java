@@ -33,23 +33,18 @@ public class MainController implements Controller {
     }
 
     @Override
-    public void sendMessage() {
-
+    public void sendMessage(String message) {
+        model.sendMessage(message);
     }
 
     @Override
     public void disconnect() {
-//        model.disconnect();
+        model.disconnect("Client close");
     }
 
     private void bindView() {
         view.join().setConnectionAction(this::connectToServer);
         view.auth().setAuthAction(this::auth);
-
-//        view.chat().setSendMessageAction(e -> sendMessage());
-
-//        view.chat().setMessageInputAction(e -> sendMessage());
-
-//        view.chat().setWindowCloseAction(e -> disconnect());
+        view.setSendMessageAction(this::sendMessage);
     }
 }

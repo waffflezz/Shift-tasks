@@ -19,6 +19,10 @@ public final class AuthView implements AuthViewAction {
         authWindow.setVisible(visible);
     }
 
+    public void dispose() {
+        authWindow.dispose();
+    }
+
     public void showError(String error) {
         authWindow.showError(error);
     }

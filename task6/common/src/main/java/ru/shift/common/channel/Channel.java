@@ -1,6 +1,7 @@
 package ru.shift.common.channel;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import ru.shift.common.exceptions.SerializeException;
 import ru.shift.common.protocol.Message;
 import ru.shift.common.serialization.JsonSerializer;
@@ -13,6 +14,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
     private final Socket socket;
     private final BufferedReader reader;
@@ -31,7 +33,7 @@ public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
     public Message read() throws IOException, SerializeException {
         String line = reader.readLine();
         if (line == null) {
-            throw new IOException("Connection closed");
+            return null;
         }
         return JsonSerializer.deserialize(line);
     }
@@ -47,25 +49,9 @@ public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
     }
 
     @Override
-    public void close() {
-        try {
-            if (reader != null) {
-                reader.close();
-            }
-        } catch (IOException e) {
-            System.err.println("Error closing reader: " + e.getMessage());
-        }
-
-        if (writer != null) {
-            writer.close();
-        }
-
-        try {
-            if (socket != null && !socket.isClosed()) {
-                socket.close();
-            }
-        } catch (IOException e) {
-            System.err.println("Error closing socket: " + e.getMessage());
+    public void close() throws IOException {
+        if (socket != null && !socket.isClosed()) {
+            socket.close();
         }
     }
 }

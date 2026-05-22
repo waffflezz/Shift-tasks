@@ -1,33 +1,35 @@
 package ru.shift.client.model.connection;
 
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.shift.common.channel.Channel;
 import ru.shift.common.protocol.Notification;
 import ru.shift.common.protocol.Request;
-import ru.shift.common.protocol.Response;
 import ru.shift.common.protocol.dto.Body;
 import ru.shift.common.protocol.dto.request.LoginRequestDto;
+import ru.shift.common.protocol.dto.request.MessageRequestDto;
 import ru.shift.common.protocol.dto.request.UsersListRequestDto;
 import ru.shift.common.protocol.impl.SocketRequest;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
+@Slf4j
 @NoArgsConstructor
-final public class ClientService {
-    private ClientCore clientCore;
-    private ServerListener listener;
+public final class ClientService implements AutoCloseable {
+    private ClientConnection connection;
 
     public CompletableFuture<Void> connect(String ip, int port) {
         return CompletableFuture.runAsync(() -> {
             try {
                 Socket socket = new Socket(ip, port);
                 Channel channel = new Channel(socket);
-                clientCore = new ClientCore(channel);
-                listener = new ServerListener(channel, clientCore);
-                listener.start();
+
+                this.connection = new ClientConnection(channel);
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -35,10 +37,10 @@ final public class ClientService {
     }
 
     private <T extends Body> void send(Request<T> request, ResponseConsumer consumer) {
-        clientCore.send(request)
+        connection.send(request)
                 .thenAccept(consumer::accept)
-                .exceptionally(throwable -> {
-                    consumer.handleFailure(throwable);
+                .exceptionally(e -> {
+                    consumer.handleFailure(e);
                     return null;
                 });
     }
@@ -55,11 +57,30 @@ final public class ClientService {
         send(request, consumer);
     }
 
-    public <T extends Body> void addListener(Class<T> bodyType, Consumer<Notification<T>> handler) {
-        clientCore.addNotification(bodyType, handler);
+    public void sendMessage(String message, ResponseConsumer consumer) {
+        Request<MessageRequestDto> request = new SocketRequest<>(new MessageRequestDto(message, Instant.now()));
+
+        send(request, consumer);
     }
 
-    public <T extends Body> void removeListener(Class<T> bodyType, Consumer<Notification<T>> handler) {
-        clientCore.removeNotification(bodyType, handler);
+    public <T extends Body> void addListener(Class<T> type, Consumer<Notification<T>> handler) {
+        connection.subscribe(type, handler);
+    }
+
+    public <T extends Body> void removeListener(Class<T> type, Consumer<Notification<T>> handler) {
+        connection.unsubscribe(type, handler);
+    }
+
+    public void disconnect() throws IOException {
+        if (connection != null) {
+            connection.close();
+        }
+    }
+
+    @Override
+    public void close() throws IOException {
+        if (connection != null) {
+            connection.close();
+        }
     }
 }

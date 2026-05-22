@@ -15,6 +15,10 @@ public final class JoinView implements JoinViewActions {
         joinWindow.setVisible(visible);
     }
 
+    public void dispose() {
+        joinWindow.dispose();
+    }
+
     public void showError(String error) {
         joinWindow.showError(error);
     }

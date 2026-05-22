@@ -1,4 +1,14 @@
 dependencies {
     implementation project(':common')
-    shadow project(':common')
+}
+
+shadowJar {
+    archiveBaseName.set("server")
+    archiveClassifier.set("")
+    archiveVersion.set("")
+    destinationDirectory.set(file("$rootDir/build/out"))
+
+    manifest {
+        attributes 'Main-Class': 'ru.shift.server.Main'
+    }
 }

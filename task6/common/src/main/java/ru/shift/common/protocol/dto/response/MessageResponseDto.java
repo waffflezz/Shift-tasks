@@ -2,6 +2,6 @@ package ru.shift.common.protocol.dto.response;
 
 import ru.shift.common.protocol.dto.Body;
 
-public record LoginResponseDto(
-        String username
-) implements Body { }
+import java.time.Instant;
+
+public record MessageResponseDto() implements Body {}

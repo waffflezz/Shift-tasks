@@ -1,5 +1,7 @@
 package ru.shift.client.view.actions;
 
+import ru.shift.client.view.views.handlers.MessageHandler;
+
 /**
  * Описывает операции, доступные через основное представление.
  */
@@ -8,10 +10,6 @@ public interface MainViewActions {
 
     AuthViewAction auth();
 
-    ChatViewAction chat();
+    void setSendMessageAction(MessageHandler handler);
 
-    /**
-     * Освобождает ресурсы основного представления.
-     */
-    void dispose();
 }

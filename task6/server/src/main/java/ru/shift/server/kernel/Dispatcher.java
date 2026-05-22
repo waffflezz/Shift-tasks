@@ -1,5 +1,8 @@
 package ru.shift.server.kernel;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ru.shift.common.protocol.Response;
 import ru.shift.common.protocol.dto.Body;
 import ru.shift.common.protocol.Request;
@@ -11,14 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
+@RequiredArgsConstructor
 public final class Dispatcher {
     private final Map<Class<? extends Body>, Handler<?>> handlers = new HashMap<>();
 
+    @Getter
     private final ServerContext context;
-
-    public Dispatcher(ServerContext context) {
-        this.context = context;
-    }
 
     public <T extends Body> Dispatcher addHandler(Class<T> type, Handler<T> handler) {
         handlers.put(type, handler);
@@ -34,7 +36,8 @@ public final class Dispatcher {
         Handler<T> handler = (Handler<T>) handlers.get(request.getBody().getClass());
 
         if (handler == null) {
-            throw new RuntimeException("Handler not found");
+            log.warn("Handler for dto {} not found", request.getBody().getClass());
+            return;
         }
 
         handler.handle((Request<T>) request, session, context);

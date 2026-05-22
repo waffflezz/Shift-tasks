@@ -5,13 +5,18 @@ import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import ru.shift.common.protocol.dto.notification.DisconnectNotificationDto;
 import ru.shift.common.protocol.dto.notification.JoinNotificationDto;
+import ru.shift.common.protocol.dto.notification.LeftNotificationDto;
+import ru.shift.common.protocol.dto.notification.MessageNotificationDto;
 import ru.shift.common.protocol.dto.request.LoginRequestDto;
+import ru.shift.common.protocol.dto.request.MessageRequestDto;
 import ru.shift.common.protocol.dto.request.UsersListRequestDto;
 import ru.shift.common.protocol.dto.response.ErrorResponseDto;
 import ru.shift.common.protocol.dto.response.LoginResponseDto;
 import ru.shift.common.exceptions.SerializeException;
 import ru.shift.common.protocol.Message;
+import ru.shift.common.protocol.dto.response.MessageResponseDto;
 import ru.shift.common.protocol.dto.response.UsersListResponseDto;
 import ru.shift.common.protocol.impl.SocketNotification;
 import ru.shift.common.protocol.impl.SocketRequest;
@@ -19,7 +24,7 @@ import ru.shift.common.protocol.impl.response.ErrorResponse;
 import ru.shift.common.protocol.impl.response.SuccessResponse;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class JsonSerializer {
+public final class JsonSerializer {
     private static final ObjectMapper mapper;
 
     static {
@@ -43,11 +48,15 @@ public class JsonSerializer {
                 named(LoginResponseDto.class, JsonSerializationTypes.LOGIN_RESPONSE),
                 named(UsersListRequestDto.class, JsonSerializationTypes.USERS_LIST_REQUEST),
                 named(UsersListResponseDto.class, JsonSerializationTypes.USERS_LIST_RESPONSE),
-
+                named(MessageRequestDto.class, JsonSerializationTypes.MESSAGE_REQUEST),
+                named(MessageResponseDto.class, JsonSerializationTypes.MESSAGE_RESPONSE),
 
                 named(ErrorResponseDto.class, JsonSerializationTypes.ERROR_RESPONSE),
 
-                named(JoinNotificationDto.class, JsonSerializationTypes.JOIN_NOTIFICATION)
+                named(JoinNotificationDto.class, JsonSerializationTypes.JOIN_NOTIFICATION),
+                named(LeftNotificationDto.class, JsonSerializationTypes.LEFT_NOTIFICATION),
+                named(DisconnectNotificationDto.class, JsonSerializationTypes.DISCONNECT_NOTIFICATION),
+                named(MessageNotificationDto.class, JsonSerializationTypes.MESSAGE_NOTIFICATION)
         );
     }
 

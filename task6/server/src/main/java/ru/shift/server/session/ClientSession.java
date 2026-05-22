@@ -2,21 +2,29 @@ package ru.shift.server.session;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import ru.shift.common.channel.Channel;
 import ru.shift.common.channel.ChannelReader;
 import ru.shift.common.exceptions.SerializeException;
 import ru.shift.common.protocol.Message;
+import ru.shift.common.protocol.dto.notification.LeftNotificationDto;
 import ru.shift.common.protocol.dto.response.ErrorResponseDto;
+import ru.shift.common.protocol.impl.SocketNotification;
 import ru.shift.common.protocol.impl.response.ErrorResponse;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.time.Instant;
 
+@Slf4j
 public final class ClientSession implements AutoCloseable {
     @Getter
     private final String id;
 
     private final Channel channel;
+
+    @Setter
+    private ServerContext context;
 
     @Getter
     @Setter
@@ -57,7 +65,21 @@ public final class ClientSession implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() throws IOException {
+        if (closed) return;
+        closed = true;
+
+        if (!channel.isConnected()) {
+            log.debug("Socket already closed");
+            return;
+        }
+
+        if (context != null && isAuthenticated()) {
+            log.debug("Closing ClientSession. User: {}", getUsername());
+            context.broadcaster().broadcastExcept(new SocketNotification<>(new LeftNotificationDto(getUsername(), Instant.now())), getId());
+        }
+
+        log.info("Closing socket channel");
         channel.close();
     }
 }
