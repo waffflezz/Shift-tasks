@@ -34,6 +34,9 @@ public class ClientListener implements Runnable {
 
                 if (message == null) {
                     log.info("Client disconnected: {}", session.getUsername());
+                    if (session.getUsername() != null) {
+                        dispatcher.getContext().users().remove(session.getUsername());
+                    }
                     break;
                 }
 

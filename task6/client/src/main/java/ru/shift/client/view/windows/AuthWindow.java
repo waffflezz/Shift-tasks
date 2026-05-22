@@ -30,11 +30,14 @@ public class AuthWindow {
 
         createForm();
 
-        loginButton.addActionListener(e -> {
-            if (authHandler != null) {
-                authHandler.handle(getNickname());
-            }
-        });
+        loginButton.addActionListener(e -> handleAuth());
+        nicknameField.addActionListener(e -> handleAuth());
+    }
+
+    private void handleAuth() {
+        if (authHandler != null) {
+            authHandler.handle(getNickname());
+        }
     }
 
     private void createForm() {

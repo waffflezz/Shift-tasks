@@ -31,7 +31,15 @@ public class JoinWindow {
 
         createForm();
 
-        connectButton.addActionListener(l -> connectionHandler.handle(getIp(), getPort()));
+        connectButton.addActionListener(e -> handleConnection());
+        ipField.addActionListener(e -> portField.requestFocusInWindow());
+        portField.addActionListener(e -> handleConnection());
+    }
+
+    private void handleConnection() {
+        if (connectionHandler != null) {
+            connectionHandler.handle(getIp(), getPort());
+        }
     }
 
     private void createForm() {
