@@ -23,6 +23,10 @@ import ru.shift.common.protocol.impl.SocketRequest;
 import ru.shift.common.protocol.impl.response.ErrorResponse;
 import ru.shift.common.protocol.impl.response.SuccessResponse;
 
+/**
+ * Утилитный класс для сериализации и десериализации сообщений протокола в JSON.
+ * Настраивает полиморфную сериализацию для всех типов сообщений и их тел.
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class JsonSerializer {
     private static final ObjectMapper mapper;
@@ -33,6 +37,9 @@ public final class JsonSerializer {
         registerBodies();
     }
 
+    /**
+     * Регистрирует подтипы сообщений верхнего уровня.
+     */
     private static void registerMessages() {
         mapper.registerSubtypes(
                 named(SocketRequest.class, JsonSerializationTypes.REQUEST),
@@ -42,6 +49,9 @@ public final class JsonSerializer {
         );
     }
 
+    /**
+     * Регистрирует подтипы тел сообщений.
+     */
     private static void registerBodies() {
         mapper.registerSubtypes(
                 named(LoginRequestDto.class, JsonSerializationTypes.LOGIN_REQUEST),
@@ -64,6 +74,13 @@ public final class JsonSerializer {
         return new NamedType(clazz, type.name());
     }
 
+    /**
+     * Сериализует сообщение в JSON-строку.
+     *
+     * @param message сообщение
+     * @return JSON-строка
+     * @throws SerializeException при ошибке сериализации
+     */
     public static String serialize(Message message) throws SerializeException {
         try {
             return mapper.writeValueAsString(message);
@@ -72,6 +89,13 @@ public final class JsonSerializer {
         }
     }
 
+    /**
+     * Десериализует JSON-строку в сообщение.
+     *
+     * @param data JSON-строка
+     * @return сообщение
+     * @throws SerializeException при ошибке десериализации
+     */
     public static Message deserialize(String data) throws SerializeException {
         try {
             return mapper.readValue(data, Message.class);

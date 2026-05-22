@@ -6,6 +6,10 @@ import ru.shift.common.protocol.Message;
 import ru.shift.server.session.ClientSession;
 import ru.shift.server.session.UserSessionRegistry;
 
+/**
+ * Реализация широковещательной рассылки сообщений.
+ * Проходит по всем сессиям из реестра и отправляет сообщение активным.
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class SessionBroadcaster implements Broadcaster {

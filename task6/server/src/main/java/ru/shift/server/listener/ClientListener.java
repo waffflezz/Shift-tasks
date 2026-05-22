@@ -8,6 +8,11 @@ import ru.shift.server.session.ClientSession;
 
 import java.net.Socket;
 
+/**
+ * Слушатель клиентского соединения.
+ * Читает сообщения из сокета в цикле и направляет их в диспетчер.
+ * При закрытии соединения автоматически завершает сессию.
+ */
 @Slf4j
 public class ClientListener implements Runnable {
     private final Socket socket;
@@ -20,6 +25,7 @@ public class ClientListener implements Runnable {
 
     @Override
     public void run() {
+        log.info("New client connect");
         try (ClientSession session = new ClientSession(socket)) {
             session.setContext(dispatcher.getContext());
 

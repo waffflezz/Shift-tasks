@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.net.Socket;
 import java.time.Instant;
 
+/**
+ * Сессия клиента на стороне сервера.
+ * Хранит канал связи, учётные данные и управляет отправкой сообщений.
+ */
 @Slf4j
 public final class ClientSession implements AutoCloseable {
     @Getter
@@ -43,6 +47,11 @@ public final class ClientSession implements AutoCloseable {
         this.id = channel.getClientId();
     }
 
+    /**
+     * Отправляет сообщение клиенту.
+     *
+     * @param message сообщение
+     */
     public void send(Message message) {
         try {
             channel.send(message);
@@ -51,19 +60,36 @@ public final class ClientSession implements AutoCloseable {
         }
     }
 
+    /**
+     * Отправляет клиенту сообщение об ошибке.
+     *
+     * @param id идентификатор запроса
+     * @param code код ошибки
+     * @param errorMessage описание ошибки
+     */
     public void sendError(String id, int code, String errorMessage) {
         var response = new ErrorResponse(id, new ErrorResponseDto(code, errorMessage));
         try {
             channel.send(response);
         } catch (SerializeException e) {
-            //TODO: log
+            log.warn("Error while send error response. Error: {}", e.getMessage());
         }
     }
 
+    /**
+     * Возвращает ридер для чтения сообщений от клиента.
+     *
+     * @return ридер канала
+     */
     public ChannelReader getReader() {
         return channel;
     }
 
+    /**
+     * Закрывает сессию: оповещает остальных участников и закрывает канал связи.
+     *
+     * @throws IOException при ошибке закрытия канала
+     */
     @Override
     public void close() throws IOException {
         if (closed) return;

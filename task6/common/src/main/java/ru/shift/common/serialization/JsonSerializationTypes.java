@@ -1,5 +1,8 @@
 package ru.shift.common.serialization;
 
+/**
+ * Перечисление типов сообщений и тел для полиморфной JSON-сериализации.
+ */
 enum JsonSerializationTypes {
     REQUEST,
     SUCCESS,

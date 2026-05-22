@@ -6,6 +6,10 @@ import ru.shift.client.view.views.handlers.AuthHandler;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Окно авторизации пользователя.
+ * Содержит поле ввода никнейма и кнопку входа.
+ */
 public class AuthWindow {
     private final JFrame frame;
 

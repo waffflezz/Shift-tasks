@@ -22,6 +22,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Сервер чата.
+ * Принимает входящие TCP-соединения и обрабатывает их в отдельных потоках.
+ */
 @Slf4j
 public class Server {
     private final int port;
@@ -29,6 +33,11 @@ public class Server {
 
     private final Dispatcher dispatcher;
 
+    /**
+     * Создаёт сервер и регистрирует обработчики запросов.
+     *
+     * @param port порт для прослушивания
+     */
     public Server(int port) {
         this.port = port;
 
@@ -46,6 +55,10 @@ public class Server {
                 .addHandler(MessageRequestDto.class, new MessageHandler());
     }
 
+    /**
+     * Запускает сервер.
+     * Регистрирует shutdown-hook для корректного завершения при остановке JVM.
+     */
     public void start() {
         AtomicBoolean closed = new AtomicBoolean(false);
 
@@ -60,7 +73,7 @@ public class Server {
                 pool.submit(new ClientListener(socket, dispatcher));
             }
         } catch (IOException e) {
-            //TODO: log
+            log.error("Error while start ServerSocket. Error: {}", e.getMessage());
         }
     }
 

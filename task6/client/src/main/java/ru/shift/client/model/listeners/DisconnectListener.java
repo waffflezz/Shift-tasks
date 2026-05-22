@@ -1,5 +1,12 @@
 package ru.shift.client.model.listeners;
 
-public interface DisconnectListener extends ModelListener{
+/**
+ * Слушатель отключения от сервера.
+ */
+@FunctionalInterface
+public interface DisconnectListener extends ModelListener {
+    /**
+     * Вызывается при отключении от сервера.
+     */
     void onDisconnect();
 }

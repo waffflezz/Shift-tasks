@@ -1,23 +1,9 @@
 package ru.shift.client.model;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ru.shift.client.dto.AuthDto;
-import ru.shift.client.dto.ConnectionStatusDto;
-import ru.shift.client.dto.JoinUserDto;
-import ru.shift.client.dto.LeftUserDto;
-import ru.shift.client.dto.MessageDto;
 import ru.shift.client.model.connection.ClientService;
 import ru.shift.client.model.connection.ResponseConsumer;
-import ru.shift.client.model.listeners.AuthListener;
-import ru.shift.client.model.listeners.ConnectionListener;
-import ru.shift.client.model.listeners.DisconnectListener;
-import ru.shift.client.model.listeners.JoinUserListener;
-import ru.shift.client.model.listeners.LeftUserListener;
-import ru.shift.client.model.listeners.MessageListener;
 import ru.shift.client.model.listeners.ModelListener;
-import ru.shift.client.model.listeners.StartClientListener;
-import ru.shift.client.model.listeners.UsersListListener;
 import ru.shift.client.observers.ObserversRegistry;
 import ru.shift.common.protocol.dto.notification.DisconnectNotificationDto;
 import ru.shift.common.protocol.dto.notification.JoinNotificationDto;
@@ -25,21 +11,34 @@ import ru.shift.common.protocol.dto.notification.LeftNotificationDto;
 import ru.shift.common.protocol.dto.notification.MessageNotificationDto;
 import ru.shift.common.protocol.dto.response.ErrorResponseDto;
 import ru.shift.common.protocol.dto.response.LoginResponseDto;
-import ru.shift.common.protocol.dto.response.MessageResponseDto;
 import ru.shift.common.protocol.dto.response.UsersListResponseDto;
 
 import java.io.IOException;
 
+/**
+ * Главная модель приложения, реализующая логику чата.
+ * Управляет сетевым взаимодействием через {@link ClientService}
+ * и уведомляет наблюдателей о происходящих событиях.
+ */
 @Slf4j
 public class ChatMainModel implements ChatModel {
     private final ClientService clientService;
     private final Notifier notifier;
 
+    /**
+     * Создаёт модель чата.
+     *
+     * @param observers реестр наблюдателей для рассылки событий
+     * @param clientService сервис сетевого взаимодействия
+     */
     public ChatMainModel(ObserversRegistry<ModelListener> observers, ClientService clientService) {
         this.clientService = clientService;
         this.notifier = new Notifier(observers);
     }
 
+    /**
+     * Подписывается на серверные уведомления о событиях в чате.
+     */
     private void initServerNotification() {
         clientService.addListener(JoinNotificationDto.class, notification -> {
             JoinNotificationDto body = notification.getBody();
@@ -91,6 +90,9 @@ public class ChatMainModel implements ChatModel {
                 .onFailure(System.out::println));
     }
 
+    /**
+     * Запрашивает актуальный список пользователей чата.
+     */
     private void requestUsersList() {
         clientService.getUsersList(new ResponseConsumer()
                 .onSuccess(ok -> {

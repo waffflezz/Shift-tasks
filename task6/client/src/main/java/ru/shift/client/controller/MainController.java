@@ -3,14 +3,22 @@ package ru.shift.client.controller;
 import ru.shift.client.model.ChatModel;
 import ru.shift.client.view.actions.MainViewActions;
 
+/**
+ * Главный контроллер приложения.
+ * Связывает модель и представление, делегируя пользовательские действия модели
+ * и подписываясь на обработчики представления.
+ */
 public class MainController implements Controller {
     private final ChatModel model;
     private final MainViewActions view;
 
-    public MainController(
-            ChatModel model,
-            MainViewActions view
-    ) {
+    /**
+     * Создаёт контроллер и связывает представление с моделью.
+     *
+     * @param model модель чата
+     * @param view представление с действиями пользователя
+     */
+    public MainController(ChatModel model, MainViewActions view) {
         this.model = model;
         this.view = view;
 
@@ -37,11 +45,9 @@ public class MainController implements Controller {
         model.sendMessage(message);
     }
 
-    @Override
-    public void disconnect() {
-        model.disconnect("Client close");
-    }
-
+    /**
+     * Подписывает обработчики представления на соответствующие методы контроллера.
+     */
     private void bindView() {
         view.join().setConnectionAction(this::connectToServer);
         view.auth().setAuthAction(this::auth);

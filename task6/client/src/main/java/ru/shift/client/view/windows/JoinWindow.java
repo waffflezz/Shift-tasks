@@ -6,6 +6,10 @@ import ru.shift.client.view.views.handlers.ConnectionHandler;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Окно подключения к серверу.
+ * Содержит поля ввода IP-адреса и порта, а также кнопку подключения.
+ */
 public class JoinWindow {
     private final JFrame frame;
 
@@ -27,9 +31,7 @@ public class JoinWindow {
 
         createForm();
 
-        connectButton.addActionListener(l -> {
-            connectionHandler.handle(getIp(), getPort());
-        });
+        connectButton.addActionListener(l -> connectionHandler.handle(getIp(), getPort()));
     }
 
     private void createForm() {

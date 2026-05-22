@@ -10,11 +10,15 @@ import ru.shift.server.kernel.Handler;
 import ru.shift.server.session.ClientSession;
 import ru.shift.server.session.ServerContext;
 
+/**
+ * Обработчик отправки текстового сообщения.
+ * Подтверждает получение отправителю и рассылает сообщение всем участникам чата.
+ */
 public class MessageHandler implements Handler<MessageRequestDto> {
     @Override
     public void handle(Request<MessageRequestDto> request, ClientSession session, ServerContext context) {
         if (!session.isAuthenticated()) {
-            session.sendError(request.getId(), 403, "Юзер не авторизован");
+            session.sendError(request.getId(), 403, "user not authorized");
             return;
         }
 

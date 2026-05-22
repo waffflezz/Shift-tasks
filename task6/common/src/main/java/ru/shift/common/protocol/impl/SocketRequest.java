@@ -6,7 +6,19 @@ import ru.shift.common.protocol.Request;
 
 import java.util.UUID;
 
+/**
+ * Запрос, отправляемый клиентом на сервер.
+ *
+ * @param <T> тип тела запроса
+ * @param id уникальный идентификатор запроса
+ * @param body тело запроса
+ */
 public record SocketRequest<T extends Body>(String id, T body) implements Request<T> {
+    /**
+     * Создаёт запрос с автоматически сгенерированным идентификатором.
+     *
+     * @param body тело запроса
+     */
     public SocketRequest(T body) {
         this(UUID.randomUUID().toString(), body);
     }

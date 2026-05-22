@@ -14,13 +14,15 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * Главное окно чата.
+ * Содержит область сообщений, список пользователей, поле ввода и счётчик символов.
+ */
 @Slf4j
 public class MainWindow {
     private static final int MAX_CHARS = 100;
@@ -133,7 +135,6 @@ public class MainWindow {
         int length = inputField.getText().length();
         charCountLabel.setText(length + "/" + MAX_CHARS);
 
-        // Меняем цвет при приближении к лимиту
         if (length >= MAX_CHARS) {
             charCountLabel.setForeground(Color.RED);
         } else if (length >= MAX_CHARS * 0.8) {

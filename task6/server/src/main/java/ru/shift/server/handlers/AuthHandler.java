@@ -12,7 +12,10 @@ import ru.shift.server.session.ServerContext;
 
 import java.time.Instant;
 
-
+/**
+ * Обработчик запроса на авторизацию.
+ * Регистрирует пользователя в реестре и рассылает уведомление о подключении.
+ */
 public class AuthHandler implements Handler<LoginRequestDto> {
     @Override
     public void handle(Request<LoginRequestDto> request, ClientSession session, ServerContext context) {

@@ -14,6 +14,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Реализация канала связи поверх TCP-сокета.
+ * Использует JSON-сериализацию и передачу сообщений строками, разделёнными переводом строки.
+ */
 @Slf4j
 public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
     private final Socket socket;
@@ -22,6 +26,12 @@ public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
     @Getter
     private final String clientId;
 
+    /**
+     * Создаёт канал на основе открытого сокета.
+     *
+     * @param socket TCP-сокет соединения
+     * @throws IOException при ошибке создания потоков ввода-вывода
+     */
     public Channel(Socket socket) throws IOException {
         this.socket = socket;
         this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
@@ -44,6 +54,11 @@ public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
         writer.println(serialized);
     }
 
+    /**
+     * Проверяет, активно ли соединение.
+     *
+     * @return true, если сокет подключён и не закрыт
+     */
     public boolean isConnected() {
         return socket != null && socket.isConnected() && !socket.isClosed();
     }

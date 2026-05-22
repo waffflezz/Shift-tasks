@@ -7,5 +7,8 @@ import ru.shift.client.model.contracts.JoinContract;
  * Объединяет все операции модели, доступные контроллеру.
  */
 public interface ChatModel extends JoinContract, ChatContract {
+    /**
+     * Запускает приложение, инициируя показ стартового окна.
+     */
     void start();
 }

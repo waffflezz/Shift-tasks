@@ -12,11 +12,19 @@ import ru.shift.client.view.MainView;
 
 import java.io.IOException;
 
+/**
+ * Точка входа в клиентское приложение.
+ * Создаёт все компоненты и запускает UI.
+ */
 @Slf4j
 @NoArgsConstructor
 public final class Client {
     private final ClientService clientService = new ClientService();
 
+    /**
+     * Запускает клиентское приложение.
+     * Регистрирует shutdown-hook для корректного закрытия соединения при завершении JVM.
+     */
     public void start() {
         Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
 
@@ -28,6 +36,10 @@ public final class Client {
         controller.start();
     }
 
+    /**
+     * Корректно завершает соединение с сервером.
+     * Вызывается автоматически при завершении JVM.
+     */
     private void shutdown() {
         log.info("Application shutting down, closing connection");
         try {
