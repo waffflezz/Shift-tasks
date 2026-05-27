@@ -14,7 +14,6 @@ import ru.shift.common.protocol.impl.SocketRequest;
 import java.io.IOException;
 import java.net.Socket;
 import java.time.Instant;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 /**
@@ -31,20 +30,16 @@ public final class ClientService implements AutoCloseable {
      *
      * @param ip IP-адрес сервера
      * @param port порт сервера
-     * @return future, завершающийся после установки соединения
      */
-    public CompletableFuture<Void> connect(String ip, int port) {
-        return CompletableFuture.runAsync(() -> {
-            try {
-                Socket socket = new Socket(ip, port);
-                Channel channel = new Channel(socket);
+    public void connect(String ip, int port) {
+        try {
+            Socket socket = new Socket(ip, port);
+            Channel channel = new Channel(socket);
 
-                this.connection = new ClientConnection(channel);
-
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
+            this.connection = new ClientConnection(channel);
+        } catch (Exception e) {
+            throw new RuntimeException("Error connection. Wrong address or port", e);
+        }
     }
 
     /**

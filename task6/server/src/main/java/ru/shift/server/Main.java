@@ -12,7 +12,10 @@ public class Main {
         var config = ConfigLoader.load(PROPERTY_FILE);
         var port = config.port();
 
-        Server server = new Server(port);
+        Server server = new ServerImpl(port);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(server::shutdown));
+
         server.start();
     }
 }

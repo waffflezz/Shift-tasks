@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 /**
@@ -30,10 +28,10 @@ import java.util.function.Consumer;
 @Slf4j
 public class ClientConnection implements AutoCloseable {
     private final Channel channel;
-    private final ExecutorService reader = Executors.newSingleThreadExecutor();
-
     private final Map<String, CompletableFuture<Response<?>>> pending = new ConcurrentHashMap<>();
     private final Map<Class<?>, List<Consumer<?>>> subs = new ConcurrentHashMap<>();
+    private Thread reader;
+
 
     /**
      * Создаёт соединение и запускает поток чтения сообщений.
@@ -50,7 +48,7 @@ public class ClientConnection implements AutoCloseable {
      * и направляющий их либо в pending-запросы, либо в подписчики уведомлений.
      */
     private void startReader() {
-        reader.submit(() -> {
+        reader = new Thread(() -> {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
                     try {
@@ -81,6 +79,7 @@ public class ClientConnection implements AutoCloseable {
                 log.error("Error when read socket. Error: {}", e.getMessage());
             }
         });
+        reader.start();
     }
 
     /**
@@ -166,7 +165,9 @@ public class ClientConnection implements AutoCloseable {
      */
     @Override
     public void close() throws IOException {
-        reader.shutdown();
+        if (reader != null) {
+            reader.interrupt();
+        }
         channel.close();
 
         pending.values().forEach(f ->

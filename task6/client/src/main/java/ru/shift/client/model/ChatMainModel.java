@@ -64,15 +64,13 @@ public class ChatMainModel implements ChatModel {
 
     @Override
     public void connect(String ip, int port) {
-        clientService.connect(ip, port)
-                .thenAccept(ok -> {
-                    initServerNotification();
-                    notifier.notifyConnection(true, "Success connection");
-                })
-                .exceptionally(e -> {
-                    notifier.notifyConnection(false, "Error connection. Wrong address or port");
-                    return null;
-                });
+        try {
+            clientService.connect(ip, port);
+            initServerNotification();
+            notifier.notifyConnection(true, "Success connection");
+        } catch (Exception e) {
+            notifier.notifyConnection(false, e.getMessage());
+        }
     }
 
     @Override

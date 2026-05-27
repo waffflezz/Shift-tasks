@@ -12,8 +12,6 @@ import java.util.Properties;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ConfigLoader {
-    private static final String PORT_PROPERTY = "port";
-
     /**
      * Читает файл конфигурации, преобразует его в объект настроек и валидирует результат.
      *
@@ -31,9 +29,11 @@ public final class ConfigLoader {
             }
 
             properties.load(inputStream);
-            AppConfig config = new AppConfig(Integer.parseInt(properties.getProperty(PORT_PROPERTY)));
 
-            Validator.validate(config);
+            AppConfig config = AppConfigMapper.from(properties);
+
+            Validator.validateConfig(config);
+
             return config;
         } catch (IOException e) {
             throw new IllegalStateException("Failed to load " + propertyFileName, e);

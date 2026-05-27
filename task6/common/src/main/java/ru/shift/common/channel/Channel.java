@@ -65,6 +65,10 @@ public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
 
     @Override
     public void close() throws IOException {
+        try(reader;writer;socket) {} catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         if (socket != null && !socket.isClosed()) {
             socket.close();
         }
