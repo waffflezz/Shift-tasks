@@ -1,7 +1,7 @@
 package ru.shift.client;
 
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import ru.shift.client.config.ClientConfig;
 import ru.shift.client.controller.MainController;
 import ru.shift.client.model.ChatMainModel;
 import ru.shift.client.model.ChatModel;
@@ -17,9 +17,12 @@ import java.io.IOException;
  * Создаёт все компоненты и запускает UI.
  */
 @Slf4j
-@NoArgsConstructor
 public final class Client {
-    private final ClientService clientService = new ClientService();
+    private final ClientService clientService;
+
+    public Client(ClientConfig config) {
+        this.clientService = new ClientService(config.connectionTimeoutMs());
+    }
 
     /**
      * Запускает клиентское приложение.

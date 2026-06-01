@@ -1,7 +1,8 @@
 package ru.shift.client.model.connection;
 
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import ru.shift.client.exceptions.ClientConnectionException;
 import ru.shift.common.channel.Channel;
 import ru.shift.common.protocol.Notification;
 import ru.shift.common.protocol.Request;
@@ -12,7 +13,10 @@ import ru.shift.common.protocol.dto.request.UsersListRequestDto;
 import ru.shift.common.protocol.impl.SocketRequest;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.time.Instant;
 import java.util.function.Consumer;
 
@@ -21,8 +25,10 @@ import java.util.function.Consumer;
  * Предоставляет удобное API для подключения, отправки запросов и подписки на уведомления.
  */
 @Slf4j
-@NoArgsConstructor
+@RequiredArgsConstructor
 public final class ClientService implements AutoCloseable {
+    private final int connectionTimeout;
+
     private ClientConnection connection;
 
     /**
@@ -31,14 +37,20 @@ public final class ClientService implements AutoCloseable {
      * @param ip IP-адрес сервера
      * @param port порт сервера
      */
-    public void connect(String ip, int port) {
+    public void connect(String ip, int port) throws ClientConnectionException, IOException {
         try {
-            Socket socket = new Socket(ip, port);
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(ip, port), connectionTimeout);
+
             Channel channel = new Channel(socket);
 
             this.connection = new ClientConnection(channel);
-        } catch (Exception e) {
-            throw new RuntimeException("Error connection. Wrong address or port", e);
+        } catch (UnknownHostException e) {
+            throw new ClientConnectionException("Error. Wrong IP", e);
+        } catch (SocketTimeoutException e) {
+            throw new ClientConnectionException("Error. Connection timeout", e);
+        } catch (IllegalArgumentException e) {
+            throw new ClientConnectionException("Error. Port parameter is outside the range of valid port values", e);
         }
     }
 

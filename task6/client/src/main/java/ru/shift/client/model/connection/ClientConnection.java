@@ -168,13 +168,12 @@ public class ClientConnection implements AutoCloseable {
         if (reader != null) {
             reader.interrupt();
         }
-        channel.close();
-
         pending.values().forEach(f ->
                 f.completeExceptionally(new IllegalStateException("Disconnected"))
         );
 
         pending.clear();
         subs.clear();
+        channel.close();
     }
 }

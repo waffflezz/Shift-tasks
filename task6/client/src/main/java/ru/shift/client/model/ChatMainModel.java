@@ -1,6 +1,7 @@
 package ru.shift.client.model;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.shift.client.exceptions.ClientConnectionException;
 import ru.shift.client.model.connection.ClientService;
 import ru.shift.client.model.connection.ResponseConsumer;
 import ru.shift.client.model.listeners.ModelListener;
@@ -68,7 +69,7 @@ public class ChatMainModel implements ChatModel {
             clientService.connect(ip, port);
             initServerNotification();
             notifier.notifyConnection(true, "Success connection");
-        } catch (Exception e) {
+        } catch (ClientConnectionException | IOException e) {
             notifier.notifyConnection(false, e.getMessage());
         }
     }
