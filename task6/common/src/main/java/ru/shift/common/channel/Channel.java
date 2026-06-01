@@ -60,20 +60,12 @@ public class Channel implements ChannelReader, ChannelWriter, AutoCloseable {
      * @return true, если сокет подключён и не закрыт
      */
     public boolean isConnected() {
-        return socket != null && socket.isConnected() && !socket.isClosed();
+        return socket.isConnected() && !socket.isClosed();
     }
 
     @Override
+    @SuppressWarnings("EmptyTryBlock")
     public void close() throws IOException {
-        if (socket != null && !socket.isClosed()) {
-            socket.close();
-        }
-
-        try {
-            reader.close();
-        } catch (IOException e) {
-            log.warn("Error while close reader. Error: {}", e.getMessage());
-        }
-        writer.close();
+        try (reader; writer; socket) {}
     }
 }
